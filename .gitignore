@@ -1,0 +1,10 @@
+*~
+*.swp
+*.swo
+*.bak
+*.sh
+*.zip
+.vscode
+__pycache__
+rvx_*_manual_ko/
+rvx_*_manual_en/

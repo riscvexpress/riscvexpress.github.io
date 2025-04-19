@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="한규승, 이석호, 장형욱, 김상필, 이재진" />
+  <title>RISC-V eXpress Install Manual</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">RISC-V eXpress Install Manual</h1>
+<p class="author">한규승, 이석호, 장형욱, 김상필, 이재진</p>
+</header>
+<h1 id="sec:overview">개요</h1>
+<ul>
+<li><p>RISC-V eXpress (이하 RVX) 는 RISC-V 환경을 활용하여 MCU 급의
+저전력 SoC를 개발하기 위한 HW/SW development kit 이다.</p>
+<ul>
+<li><p>논문제목: Developing TEI-Aware Ultralow-Power SoC Platforms for
+IoT End Nodes</p></li>
+<li><p>게재지: IEEE Internet of Things Journal, vol. 8, no. 6,
+2021</p></li>
+<li><p><a href="https://ieeexplore.ieee.org/document/9208740"><span
+class="uri">https://ieeexplore.ieee.org/document/9208740</span></a></p></li>
+</ul></li>
+<li><p>본 메뉴얼은 rvx mini git을 기반으로 사용자의 컴퓨터에 RVX를
+설치하기 위한 메뉴얼이다.</p></li>
+</ul>
+<h1 id="주의사항">주의사항</h1>
+<ul>
+<li><p>RVX를 이용하여 만든 모든 결과물은,</p>
+<ul>
+<li><p>특정 수업 또는 연구과제 등 사전에 지정된 목적과 범위를 벗어나서
+활용할 수 없다.</p></li>
+<li><p>지정된 사용자 또는 사용기관 이외에 제3자에게 배포할 수
+없다.</p></li>
+<li><p>상업적 목적으로 사용하려면 기술이전이 필요하다.</p></li>
+</ul></li>
+<li><p>ETRI에서 제공하는 RVX server을 사용할 경우,</p>
+<ul>
+<li><p>RVX mini를 통한 제공된 기능만을 이용해야한다.</p></li>
+<li><p>이를 의도적으로 위반하여 사고가 발생하면 사용자가 비용을 포함한
+모든 책임을 진다.</p></li>
+</ul></li>
+</ul>
+<h1 id="준비물">준비물</h1>
+<ul>
+<li><p>라이센스 툴</p>
+<ol>
+<li><p>RTL 시뮬레이터 = Modelsim/Questa or
+Xcelium/NCSim/Incisive</p></li>
+<li><p>FPGA 툴 = Xilinx Vivado 2021.2 이상</p></li>
+</ol></li>
+<li><p>성능이 좋은 컴퓨터</p>
+<ol>
+<li><p>라이센스 툴들을 돌리기 위해서는 고성능이 필요하다.</p></li>
+<li><p>실제로 필요한 성능은 각 라이센스 툴의 요구사항을
+참조한다.</p></li>
+<li><p>참고로, RVX 자체 엔진은 고성능을 요구하지 않는다.</p></li>
+</ol></li>
+<li><p>아래 해당하는 OS 중 라이센스 툴이 안정적으로 돌아가는 버전 설치
+권장</p>
+<ol>
+<li><p>CentOS 7, 8</p></li>
+<li><p>Redhat 8, 9</p></li>
+<li><p>Ubuntu 18, 20, 22, 24 (20 이상 권장)</p></li>
+<li><p>Windows 10 (Home, Enterprise)</p></li>
+<li><p>Windows 11 Home</p></li>
+</ol></li>
+<li><p>Linux들의 경우, 모든 locale 설정값들이 en_US.UTF-8 또는 C.UTF-8
+이어야한다.</p>
+<ol>
+<li><p>GUI를 이용해서 설정할 경우, language의 formats를 United States로
+설정한다.</p></li>
+<li><p>또는, /etc/ssh/ssh_config 파일에서 SendEnv LANG LC* 줄 앞에 #을
+붙여 주석처리한다.</p></li>
+</ol></li>
+<li><p>컴퓨터의 관리자 권한이 있는 계정</p>
+<ol>
+<li><p><span style="color: red"><u>Linux는 sudo 권한, Windows는 관리자
+권한이 있어야한다.</u></span></p></li>
+</ol></li>
+<li><p>RVX git 주소</p>
+<ol>
+<li><p>교수 또는 프로젝트 관리자 등에게 받도록 한다.</p></li>
+</ol></li>
+<li><p>RVX server의 IP 주소, 계정, 비밀번호</p>
+<ol>
+<li><p>교수 또는 프로젝트 관리자 등에게 받도록 한다.</p></li>
+<li><p>사용할 컴퓨터 및 컴퓨터 계정마다 하나씩 필요하다.</p></li>
+</ol></li>
+</ul>
+<h1 id="알아두어야-할-사항">알아두어야 할 사항</h1>
+<ul>
+<li><p>RVX git repository가 설치된 위치를 부른다.</p></li>
+<li><p>메뉴얼에서 알려주는 명령 중에서 #로 시작되는 부분은 상황에 맞게
+바꿔서 입력해야한다.</p></li>
+<li><p>Linux에서 명령어창은 bash shell을 사용한다.</p></li>
+<li><p>Linux에서 특정 디렉토리를 PATH 변수에 추가하는 방법</p>
+<ol>
+<li><p>.bashrc 파일에 "export PATH=$PATH:#(특정디렉토리)"를
+추가한다.</p></li>
+</ol></li>
+<li><p>Windows에서 명령어창은 [Windows Power Shell]을 사용한다.</p></li>
+<li><p>Windows에서 [Windows Power Shell]를 실행하는 방법</p>
+<ol>
+<li><p>검색에서 power를 검색한다.</p></li>
+<li><p>[Windows Power Shell]를 클릭한다.</p></li>
+</ol></li>
+<li><p>Windows에서 특정 디렉토리 위치에서 명령어창을 실행하는 방법</p>
+<ol>
+<li><p>Windows 탐색기에서 원하는 디렉토리로 이동한다.</p></li>
+<li><p>오른쪽 파일뷰에서 쉬프트키를 누른 상태로 마우스 오른쪽 클릭을
+한다.</p></li>
+<li><p>[여기서 PowerShell 창 열기]를 클릭한다.</p></li>
+</ol></li>
+<li><p>Windows에서 환경변수를 설정하는 방법</p>
+<ol>
+<li><p>[시스템 속성]을 연다.</p>
+<ul>
+<li><p>검색창에서 SystemPropertiesAdvanced.exe를 검색해서
+실행한다.</p></li>
+<li><p>또는, ${RVX_MINI_HOME}\install\open_system_properties.bat를
+실행한다.</p></li>
+<li><p>또는, 명령어창에서 SystemPropertiesAdvanced.exe를
+실행한다.</p></li>
+</ul></li>
+<li><p>[고급]탭에서 [환경변수] 클릭</p></li>
+<li><p>시스템 변수가 아니라 사용자 변수에 추가한다.</p></li>
+<li><p>추가하려는 변수가 이미 존재하면 해당 변수를 클릭한 후 [편집]을
+한다.</p></li>
+<li><p>추가하려는 변수가 존재하지 않으면 [새로 만들기]를 한다.</p></li>
+<li><p>환경변수를 수정하고 나서는 기존의 명령어창을 껐다가 다시
+켜야한다.</p></li>
+</ol></li>
+</ul>
+<h1 id="설치-1단계">설치 1단계</h1>
+<h2 id="목표">목표</h2>
+<p>Git, make, python3, Java 환경을 설치한다.<br />
+널리 사용되는 프로그램들로, [목표]만 만족한다면 다른 방식으로 설치해도
+무관하다.</p>
+<h2 id="git-program">Git Program</h2>
+<ol>
+<li><p>git 1.7.10 이상을 설치하고 확인한다.</p></li>
+<li><p>git <span>-</span><span>-</span>version</p></li>
+<li><ol>
+<li><p>sudo yum install git</p></li>
+<li><p>버전 확인을 해서 맞지 않으면 각자 알아서 설치한다.</p></li>
+</ol>
+<p>or</p></li>
+<li><ol>
+<li><p>sudo apt-get install git</p></li>
+<li><p>버전 확인을 해서 맞지 않으면 각자 알아서 설치한다.</p></li>
+</ol>
+<p>or</p></li>
+<li><p><a href="https://git-scm.com/download/win"><span
+class="uri">https://git-scm.com/download/win</span></a></p></li>
+<li><p>Section <a href="#sec:git-repository" data-reference-type="ref"
+data-reference="sec:git-repository">6.2</a>에 따라 repository를
+받으면<br />
+최신 메뉴얼이 ${RVX_MINI_HOME}/rvx_install 에 있다.</p></li>
+</ol>
+<h2 id="python-3">Python 3</h2>
+<ol>
+<li><p>python 3.8에서 3.10 사이를 설치하고 확인한다.</p></li>
+<li><p>python3 <span>-</span><span>-</span>version or python
+<span>-</span><span>-</span>version</p></li>
+<li><p>사용자 환경에 따라 명령어가 python3 또는 python</p>
+<h3 id="linux">Linux</h3></li>
+<li><ol>
+<li><p>sudo yum install python3</p></li>
+<li><p>설치가 안 되거나 버전 확인을 해서 맞지 않으면 [방법 Linux] 또는
+각자 알아서 설치한다.</p></li>
+</ol>
+<p>or</p></li>
+<li><ol>
+<li><p>sudo apt-get install python3</p></li>
+<li><p>설치가 안 되거나 버전 확인을 해서 맞지 않으면 [방법 Linux] 또는
+각자 알아서 설치한다.</p></li>
+</ol>
+<p>or</p></li>
+<li><ol>
+<li><p>sudo yum install gcc zlib zlib-devel openssl
+openssl-devel</p></li>
+<li><p>wget
+https://www.python.org/ftp/python/3.8.16/Python-3.8.16.tar.xz</p></li>
+<li><p>tar xvf Python-3.8.16.tar.xz</p></li>
+<li><p>cd Python-3.8.16; ./configure; make; sudo make install</p></li>
+</ol>
+<h3 id="windows">Windows</h3></li>
+<li><ol>
+<li><p>Microsoft Store에서 python3를 검색하여 3.8 버전을 설치한다.</p>
+<ul>
+<li><p>가능하다면 이 방법을 더 추천한다.</p></li>
+<li><p>3.7에서 3.9 사이이면 다 괜찮다.</p></li>
+</ul></li>
+</ol>
+<p>or</p></li>
+<li><ol>
+<li><p><a href="https://www.python.org"><span
+class="uri">https://www.python.org</span></a>에서 3.9.12 버전을 다운받아
+설치한다.</p></li>
+<li><p>3.7에서 3.9 사이이면 다 괜찮지만 Windows installer 가 있는
+버전으로 해야한다.</p></li>
+<li><p>설치할 때 반드시 [Add Python 3.x to PATH]를 활성화한다.</p></li>
+<li><p>만약 실수로 하지 않았다면, Path 환경변수에 두 디렉토리를 직접
+추가한다.</p>
+<ul>
+<li><p>C:\Users\kshan\AppData\Local\Programs\Python\Python3x</p></li>
+<li><p>C:\Users\kshan\AppData\Local\Programs\Python\Python3x\Scripts</p></li>
+</ul></li>
+</ol></li>
+</ol>
+<h2 id="make">Make</h2>
+<ol>
+<li><p>Makefile이 동작하는 환경을 만든다.</p></li>
+<li><p>기본적으로 지원하기 때문에 별도로 설치할 필요가 없다.</p></li>
+<li><ol>
+<li><p><a href="http://gnuwin32.sourceforge.net/packages/make.htm"><span
+class="uri">http://gnuwin32.sourceforge.net/packages/make.htm</span></a>
+에서<br />
+Complete package를 받아 설치한다.</p></li>
+<li><p>Path 환경변수에 설치된 디렉토리를 추가한다.</p>
+<ul>
+<li><p>C:\Program Files (x86)\GnuWin32\bin</p></li>
+</ul></li>
+</ol></li>
+</ol>
+<h1 id="설치-2단계">설치 2단계</h1>
+<h2 id="목표-1">목표</h2>
+<p>RVX git repository를 설치하고 RVX를 위한 python3 환경을
+설정한다.<br />
+python3가 올바로 설치되고 설정되었는지 확인하고<br />
+여러 버전의 python3를 가지고 있을 경우 충돌을 해결한다.</p>
+<h2 id="sec:git-repository">Git Repository</h2>
+<ul>
+<li><ol>
+<li><p>설치하고 싶은 디렉토리의 상위 디렉토리로 이동한다.</p></li>
+<li><p>git clone <span>-</span><span>-</span>recursive #(git 주소)</p>
+<ul>
+<li><p>생성된 디렉토리를 부른다.</p></li>
+<li><p>실제 변수 설정은 Section <a href="#sec:install"
+data-reference-type="ref" data-reference="sec:install">6.5</a>에서
+이루어진다.</p></li>
+</ul></li>
+</ol>
+<p>or</p>
+<ol>
+<li><p>git clone #(git 주소)</p>
+<ul>
+<li><p>생성된 디렉토리를 부른다.</p></li>
+<li><p>실제 변수 설정은 Section <a href="#sec:install"
+data-reference-type="ref" data-reference="sec:install">6.5</a>에서
+이루어진다.</p></li>
+</ul></li>
+<li><p>생성된 디렉토리로 이동한다.</p></li>
+<li><p>git submodule init</p></li>
+<li><p>git submodule update</p></li>
+</ol></li>
+</ul>
+<h2 id="rvx를-위한-python-3-설정">RVX를 위한 python 3 설정</h2>
+<ol>
+<li><p>RVX에서 사용할 python3 명령어를 설정하고 확인한다.</p></li>
+<li><p>make check_python</p></li>
+<li><ol>
+<li><p>이동한다.</p></li>
+<li><p>make config_python</p>
+<ul>
+<li><p>rvx_python_config.mh 이 생성됨을 확인</p></li>
+</ul></li>
+<li><p>rvx_python_config.mh을 텍스트 편집기로 열어 확인하고 필요한 경우
+수정한다.</p>
+<ul>
+<li><p>경로가 하나도 없다면 python이 설치되지 않았거나 PATH 설정에
+문제가 있는 것이다.</p></li>
+<li><p>경로가 2개 이상이라면 사용할 1개만 남기고 지운다.</p></li>
+</ul></li>
+</ol></li>
+<li><ol>
+<li><p>이동한다.</p></li>
+<li><p>make config_python</p>
+<ul>
+<li><p>rvx_python_config.mh 이 생성됨을 확인 (수정하지 않음)</p></li>
+<li><p>python3.bat 이 생성됨을 확인</p></li>
+</ul></li>
+<li><p>python3.bat을 텍스트 편집기로 열어 확인하고 필요한 경우
+수정한다.</p>
+<ul>
+<li><p>경로가 하나도 없다면 python이 설치되지 않았거나 PATH 설정에
+문제가 있는 것이다.</p></li>
+<li><p>경로가 2개 이상이라면 사용할 1개만 남기고 지운다.</p>
+<ul>
+<li><p><span style="color: red"><u>맨마지막에 있는 "%*" 는 지우면 안
+된다.</u></span></p></li>
+</ul></li>
+<li><p>디렉토리 이름에 빈칸이 있다면 아래와 같이 따옴표 처리 한다.</p>
+<ul>
+<li><p>C:\Users\"Kyuseung Han"\... %*</p></li>
+</ul></li>
+</ul></li>
+</ol></li>
+</ol>
+<h2 id="rvx를-위한-pip-3-설치-및-설정">RVX를 위한 pip 3 설치 및
+설정</h2>
+<ol>
+<li><p>RVX에서 사용할 python package를 설치하고 확인한다.</p></li>
+<li><p>make check_pip</p></li>
+<li><ol>
+<li><p>make pip</p></li>
+</ol>
+<p>* 문제가 생겼거나 손상이 생긴 경우</p>
+<ol>
+<li><p>make fix_pip</p></li>
+<li><p>make pip</p></li>
+</ol></li>
+</ol>
+<h2 id="sec:install">Install</h2>
+<ul>
+<li><ol>
+<li><p>이동한다.</p></li>
+<li><p>make install</p>
+<ul>
+<li><p>./rvx_setup.sh 파일 생성 확인</p></li>
+</ul></li>
+<li><p>.bashrc에 "source #(RVX_MINI_HOME)/rvx_setup.sh"를 추가한다.</p>
+<ul>
+<li><p># 부분은 반드시 절대 주소로 바꿔서 추가한다.</p></li>
+</ul></li>
+<li><p>.bashrc을 적용하기 위해 <span style="color: red"><u>명령창을 껐다
+다시 켠다.</u></span></p></li>
+</ol></li>
+<li><ol>
+<li><p>이동한다.</p></li>
+<li><p>make install</p></li>
+<li><p>PATH 환경변수에 대해</p>
+<ul>
+<li><p>성공적으로 업데이트 되었다는 INFO가 출력된 경우는 다음으로
+넘어간다.</p></li>
+<li><p>직접 추가하라고 WARNING이 출력된 경우는<br />
+"${RVX_MINI_HOME}\windows_binary"를 직접 추가한다.</p></li>
+</ul></li>
+<li><p>RVX_MINI_HOME 환경변수가 새로 추가되었으니 <span
+style="color: red"><u>명령창을 껐다 다시 켠다.</u></span></p></li>
+</ol></li>
+</ul>
+<h1 id="설치-3단계">설치 3단계</h1>
+<h2 id="olimex-driver-설치-windows-only">Olimex Driver 설치 (Windows
+Only)</h2>
+<ul>
+<li><ol>
+<li><p>Olimex ARM-USB-TINY-H 케이블을 컴퓨터에 연결한다.</p></li>
+<li><p>zadig 프로그램을 실행한다.</p>
+<ul>
+<li><p>${RVX_MINI_HOME}\windows_binary 에 있는 zadig-2.5.exe를
+실행한다.</p></li>
+</ul>
+<p>or</p>
+<ul>
+<li><p><a href="https://zadig.akeo.ie"><span
+class="uri">https://zadig.akeo.ie</span></a>에서 다운받아
+실행한다.</p></li>
+</ul></li>
+<li><p>[Olimex OpenOCD JTAG ARM-USB-TINY-H (Interface 0)] 룰
+선택하고<br />
+[Install Driver]를 누른다.</p></li>
+<li><p>[Olimex OpenOCD JTAG ARM-USB-TINY-H (Interface 1)] 룰
+선택하고<br />
+[Install Driver]를 누른다.</p></li>
+</ol></li>
+</ul>
+<h2 id="telnet-설치-windows-only">Telnet 설치 (Windows Only)</h2>
+<ul>
+<li><ol>
+<li><p>[제어판] 실행</p>
+<ul>
+<li><p>control 검색</p></li>
+</ul></li>
+<li><p>[프로그램] 클릭</p></li>
+<li><p>[Windows 기능 켜기/끄기] 클릭</p></li>
+<li><p>[텔넷 클라이어트] 체크 활성화</p></li>
+<li><p>확인</p></li>
+</ol></li>
+</ul>
+<h2 id="java-gui를-사용할-경우">Java (GUI를 사용할 경우)</h2>
+<ol>
+<li><p>OpenJDK를 설치하고 확인한다.</p></li>
+<li><p>java <span>-</span>version</p></li>
+<li><p>yum 또는 apt 으로 각자 검색해서 설치한다. 버전은 크게 상관
+없다.</p></li>
+<li><ol>
+<li><p><a href="https://openjdk.java.net/"><span
+class="uri">https://openjdk.java.net/</span></a>에서 다운받는다. 버전은
+크게 상관 없다.</p></li>
+<li><p>압축을 풀고 생성되는 디렉토리를 설치하고자 하는 위치로
+이동시킨다.</p></li>
+<li><p>설치한 디렉토리의 하위 디렉토리인 bin을 PATH 변수에
+추가한다.</p></li>
+</ol></li>
+</ol>
+<h1 id="설치-4단계-라이센스-프로그램">설치 4단계 (라이센스
+프로그램)</h1>
+<ol>
+<li><p>Xilinx Vivado 2021.2이상의 버전을 설치하고 설치경로를 PATH 변수에
+추가한다.</p>
+<ul>
+<li><p>Windows에서는 자동으로 추가될 수도 있다.</p></li>
+</ul></li>
+<li><p>ModelSim 또는 NCsim 을 설치하고 설치경로를 PATH 변수에
+추가한다.</p>
+<ul>
+<li><p>Windows에서는 자동으로 추가될 수도 있다.</p></li>
+</ul></li>
+</ol>
+<h1 id="동기화">동기화</h1>
+<ul>
+<li><p>RVX 서버에서 구동환경을 가져오는 작업이다.</p>
+<ul>
+<li><p>Git을 처음 받았을 때는 반드시 한번 실행해야한다.</p></li>
+<li><p>이후에는 update 과정에서 자동으로 실행된다.</p></li>
+<li><p>동기화가 끝나면 최신 버전의 메뉴얼들이 ${RVX_MINI_HOME}/manual에
+생긴다.</p></li>
+</ul></li>
+<li><p>동기화 과정 중에 RVX 서버의 계정정보를 입력하게 된다.</p>
+<ul>
+<li><p>계정정보는 미리 알고 있어야한다.</p></li>
+<li><p>${RVX_MINI_HOME}/.rvx_server_config에 저장된다.</p></li>
+<li><p>RVX 계정정보를 변경하고 싶은 경우 해당 파일을 삭제한다.</p></li>
+</ul></li>
+<li><ol>
+<li><p>이동한다.</p></li>
+<li><p>make sync</p>
+<ul>
+<li><p>SSH 접속 여부는 no로 대답한다.</p></li>
+</ul></li>
+</ol></li>
+</ul>
+<h1 id="계정-초기화-및-동기화">계정 초기화 및 동기화</h1>
+<ul>
+<li><p>sync 과정에서 문제가 생길 때 실행한다.</p></li>
+<li><ol>
+<li><p>이동한다.</p></li>
+<li><p>make resync</p></li>
+</ol></li>
+</ul>
+<h1 id="설정파일">설정파일</h1>
+<ul>
+<li><p>설정에 문제가 있을 경우 아래 파일목록 중 관련된 파일 삭제하고
+진행한다.</p>
+<ul>
+<li><p>${RVX_MINI_HOME}/.rvx_path_config</p></li>
+<li><p>${RVX_MINI_HOME}/.rvx_sudo_config</p></li>
+<li><p>${RVX_MINI_HOME}/.rvx_tool_config</p></li>
+<li><p>${RVX_MINI_HOME}/.rvx_server_config</p></li>
+</ul></li>
+<li><p>${RVX_MINI_HOME}/.rvx_key를 삭제한 경우, 위에 모든 파일을
+삭제한다.</p></li>
+</ul>
+<h1 id="install-이후">Install 이후</h1>
+<h2 id="install-확인">Install 확인</h2>
+<ul>
+<li><p>make check</p>
+<ul>
+<li><p>도중에 에러가 나면 안 된다 !!!</p></li>
+</ul></li>
+</ul>
+<h2 id="user-manual">User Manual</h2>
+<ul>
+<li><p>${RVX_MINI_HOME}/manual에 있다.</p></li>
+</ul>
+<h2 id="자동-update">자동 Update</h2>
+<ul>
+<li><p>사용 중에 Update하라는 메시지가 뜨면 진행한다.</p></li>
+<li><ol>
+<li><p>작업한 내용이 있다면 platform 디렉토리를 다른 곳으로
+백업한다.</p></li>
+<li><p>이동한다.</p></li>
+</ol></li>
+<li><ol>
+<li><p>./update.sh</p>
+<ul>
+<li><p>update.sh 파일이 없으면 make config</p></li>
+</ul></li>
+<li><p>./rvx_setup.sh 파일이 새로 생겼으므로 <span
+style="color: red"><u>명령어창을 새로 켜서 작업한다.</u></span></p></li>
+</ol></li>
+<li><ol>
+<li><p>update.bat</p>
+<ul>
+<li><p>update.bat 파일이 없으면 make config</p></li>
+</ul></li>
+<li><p>환경변수가 업데이트 되었으므로 <span
+style="color: red"><u>명령어창을 새로 켜서 작업한다.</u></span></p></li>
+<li><p><span style="color: red"><u>플랫폼을 clean을 하고 syn부터 다시
+작업한다.</u></span></p></li>
+</ol></li>
+</ul>
+<h2 id="수동-update">수동 Update</h2>
+<ul>
+<li><p>관리자의 요청에 의해 진행한다.</p></li>
+<li><ol>
+<li><p>이동한다.</p></li>
+<li><p>작업한 내용이 있다면 platform 디렉토리를 다른 곳으로
+백업한다.</p></li>
+<li><p>git checkout .</p></li>
+<li><p>git pull origin master</p></li>
+<li><p>git submodule init</p></li>
+<li><p>git submodule update</p></li>
+<li><p>make reconfig_python</p></li>
+<li><p>make pip3</p></li>
+<li><p>make config</p></li>
+<li><p><span style="color: red"><u>명령어창을 새로 켜서
+작업한다.</u></span></p></li>
+<li><p>make sync</p></li>
+<li><p><span style="color: red"><u>플랫폼을 clean을 하고 syn부터 다시
+작업한다.</u></span></p></li>
+</ol></li>
+</ul>
+</body>
+</html>
