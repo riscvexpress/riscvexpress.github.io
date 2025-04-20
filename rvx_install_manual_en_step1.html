@@ -4,8 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="author" content="Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin Lee" />
-  <title>RISC-V eXpress Install Manual</title>
+  <title>RISC-V eXpress Install Manual - Step 1 -</title>
   <style>
     html {
       color: #1a1a1a;
@@ -170,115 +169,23 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RISC-V eXpress Install Manual</h1>
-<p class="author">Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin Lee</p>
+<h1 class="title">RISC-V eXpress Install Manual<br />
+- Step 1 -</h1>
 </header>
-<h1 id="sec:overview">Overview</h1>
-<ul>
-<li><p>RISC-V eXpress (RVX) is a hardware/software development kit for
-designing low-power SoCs for embedded systems, such as MCUs or
-lightweight application processors.</p></li>
-<li><p>This manual explains how to install RVX on a local machine using
-the RVX Mini Git repository.</p></li>
-</ul>
-<h1 id="notice">Notice</h1>
-<ul>
-<li><p>All results produced using RVX are subject to the following
-conditions:</p>
-<ul>
-<li><p>They must not be used beyond the predefined purpose and scope
-specified in advance for a particular class or research
-project.</p></li>
-<li><p>They must not be distributed to third parties other than the
-designated users or organizations.</p></li>
-<li><p>Prior approval and a technology transfer agreement are required
-for any commercial use.</p></li>
-</ul></li>
-<li><p>When using the RVX server provided by ETRI:</p>
-<ul>
-<li><p>Only the features available through RVX mini may be
-used.</p></li>
-<li><p>The user is fully responsible for any incidents or damages,
-including financial costs, resulting from intentional misuse or
-violation of these terms.</p></li>
-</ul></li>
-</ul>
-<h1 id="requirements">Requirements</h1>
-<ul>
-<li><p>License Tools</p>
-<ul>
-<li><p>RTL Simulator: Modelsim/Questa or Xcelium/NCSim/Incisive</p></li>
-<li><p>FPGA Tool: Xilinx Vivado 2021.2 or later</p></li>
-</ul></li>
-<li><p>A High-Performance Computer</p>
-<ul>
-<li><p>A capable machine is required to run license tools
-efficiently.</p></li>
-<li><p>The actual performance needed depends on the specific license
-tools being used.</p></li>
-<li><p>Note: the RVX engine itself does not require a high-performance
-machine.</p></li>
-</ul></li>
-<li><p>Recommended OS Version</p>
-<ul>
-<li><p>Must be compatible with license tools, not just RVX.</p></li>
-<li><p>RVX-compatible OS</p>
-<ul>
-<li><p>CentOS 7 / 8</p></li>
-<li><p>Redhat 8 / 9</p></li>
-<li><p>Ubuntu 18 / 20 / 22 (recommended) / 24</p></li>
-<li><p>Windows 10 Home / Enterprise</p></li>
-<li><p>Windows 11 Home</p></li>
-</ul></li>
-</ul></li>
-<li><p>For Linux systems, the locale setting must be <span
-style="background-color: lightgray">en_US.UTF-8</span>.</p>
-<ul>
-<li><p>If using a GUI, set the language format to United
-States.</p></li>
-<li><p>Or, comment out the line <span
-style="background-color: lightgray">SendEnv LANG LC*</span> in <span
-style="background-color: lightgray">/etc/ssh/ssh_config</span></p></li>
-<li><p>(i.e., add a <span style="background-color: lightgray">#</span>
-at the beginning).</p></li>
-</ul></li>
-<li><p>User Account</p>
-<ul>
-<li><p>Linux: Requires <span
-style="background-color: lightgray">sudo</span> privileges</p></li>
-<li><p>Windows: Requires administrator rights</p></li>
-</ul></li>
-<li><p>RVX Mini Git Repository</p>
-<ul>
-<li><p>Provided by the instructor or project supervisor</p></li>
-</ul></li>
-<li><p>RVX Server Information</p>
-<ul>
-<li><p>IP address, SSH port, account, password</p></li>
-<li><p>Provided by the instructor or project supervisor</p></li>
-<li><p>Account must not be shared between multiple computers.</p></li>
-</ul></li>
-</ul>
-<h1 id="things-to-know">Things to Know</h1>
-<ul>
-<li><p>Any part starting with <span
-style="background-color: lightgray">#</span> should be replaced or
-modified according to your environment.</p></li>
-<li><p>On Linux, use the <span
-style="background-color: lightgray">bash</span> shell for command-line
-operations.</p></li>
-<li><p>On Windows, use the <span
-style="background-color: lightgray">Windows Power Shell</span> for
-command-line operations.</p></li>
-<li><p><a href="skills-for-linux.html">Skills for Linux</a></p></li>
-<li><p><a href="skills-for-windows.html">Skills for Windows</a></p></li>
-</ul>
-<h1 id="설치-1단계">설치 1단계</h1>
-<h2 id="목표">목표</h2>
-<p>Git, make, python3, Java 환경을 설치한다.<br />
-널리 사용되는 프로그램들로, [목표]만 만족한다면 다른 방식으로 설치해도
-무관하다.</p>
-<h2 id="git-program">Git Program</h2>
+<h1 id="overview">Overview</h1>
+<p>Install the environments for Git, make, python3, and Java.<br />
+These are commonly used programs,<br />
+so any installation method is acceptable as long as the [Objective] is
+met.</p>
+<h1 id="git-program">Git Program</h1>
+<h2 id="objective">Objective</h2>
+<div class="tcolorbox">
+<pre><code>Install and verify Git version 1.8.2 or later.</code></pre>
+</div>
+<h2 id="check">Check</h2>
+<div class="tcolorbox">
+<pre><code>cmd) git --version</code></pre>
+</div>
 <ol>
 <li><p>git 1.7.10 이상을 설치하고 확인한다.</p></li>
 <li><p>git <span>-</span><span>-</span>version</p></li>
@@ -295,7 +202,7 @@ command-line operations.</p></li>
 <li><p><a href="https://git-scm.com/download/win"><span
 class="uri">https://git-scm.com/download/win</span></a></p></li>
 <li><p>Section <a href="#sec:git-repository" data-reference-type="ref"
-data-reference="sec:git-repository">6.2</a>에 따라 repository를
+data-reference="sec:git-repository">3.2</a>에 따라 repository를
 받으면<br />
 최신 메뉴얼이 ${RVX_MINI_HOME}/rvx_install 에 있다.</p></li>
 </ol>
@@ -366,7 +273,7 @@ Complete package를 받아 설치한다.</p></li>
 </ol></li>
 </ol>
 <h1 id="설치-2단계">설치 2단계</h1>
-<h2 id="목표-1">목표</h2>
+<h2 id="목표">목표</h2>
 <p>RVX git repository를 설치하고 RVX를 위한 python3 환경을
 설정한다.<br />
 python3가 올바로 설치되고 설정되었는지 확인하고<br />
@@ -379,7 +286,7 @@ python3가 올바로 설치되고 설정되었는지 확인하고<br />
 <ul>
 <li><p>생성된 디렉토리를 부른다.</p></li>
 <li><p>실제 변수 설정은 Section <a href="#sec:install"
-data-reference-type="ref" data-reference="sec:install">6.5</a>에서
+data-reference-type="ref" data-reference="sec:install">3.5</a>에서
 이루어진다.</p></li>
 </ul></li>
 </ol>
@@ -389,7 +296,7 @@ data-reference-type="ref" data-reference="sec:install">6.5</a>에서
 <ul>
 <li><p>생성된 디렉토리를 부른다.</p></li>
 <li><p>실제 변수 설정은 Section <a href="#sec:install"
-data-reference-type="ref" data-reference="sec:install">6.5</a>에서
+data-reference-type="ref" data-reference="sec:install">3.5</a>에서
 이루어진다.</p></li>
 </ul></li>
 <li><p>생성된 디렉토리로 이동한다.</p></li>
