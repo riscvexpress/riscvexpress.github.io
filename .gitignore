@@ -6,6 +6,13 @@
 *.zip
 .vscode
 __pycache__
+
+.rvx_*
+rvx_*.log
+.login_info
+rvx_python_config.mh
+python3.bat
+
 rvx_*_manual_ko/
 rvx_*_manual_en/
 skills-for-linux/

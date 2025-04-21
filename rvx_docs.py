@@ -1,8 +1,41 @@
+from os_util import *
 import argparse
 import pypandoc
 import zipfile
 
-from os_util import *
+from bs4 import BeautifulSoup
+
+def convert_terminal_html(html_text: str) -> str:
+    soup = BeautifulSoup(html_text, "html.parser")
+
+    for div in soup.find_all("div", class_="tcolorbox"):
+        code_tag = div.find("code")
+        if not code_tag:
+            continue
+
+        # 줄바꿈용 \\ 제거
+        content = code_tag.get_text().replace("\\\\", "").strip()
+
+        # 새로운 터미널 스타일 박스
+        terminal_div = soup.new_tag("div")
+        terminal_div["style"] = (
+            "background-color: #1e1e1e; color: #d4d4d4; "
+            "font-family: 'Courier New', Courier, monospace; "
+            "padding: 0.5em 0.75em; border-radius: 6px; "
+            "margin: 1em 0; font-size: 1em; line-height: 1.1;"
+        )
+
+        # 코드 삽입
+        code_pre = soup.new_tag("pre", style="margin: 0;")
+        code_code = soup.new_tag("code")
+        code_code.string = content
+        code_pre.append(code_code)
+        terminal_div.append(code_pre)
+
+        div.replace_with(terminal_div)
+
+    return str(soup)
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='RVX Docs Util')
@@ -28,7 +61,6 @@ if __name__ == '__main__':
         pass
     elif args.cmd == 'latex2html':
         input_dir_path = input_path
-        assert input_dir_path.is_dir(), input_dir_path
 
         input_zip = input_dir_path.parent / f'{input_path.stem}.zip'
         if input_zip.is_file():
@@ -36,27 +68,29 @@ if __name__ == '__main__':
             with zipfile.ZipFile(input_zip, 'r') as zip_ref:
                 zip_ref.extractall(input_dir_path)
 
-        assert output_path.is_dir(), output_path
-        for input_latex_path in input_dir_path.glob('*.tex'):
-            assert input_latex_path.is_file(), input_latex_path
-            print(input_latex_path)
-            output_text = pypandoc.convert_text(input_latex_path.read_text(encoding='utf-8'), 'html', format='latex', extra_args=[
-                                                '-s', '--mathjax',
-                                                f'--lua-filter={str(resource_path)}/colorbox.lua',
-                                                f'--lua-filter={str(resource_path)}/tcolorbox.lua'
-                                                ])
-            output_html_path = output_path / f'{input_latex_path.stem}.html'
-            output_html_path.write_text(output_text, encoding='utf-8')
+        if input_dir_path.is_dir():
+            assert output_path.is_dir(), output_path
+            for input_latex_path in input_dir_path.glob(f'{input_path.stem}*.tex'):
+                assert input_latex_path.is_file(), input_latex_path
+                print(input_latex_path)
+                output_text = pypandoc.convert_text(input_latex_path.read_text(encoding='utf-8'), 'html', format='latex', extra_args=[
+                                                    '-s', '--mathjax'
+                                                    # ,f'--lua-filter={str(resource_path)}/colorbox.lua'
+                                                    ])
+                output_text = convert_terminal_html(output_text)
+                output_html_path = output_path / \
+                    f'{input_latex_path.stem}.html'
+                output_html_path.write_text(output_text, encoding='utf-8')
 
-        figures_src_dir = input_latex_path.parent / 'figures'
+            figures_src_dir = input_dir_path.parent / 'figures'
 
-        if figures_src_dir.is_dir():
-            figures_dst_dir = output_path / 'figures'
-            figures_dst_dir.mkdir(parents=True, exist_ok=True)
-            for src_file in figures_src_dir.iterdir():
-                if src_file.is_file():
-                    dst_file = figures_dst_dir / src_file.name
-                    copy_file(src_file, dst_file)
+            if figures_src_dir.is_dir():
+                figures_dst_dir = output_path / 'figures'
+                figures_dst_dir.mkdir(parents=True, exist_ok=True)
+                for src_file in figures_src_dir.iterdir():
+                    if src_file.is_file():
+                        dst_file = figures_dst_dir / src_file.name
+                        copy_file(src_file, dst_file)
 
     else:
         assert 0, args.cmd

@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="author" content="Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin Lee" />
-  <title>RISC-V eXpress Install Manual</title>
-  <style>
+<!DOCTYPE html>
+
+<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+<meta content="pandoc" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta content="Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin Lee" name="author"/>
+<title>RISC-V eXpress Install Manual</title>
+<style>
     html {
       color: #1a1a1a;
       background-color: #fdfdfd;
@@ -166,493 +167,107 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-  </style>
-</head>
-<body>
-<header id="title-block-header">
-<h1 class="title">RISC-V eXpress Install Manual</h1>
-<p class="author">Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin Lee</p>
-</header>
-<h1 id="sec:overview">Overview</h1>
-<ul>
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">RISC-V eXpress Install Manual</h1>
+<p class="author">Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin Lee</p>
+</header>
+<h1 id="sec:overview">Overview</h1>
+<ul>
 <li><p>RISC-V eXpress (RVX) is a hardware/software development kit for
 designing low-power SoCs for embedded systems, such as MCUs or
-lightweight application processors.</p></li>
+lightweight application processors.</p></li>
 <li><p>This manual explains how to install RVX on a local machine using
-the RVX Mini Git repository.</p></li>
-</ul>
-<h1 id="notice">Notice</h1>
-<ul>
+the RVX Mini Git repository.</p></li>
+</ul>
+<h1 id="notice">Notice</h1>
+<ul>
 <li><p>All results produced using RVX are subject to the following
-conditions:</p>
-<ul>
+conditions:</p>
+<ul>
 <li><p>They must not be used beyond the predefined purpose and scope
 specified in advance for a particular class or research
-project.</p></li>
+project.</p></li>
 <li><p>They must not be distributed to third parties other than the
-designated users or organizations.</p></li>
+designated users or organizations.</p></li>
 <li><p>Prior approval and a technology transfer agreement are required
-for any commercial use.</p></li>
-</ul></li>
-<li><p>When using the RVX server provided by ETRI:</p>
-<ul>
+for any commercial use.</p></li>
+</ul></li>
+<li><p>When using the RVX server provided by ETRI:</p>
+<ul>
 <li><p>Only the features available through RVX mini may be
-used.</p></li>
+used.</p></li>
 <li><p>The user is fully responsible for any incidents or damages,
 including financial costs, resulting from intentional misuse or
-violation of these terms.</p></li>
-</ul></li>
-</ul>
-<h1 id="requirements">Requirements</h1>
-<ul>
-<li><p>License Tools</p>
-<ul>
-<li><p>RTL Simulator: Modelsim/Questa or Xcelium/NCSim/Incisive</p></li>
-<li><p>FPGA Tool: Xilinx Vivado 2021.2 or later</p></li>
-</ul></li>
-<li><p>A High-Performance Computer</p>
-<ul>
+violation of these terms.</p></li>
+</ul></li>
+</ul>
+<h1 id="requirements">Requirements</h1>
+<ul>
+<li><p>License Tools</p>
+<ul>
+<li><p>RTL Simulator: Modelsim/Questa or Xcelium/NCSim/Incisive</p></li>
+<li><p>FPGA Tool: Xilinx Vivado 2021.2 or later</p></li>
+</ul></li>
+<li><p>A High-Performance Computer</p>
+<ul>
 <li><p>A capable machine is required to run license tools
-efficiently.</p></li>
+efficiently.</p></li>
 <li><p>The actual performance needed depends on the specific license
-tools being used.</p></li>
+tools being used.</p></li>
 <li><p>Note: the RVX engine itself does not require a high-performance
-machine.</p></li>
-</ul></li>
-<li><p>Recommended OS Version</p>
-<ul>
-<li><p>Must be compatible with license tools, not just RVX.</p></li>
-<li><p>RVX-compatible OS</p>
-<ul>
-<li><p>CentOS 7 / 8</p></li>
-<li><p>Redhat 8 / 9</p></li>
-<li><p>Ubuntu 18 / 20 / 22 (recommended) / 24</p></li>
-<li><p>Windows 10 Home / Enterprise</p></li>
-<li><p>Windows 11 Home</p></li>
-</ul></li>
-</ul></li>
-<li><p>For Linux systems, the locale setting must be <span
-style="background-color: lightgray">en_US.UTF-8</span>.</p>
-<ul>
+machine.</p></li>
+</ul></li>
+<li><p>Recommended OS Version</p>
+<ul>
+<li><p>Must be compatible with license tools, not just RVX.</p></li>
+<li><p>RVX-compatible OS</p>
+<ul>
+<li><p>CentOS 7 / 8</p></li>
+<li><p>Redhat 8 / 9</p></li>
+<li><p>Ubuntu 18 / 20 / 22 (recommended) / 24</p></li>
+<li><p>Windows 10 Home / Enterprise</p></li>
+<li><p>Windows 11 Home</p></li>
+</ul></li>
+</ul></li>
+<li><p>For Linux systems, the locale setting must be <span style="background-color: lightgray">en_US.UTF-8</span>.</p>
+<ul>
 <li><p>If using a GUI, set the language format to United
-States.</p></li>
-<li><p>Or, comment out the line <span
-style="background-color: lightgray">SendEnv LANG LC*</span> in <span
-style="background-color: lightgray">/etc/ssh/ssh_config</span></p></li>
+States.</p></li>
+<li><p>Or, comment out the line <span style="background-color: lightgray">SendEnv LANG LC*</span> in <span style="background-color: lightgray">/etc/ssh/ssh_config</span></p></li>
 <li><p>(i.e., add a <span style="background-color: lightgray">#</span>
-at the beginning).</p></li>
-</ul></li>
-<li><p>User Account</p>
-<ul>
-<li><p>Linux: Requires <span
-style="background-color: lightgray">sudo</span> privileges</p></li>
-<li><p>Windows: Requires administrator rights</p></li>
-</ul></li>
-<li><p>RVX Mini Git Repository</p>
-<ul>
-<li><p>Provided by the instructor or project supervisor</p></li>
-</ul></li>
-<li><p>RVX Server Information</p>
-<ul>
-<li><p>IP address, SSH port, account, password</p></li>
-<li><p>Provided by the instructor or project supervisor</p></li>
-<li><p>Account must not be shared between multiple computers.</p></li>
-</ul></li>
-</ul>
-<h1 id="things-to-know">Things to Know</h1>
-<ul>
-<li><p>Any part starting with <span
-style="background-color: lightgray">#</span> should be replaced or
-modified according to your environment.</p></li>
-<li><p>On Linux, use the <span
-style="background-color: lightgray">bash</span> shell for command-line
-operations.</p></li>
-<li><p>On Windows, use the <span
-style="background-color: lightgray">Windows Power Shell</span> for
-command-line operations.</p></li>
-<li><p><a href="skills-for-linux.html">Skills for Linux</a></p></li>
-<li><p><a href="skills-for-windows.html">Skills for Windows</a></p></li>
-</ul>
-<h1 id="설치-1단계">설치 1단계</h1>
-<h2 id="목표">목표</h2>
-<p>Git, make, python3, Java 환경을 설치한다.<br />
-널리 사용되는 프로그램들로, [목표]만 만족한다면 다른 방식으로 설치해도
-무관하다.</p>
-<h2 id="git-program">Git Program</h2>
-<ol>
-<li><p>git 1.7.10 이상을 설치하고 확인한다.</p></li>
-<li><p>git <span>-</span><span>-</span>version</p></li>
-<li><ol>
-<li><p>sudo yum install git</p></li>
-<li><p>버전 확인을 해서 맞지 않으면 각자 알아서 설치한다.</p></li>
-</ol>
-<p>or</p></li>
-<li><ol>
-<li><p>sudo apt-get install git</p></li>
-<li><p>버전 확인을 해서 맞지 않으면 각자 알아서 설치한다.</p></li>
-</ol>
-<p>or</p></li>
-<li><p><a href="https://git-scm.com/download/win"><span
-class="uri">https://git-scm.com/download/win</span></a></p></li>
-<li><p>Section <a href="#sec:git-repository" data-reference-type="ref"
-data-reference="sec:git-repository">6.2</a>에 따라 repository를
-받으면<br />
-최신 메뉴얼이 ${RVX_MINI_HOME}/rvx_install 에 있다.</p></li>
-</ol>
-<h2 id="python-3">Python 3</h2>
-<ol>
-<li><p>python 3.8에서 3.10 사이를 설치하고 확인한다.</p></li>
-<li><p>python3 <span>-</span><span>-</span>version or python
-<span>-</span><span>-</span>version</p></li>
-<li><p>사용자 환경에 따라 명령어가 python3 또는 python</p>
-<h3 id="linux">Linux</h3></li>
-<li><ol>
-<li><p>sudo yum install python3</p></li>
-<li><p>설치가 안 되거나 버전 확인을 해서 맞지 않으면 [방법 Linux] 또는
-각자 알아서 설치한다.</p></li>
-</ol>
-<p>or</p></li>
-<li><ol>
-<li><p>sudo apt-get install python3</p></li>
-<li><p>설치가 안 되거나 버전 확인을 해서 맞지 않으면 [방법 Linux] 또는
-각자 알아서 설치한다.</p></li>
-</ol>
-<p>or</p></li>
-<li><ol>
-<li><p>sudo yum install gcc zlib zlib-devel openssl
-openssl-devel</p></li>
-<li><p>wget
-https://www.python.org/ftp/python/3.8.16/Python-3.8.16.tar.xz</p></li>
-<li><p>tar xvf Python-3.8.16.tar.xz</p></li>
-<li><p>cd Python-3.8.16; ./configure; make; sudo make install</p></li>
-</ol>
-<h3 id="windows">Windows</h3></li>
-<li><ol>
-<li><p>Microsoft Store에서 python3를 검색하여 3.8 버전을 설치한다.</p>
-<ul>
-<li><p>가능하다면 이 방법을 더 추천한다.</p></li>
-<li><p>3.7에서 3.9 사이이면 다 괜찮다.</p></li>
-</ul></li>
-</ol>
-<p>or</p></li>
-<li><ol>
-<li><p><a href="https://www.python.org"><span
-class="uri">https://www.python.org</span></a>에서 3.9.12 버전을 다운받아
-설치한다.</p></li>
-<li><p>3.7에서 3.9 사이이면 다 괜찮지만 Windows installer 가 있는
-버전으로 해야한다.</p></li>
-<li><p>설치할 때 반드시 [Add Python 3.x to PATH]를 활성화한다.</p></li>
-<li><p>만약 실수로 하지 않았다면, Path 환경변수에 두 디렉토리를 직접
-추가한다.</p>
-<ul>
-<li><p>C:\Users\kshan\AppData\Local\Programs\Python\Python3x</p></li>
-<li><p>C:\Users\kshan\AppData\Local\Programs\Python\Python3x\Scripts</p></li>
-</ul></li>
-</ol></li>
-</ol>
-<h2 id="make">Make</h2>
-<ol>
-<li><p>Makefile이 동작하는 환경을 만든다.</p></li>
-<li><p>기본적으로 지원하기 때문에 별도로 설치할 필요가 없다.</p></li>
-<li><ol>
-<li><p><a href="http://gnuwin32.sourceforge.net/packages/make.htm"><span
-class="uri">http://gnuwin32.sourceforge.net/packages/make.htm</span></a>
-에서<br />
-Complete package를 받아 설치한다.</p></li>
-<li><p>Path 환경변수에 설치된 디렉토리를 추가한다.</p>
-<ul>
-<li><p>C:\Program Files (x86)\GnuWin32\bin</p></li>
-</ul></li>
-</ol></li>
-</ol>
-<h1 id="설치-2단계">설치 2단계</h1>
-<h2 id="목표-1">목표</h2>
-<p>RVX git repository를 설치하고 RVX를 위한 python3 환경을
-설정한다.<br />
-python3가 올바로 설치되고 설정되었는지 확인하고<br />
-여러 버전의 python3를 가지고 있을 경우 충돌을 해결한다.</p>
-<h2 id="sec:git-repository">Git Repository</h2>
-<ul>
-<li><ol>
-<li><p>설치하고 싶은 디렉토리의 상위 디렉토리로 이동한다.</p></li>
-<li><p>git clone <span>-</span><span>-</span>recursive #(git 주소)</p>
-<ul>
-<li><p>생성된 디렉토리를 부른다.</p></li>
-<li><p>실제 변수 설정은 Section <a href="#sec:install"
-data-reference-type="ref" data-reference="sec:install">6.5</a>에서
-이루어진다.</p></li>
-</ul></li>
-</ol>
-<p>or</p>
-<ol>
-<li><p>git clone #(git 주소)</p>
-<ul>
-<li><p>생성된 디렉토리를 부른다.</p></li>
-<li><p>실제 변수 설정은 Section <a href="#sec:install"
-data-reference-type="ref" data-reference="sec:install">6.5</a>에서
-이루어진다.</p></li>
-</ul></li>
-<li><p>생성된 디렉토리로 이동한다.</p></li>
-<li><p>git submodule init</p></li>
-<li><p>git submodule update</p></li>
-</ol></li>
-</ul>
-<h2 id="rvx를-위한-python-3-설정">RVX를 위한 python 3 설정</h2>
-<ol>
-<li><p>RVX에서 사용할 python3 명령어를 설정하고 확인한다.</p></li>
-<li><p>make check_python</p></li>
-<li><ol>
-<li><p>이동한다.</p></li>
-<li><p>make config_python</p>
-<ul>
-<li><p>rvx_python_config.mh 이 생성됨을 확인</p></li>
-</ul></li>
-<li><p>rvx_python_config.mh을 텍스트 편집기로 열어 확인하고 필요한 경우
-수정한다.</p>
-<ul>
-<li><p>경로가 하나도 없다면 python이 설치되지 않았거나 PATH 설정에
-문제가 있는 것이다.</p></li>
-<li><p>경로가 2개 이상이라면 사용할 1개만 남기고 지운다.</p></li>
-</ul></li>
-</ol></li>
-<li><ol>
-<li><p>이동한다.</p></li>
-<li><p>make config_python</p>
-<ul>
-<li><p>rvx_python_config.mh 이 생성됨을 확인 (수정하지 않음)</p></li>
-<li><p>python3.bat 이 생성됨을 확인</p></li>
-</ul></li>
-<li><p>python3.bat을 텍스트 편집기로 열어 확인하고 필요한 경우
-수정한다.</p>
-<ul>
-<li><p>경로가 하나도 없다면 python이 설치되지 않았거나 PATH 설정에
-문제가 있는 것이다.</p></li>
-<li><p>경로가 2개 이상이라면 사용할 1개만 남기고 지운다.</p>
-<ul>
-<li><p><span style="color: red"><u>맨마지막에 있는 "%*" 는 지우면 안
-된다.</u></span></p></li>
-</ul></li>
-<li><p>디렉토리 이름에 빈칸이 있다면 아래와 같이 따옴표 처리 한다.</p>
-<ul>
-<li><p>C:\Users\"Kyuseung Han"\... %*</p></li>
-</ul></li>
-</ul></li>
-</ol></li>
-</ol>
-<h2 id="rvx를-위한-pip-3-설치-및-설정">RVX를 위한 pip 3 설치 및
-설정</h2>
-<ol>
-<li><p>RVX에서 사용할 python package를 설치하고 확인한다.</p></li>
-<li><p>make check_pip</p></li>
-<li><ol>
-<li><p>make pip</p></li>
-</ol>
-<p>* 문제가 생겼거나 손상이 생긴 경우</p>
-<ol>
-<li><p>make fix_pip</p></li>
-<li><p>make pip</p></li>
-</ol></li>
-</ol>
-<h2 id="sec:install">Install</h2>
-<ul>
-<li><ol>
-<li><p>이동한다.</p></li>
-<li><p>make install</p>
-<ul>
-<li><p>./rvx_setup.sh 파일 생성 확인</p></li>
-</ul></li>
-<li><p>.bashrc에 "source #(RVX_MINI_HOME)/rvx_setup.sh"를 추가한다.</p>
-<ul>
-<li><p># 부분은 반드시 절대 주소로 바꿔서 추가한다.</p></li>
-</ul></li>
-<li><p>.bashrc을 적용하기 위해 <span style="color: red"><u>명령창을 껐다
-다시 켠다.</u></span></p></li>
-</ol></li>
-<li><ol>
-<li><p>이동한다.</p></li>
-<li><p>make install</p></li>
-<li><p>PATH 환경변수에 대해</p>
-<ul>
-<li><p>성공적으로 업데이트 되었다는 INFO가 출력된 경우는 다음으로
-넘어간다.</p></li>
-<li><p>직접 추가하라고 WARNING이 출력된 경우는<br />
-"${RVX_MINI_HOME}\windows_binary"를 직접 추가한다.</p></li>
-</ul></li>
-<li><p> 환경변수가 새로 추가되었으니 <span
-style="color: red"><u>명령창을 껐다 다시 켠다.</u></span></p></li>
-</ol></li>
-</ul>
-<h1 id="설치-3단계">설치 3단계</h1>
-<h2 id="olimex-driver-설치-windows-only">Olimex Driver 설치 (Windows
-Only)</h2>
-<ul>
-<li><ol>
-<li><p>Olimex ARM-USB-TINY-H 케이블을 컴퓨터에 연결한다.</p></li>
-<li><p>zadig 프로그램을 실행한다.</p>
-<ul>
-<li><p>${RVX_MINI_HOME}\windows_binary 에 있는 zadig-2.5.exe를
-실행한다.</p></li>
-</ul>
-<p>or</p>
-<ul>
-<li><p><a href="https://zadig.akeo.ie"><span
-class="uri">https://zadig.akeo.ie</span></a>에서 다운받아
-실행한다.</p></li>
-</ul></li>
-<li><p>[Olimex OpenOCD JTAG ARM-USB-TINY-H (Interface 0)] 룰
-선택하고<br />
-[Install Driver]를 누른다.</p></li>
-<li><p>[Olimex OpenOCD JTAG ARM-USB-TINY-H (Interface 1)] 룰
-선택하고<br />
-[Install Driver]를 누른다.</p></li>
-</ol></li>
-</ul>
-<h2 id="telnet-설치-windows-only">Telnet 설치 (Windows Only)</h2>
-<ul>
-<li><ol>
-<li><p>[제어판] 실행</p>
-<ul>
-<li><p>control 검색</p></li>
-</ul></li>
-<li><p>[프로그램] 클릭</p></li>
-<li><p>[Windows 기능 켜기/끄기] 클릭</p></li>
-<li><p>[텔넷 클라이어트] 체크 활성화</p></li>
-<li><p>확인</p></li>
-</ol></li>
-</ul>
-<h2 id="java-gui를-사용할-경우">Java (GUI를 사용할 경우)</h2>
-<ol>
-<li><p>OpenJDK를 설치하고 확인한다.</p></li>
-<li><p>java <span>-</span>version</p></li>
-<li><p>yum 또는 apt 으로 각자 검색해서 설치한다. 버전은 크게 상관
-없다.</p></li>
-<li><ol>
-<li><p><a href="https://openjdk.java.net/"><span
-class="uri">https://openjdk.java.net/</span></a>에서 다운받는다. 버전은
-크게 상관 없다.</p></li>
-<li><p>압축을 풀고 생성되는 디렉토리를 설치하고자 하는 위치로
-이동시킨다.</p></li>
-<li><p>설치한 디렉토리의 하위 디렉토리인 bin을 PATH 변수에
-추가한다.</p></li>
-</ol></li>
-</ol>
-<h1 id="설치-4단계-라이센스-프로그램">설치 4단계 (라이센스
-프로그램)</h1>
-<ol>
-<li><p>Xilinx Vivado 2021.2이상의 버전을 설치하고 설치경로를 PATH 변수에
-추가한다.</p>
-<ul>
-<li><p>Windows에서는 자동으로 추가될 수도 있다.</p></li>
-</ul></li>
-<li><p>ModelSim 또는 NCsim 을 설치하고 설치경로를 PATH 변수에
-추가한다.</p>
-<ul>
-<li><p>Windows에서는 자동으로 추가될 수도 있다.</p></li>
-</ul></li>
-</ol>
-<h1 id="동기화">동기화</h1>
-<ul>
-<li><p>RVX 서버에서 구동환경을 가져오는 작업이다.</p>
-<ul>
-<li><p>Git을 처음 받았을 때는 반드시 한번 실행해야한다.</p></li>
-<li><p>이후에는 update 과정에서 자동으로 실행된다.</p></li>
-<li><p>동기화가 끝나면 최신 버전의 메뉴얼들이 ${RVX_MINI_HOME}/manual에
-생긴다.</p></li>
-</ul></li>
-<li><p>동기화 과정 중에 RVX 서버의 계정정보를 입력하게 된다.</p>
-<ul>
-<li><p>계정정보는 미리 알고 있어야한다.</p></li>
-<li><p>${RVX_MINI_HOME}/.rvx_server_config에 저장된다.</p></li>
-<li><p>RVX 계정정보를 변경하고 싶은 경우 해당 파일을 삭제한다.</p></li>
-</ul></li>
-<li><ol>
-<li><p>이동한다.</p></li>
-<li><p>make sync</p>
-<ul>
-<li><p>SSH 접속 여부는 no로 대답한다.</p></li>
-</ul></li>
-</ol></li>
-</ul>
-<h1 id="계정-초기화-및-동기화">계정 초기화 및 동기화</h1>
-<ul>
-<li><p>sync 과정에서 문제가 생길 때 실행한다.</p></li>
-<li><ol>
-<li><p>이동한다.</p></li>
-<li><p>make resync</p></li>
-</ol></li>
-</ul>
-<h1 id="설정파일">설정파일</h1>
-<ul>
-<li><p>설정에 문제가 있을 경우 아래 파일목록 중 관련된 파일 삭제하고
-진행한다.</p>
-<ul>
-<li><p>${RVX_MINI_HOME}/.rvx_path_config</p></li>
-<li><p>${RVX_MINI_HOME}/.rvx_sudo_config</p></li>
-<li><p>${RVX_MINI_HOME}/.rvx_tool_config</p></li>
-<li><p>${RVX_MINI_HOME}/.rvx_server_config</p></li>
-</ul></li>
-<li><p>${RVX_MINI_HOME}/.rvx_key를 삭제한 경우, 위에 모든 파일을
-삭제한다.</p></li>
-</ul>
-<h1 id="install-이후">Install 이후</h1>
-<h2 id="install-확인">Install 확인</h2>
-<ul>
-<li><p>make check</p>
-<ul>
-<li><p>도중에 에러가 나면 안 된다 !!!</p></li>
-</ul></li>
-</ul>
-<h2 id="user-manual">User Manual</h2>
-<ul>
-<li><p>${RVX_MINI_HOME}/manual에 있다.</p></li>
-</ul>
-<h2 id="자동-update">자동 Update</h2>
-<ul>
-<li><p>사용 중에 Update하라는 메시지가 뜨면 진행한다.</p></li>
-<li><ol>
-<li><p>작업한 내용이 있다면 platform 디렉토리를 다른 곳으로
-백업한다.</p></li>
-<li><p>이동한다.</p></li>
-</ol></li>
-<li><ol>
-<li><p>./update.sh</p>
-<ul>
-<li><p>update.sh 파일이 없으면 make config</p></li>
-</ul></li>
-<li><p>./rvx_setup.sh 파일이 새로 생겼으므로 <span
-style="color: red"><u>명령어창을 새로 켜서 작업한다.</u></span></p></li>
-</ol></li>
-<li><ol>
-<li><p>update.bat</p>
-<ul>
-<li><p>update.bat 파일이 없으면 make config</p></li>
-</ul></li>
-<li><p>환경변수가 업데이트 되었으므로 <span
-style="color: red"><u>명령어창을 새로 켜서 작업한다.</u></span></p></li>
-<li><p><span style="color: red"><u>플랫폼을 clean을 하고 syn부터 다시
-작업한다.</u></span></p></li>
-</ol></li>
-</ul>
-<h2 id="수동-update">수동 Update</h2>
-<ul>
-<li><p>관리자의 요청에 의해 진행한다.</p></li>
-<li><ol>
-<li><p>이동한다.</p></li>
-<li><p>작업한 내용이 있다면 platform 디렉토리를 다른 곳으로
-백업한다.</p></li>
-<li><p>git checkout .</p></li>
-<li><p>git pull origin master</p></li>
-<li><p>git submodule init</p></li>
-<li><p>git submodule update</p></li>
-<li><p>make reconfig_python</p></li>
-<li><p>make pip3</p></li>
-<li><p>make config</p></li>
-<li><p><span style="color: red"><u>명령어창을 새로 켜서
-작업한다.</u></span></p></li>
-<li><p>make sync</p></li>
-<li><p><span style="color: red"><u>플랫폼을 clean을 하고 syn부터 다시
-작업한다.</u></span></p></li>
-</ol></li>
-</ul>
-</body>
-</html>
+at the beginning).</p></li>
+</ul></li>
+<li><p>User Account</p>
+<ul>
+<li><p>Linux: Requires <span style="background-color: lightgray">sudo</span> privileges</p></li>
+<li><p>Windows: Requires administrator rights</p></li>
+</ul></li>
+<li><p>RVX Mini Git Repository</p>
+<ul>
+<li><p>Provided by the instructor or project supervisor</p></li>
+</ul></li>
+<li><p>RVX Server Information</p>
+<ul>
+<li><p>IP address, SSH port, account, password</p></li>
+<li><p>Provided by the instructor or project supervisor</p></li>
+<li><p>Account must not be shared between multiple computers.</p></li>
+</ul></li>
+</ul>
+<h1 id="things-to-know">Things to Know</h1>
+<ul>
+<li><p>Any part starting with <span style="background-color: lightgray">#</span> should be replaced or
+modified according to your environment.</p></li>
+<li><p>On Linux, use the <span style="background-color: lightgray">bash</span> shell for command-line
+operations.</p></li>
+<li><p>On Windows, use the <span style="background-color: lightgray">Windows Power Shell</span> for
+command-line operations.</p></li>
+<li><p><a href="skills-for-linux.html">Skills for Linux</a></p></li>
+<li><p><a href="skills-for-windows.html">Skills for Windows</a></p></li>
+</ul>
+<h1 id="step-1">Step 1</h1>
+<p><a href="rvx_install_manual_en_step1.html">Install - Step1</a></p>
+</body>
+</html>
