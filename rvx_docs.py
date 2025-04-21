@@ -4,34 +4,38 @@ import pypandoc
 import zipfile
 
 from bs4 import BeautifulSoup
+import html
+
 
 def convert_terminal_html(html_text: str) -> str:
     soup = BeautifulSoup(html_text, "html.parser")
 
     for div in soup.find_all("div", class_="tcolorbox"):
-        code_tag = div.find("code")
-        if not code_tag:
+        code_tags = div.find_all("code")
+        if not code_tags:
             continue
 
-        # 줄바꿈용 \\ 제거
-        content = code_tag.get_text().replace("\\\\", "").strip()
+        # 모든 <code> 태그의 내용을 줄바꿈 기준으로 연결
+        content = "\n".join(code.get_text().replace("\\\\", "")
+                            for code in code_tags).strip()
 
-        # 새로운 터미널 스타일 박스
+        # 새 터미널 박스 div 생성
         terminal_div = soup.new_tag("div")
         terminal_div["style"] = (
             "background-color: #1e1e1e; color: #d4d4d4; "
             "font-family: 'Courier New', Courier, monospace; "
             "padding: 0.5em 0.75em; border-radius: 6px; "
-            "margin: 1em 0; font-size: 1em; line-height: 1.1;"
+            "margin: 1em 0; font-size: 1em; line-height: 1.4;"
         )
 
-        # 코드 삽입
+        # 코드 삽입 (엔티티 이스케이프 적용)
         code_pre = soup.new_tag("pre", style="margin: 0;")
         code_code = soup.new_tag("code")
-        code_code.string = content
+        code_code.string = html.escape(content)
         code_pre.append(code_code)
         terminal_div.append(code_pre)
 
+        # 원래 div 교체
         div.replace_with(terminal_div)
 
     return str(soup)
