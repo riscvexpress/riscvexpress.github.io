@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
-<title>RISC-V eXpress Install Manual - Step 5 -</title>
+<title>Skills for Windows</title>
 <style>
     html {
       color: #1a1a1a;
@@ -170,41 +170,41 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RISC-V eXpress Install Manual<br/>
-- Step 5 -</h1>
+<h1 class="title">Skills for Windows</h1>
 </header>
-<h1 id="synchronization">Synchronization</h1>
-<h2 id="objective">Objective</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>This step fetches the environment from the RVX server.</code></pre></div>
+<h1 class="unnumbered" id="how-to-run-windows-powershell">How to Run
+[Windows PowerShell]</h1>
+<ol>
+<li><p>Type ‘power’ into the Windows Search bar.</p></li>
+<li><p>Click on [Windows PowerShell]</p></li>
+</ol>
+<h1 class="unnumbered" id="how-to-open-a-command-prompt-in-a-specific-directory">How to Open a
+Command Prompt in a Specific Directory</h1>
+<ol>
+<li><p>Navigate to the desired directory using Windows
+Explorer.</p></li>
+<li><p>While holding down the Shift key, right-click in the
+folder.</p></li>
+<li><p>Click on [Open PowerShell window here].</p></li>
+</ol>
+<h1 class="unnumbered" id="how-to-set-environment-variables">How to Set
+Environment Variables</h1>
+<ol>
+<li><p>Open [System Properties].</p>
 <ul>
-<li><p>You must run this once when receiving the Git repository for the
-first time.</p></li>
-<li><p>After the first run, it will be automatically triggered during
-the update process.</p></li>
-<li><p>During synchronization, you will be prompted to enter your RVX
-server account credentials.</p></li>
-<li><p>Make sure you know your account credentials in advance.</p></li>
-<li><p>These credentials will be saved in
-${RVX_MINI_HOME}/.rvx_server_config.</p></li>
-<li><p>If you need to change your RVX account info, simply delete that
-file.</p></li>
-</ul>
-<h2 id="instruction-any-os">Instruction @ Any OS</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>cmd) cd ${RVX_MINI_HOME}
-cmd) make sync
-&gt; When prompted for SSH access, answer ‘no’</code></pre></div>
-<h1 id="force-resynchronization">(Force) Resynchronization</h1>
-<h2 id="objective-1">Objective</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>Run this if an issue occurs during the sync process.</code></pre></div>
-<h2 id="instruction-any-os-1">Instruction @ Any OS</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>cmd) cd ${RVX_MINI_HOME}
-cmd) make resync</code></pre></div>
-<h1 id="navigate">Navigate</h1>
-<ul>
-<li><p><a href="index.html">Home</a></p></li>
-<li><p><a href="rvx_install_manual_en.html">Top</a></p></li>
-<li><p><a href="rvx_install_manual_en.html">Previous -
-Step4</a></p></li>
-</ul>
+<li><p>Type ‘SystemPropertiesAdvanced.exe.’ into the Windows Search bar,
+and run it.</p></li>
+<li><p>Or, run ‘#(Cloned
+directory)\install\open_system_properties.bat’</p></li>
+<li><p>Or, run ‘SystemPropertiesAdvanced.exe’ from the command
+line.</p></li>
+</ul></li>
+<li><p>Under the [Advanced] tab, click [Environment Variables].</p></li>
+<li><p>See the user variable section.</p></li>
+<li><p>If the variable already exists, select it and click
+[Edit].</p></li>
+<li><p>If the variable doesn’t exist, click [New] to create it.</p></li>
+<li><p>Restart any open command prompts to apply the changes.</p></li>
+</ol>
 </body>
 </html>

@@ -1,6 +1,6 @@
 include ./rvx_init.mh
 
-MANUAL_LIST=skills-for-linux rvx_install_manual_en rvx_install_manual_ko
+MANUAL_LIST=skills-for rvx_install_manual_en rvx_install_manual_ko
 
 all: ${MANUAL_LIST}
 

@@ -41,6 +41,19 @@ def convert_terminal_html(html_text: str) -> str:
     return str(soup)
 
 
+def convert_gt_in_div_html(html_text: str) -> str:
+    soup = BeautifulSoup(html_text, 'html.parser')
+
+    # 모든 <div> 태그를 순회
+    for div in soup.find_all('div'):
+        original_html = div.decode_contents()
+        updated_html = original_html.replace('&amp;gt;', '>')
+        div.clear()
+        div.append(BeautifulSoup(updated_html, 'html.parser'))
+
+    return str(soup)
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='RVX Docs Util')
     parser.add_argument('-cmd', '-c', help='command')
@@ -82,6 +95,8 @@ if __name__ == '__main__':
                                                     # ,f'--lua-filter={str(resource_path)}/colorbox.lua'
                                                     ])
                 output_text = convert_terminal_html(output_text)
+                output_text = convert_gt_in_div_html(output_text)
+
                 output_html_path = output_path / \
                     f'{input_latex_path.stem}.html'
                 output_html_path.write_text(output_text, encoding='utf-8')

@@ -182,34 +182,33 @@ Resolve conflicts when multiple versions of Python 3 are installed.</code></pre>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>inst) Open a terminal.
 inst) Navigate to the parent directory where you want to clone.
 cmd) git clone –recursive #{Git repository URL}
-cmd) cd #{Cloned directory}
+cmd) cd #(Cloned directory)
 cmd) git submodule init
 cmd) git submodule update</code></pre></div>
-<p>The target installation directory is referred to as <span style="background-color: lightgray">#{RVX_MINI_HOME}</span>.</p>
 <h1 id="python-3-configuration-for-rvx">Python 3 Configuration for
 RVX</h1>
 <h2 id="objective">Objective</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>Set the python3 command used in RVX.</code></pre></div>
 <h2 id="check">Check</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>cmd) cd #{RVX_MINI_HOME}
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>cmd) cd #(Cloned directory)
 cmd) make check_python.</code></pre></div>
 <h2 id="instruction-linux">Instruction @ Linux</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>cmd) cd #{RVX_MINI_HOME}
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>cmd) cd #(Cloned directory)
 cmd) make config_python
 inst) Verify that “rvx_python_config.mh” is generated.
-inst) Open “rvx_python_config.mh” in a text editor
-- If no path is listed, Python may not be installed or there is an issue with your PATH settings.
-- If more than one path is listed, leave only the one you want to use and remove the rest.</code></pre></div>
+inst) Open ‘rvx_python_config.mh’ in a text editor
+&gt; If no path is listed, Python may not be installed or there is an issue with your PATH settings.
+&gt; If more than one path is listed, leave only the one you want to use and remove the rest.</code></pre></div>
 <h2 id="instruction-windows">Instruction @ Windows</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>cmd) cd #{RVX_MINI_HOME}
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>cmd) cd #(Cloned directory)
 cmd) make config_python
-inst) Verify that “rvx_python_config.mh” and “python3.bat” are generated.
-inst) Do NOT modify “rvx_python_config.mh”
-inst) Open “python3.bat” in a text editor
-- If no path is listed, Python may not be installed or there is an issue with your PATH settings.
-- If more than one path is listed, leave only the one you want to use and remove the rest.
-- Do NOT remove “%*” at the end of the line.
-- If the directory name contains spaces, enclose it in double quotation marks as shown below.
+inst) Verify that ‘rvx_python_config.mh’ and ‘python3.bat’ are generated.
+inst) Do NOT modify ‘rvx_python_config.mh’
+inst) Open ‘python3.bat’ in a text editor
+&gt; If no path is listed, Python may not be installed or there is an issue with your PATH settings.
+&gt; If more than one path is listed, leave only the one you want to use and remove the rest.
+&gt; Do NOT remove ‘%*’ at the end of the line.
+&gt; If the directory name contains spaces, enclose it in double quotation marks as shown below.
 ex) C:\Users\“Kyuseung Han”\... %*</code></pre></div>
 <h1 id="pip3-install">Pip3 Install</h1>
 <h2 id="objective-1">Objective</h2>
@@ -222,24 +221,26 @@ ex) C:\Users\“Kyuseung Han”\... %*</code></pre></div>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>cmd) make fix_pip</code></pre></div>
 <h1 id="install">Install</h1>
 <h2 id="instruction-linux-1">Instruction @ Linux</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>cmd) cd #{RVX_MINI_HOME}
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>cmd) cd #(Cloned directory)
 cmd) make install
-- Check that the file ./rvx_setup.sh has been created.
-inst) Add the line source #{RVX_MINI_HOME}/rvx_setup.sh to your .bashrc.
-- Be sure to replace #{RVX_MINI_HOME} with the absolute path before adding it.
-inst) To apply the changes to .bashrc, close and reopen the terminal.</code></pre></div>
+&gt; Check that the file ./rvx_setup.sh has been created.
+inst) Add the line source #(Cloned directory)/rvx_setup.sh to your .bashrc.
+&gt; Be sure to replace #(Cloned directory) with the absolute path before adding it.
+inst) To apply the changes to .bashrc, close and reopen the terminal.
+&gt; Now, #(Cloned directory) is registered as ${RVX_MINI_HOME}.</code></pre></div>
 <h2 id="instruction-windows-1">Instruction @ Windows</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>cmd) cd #{RVX_MINI_HOME}
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>cmd) cd #(Cloned directory)
 cmd) make install
 inst) Update the PATH variable
-- If a message indicates that it was updated successfully, proceed to the next step.
-- If a WARNING appears, manually add “#{RVX_MINI_HOME}\windows_binary” to the PATH.
-inst) To apply the changes to PATH variable, close and reopen the terminal.</code></pre></div>
+&gt; If a message indicates that it was updated successfully, proceed to the next step.
+&gt; If a WARNING appears, manually add “${RVX_MINI_HOME}\windows_binary” to the PATH.
+inst) To apply the changes to PATH variable, close and reopen the terminal.
+&gt; Now, #(Cloned directory) is registered as ${RVX_MINI_HOME}.</code></pre></div>
 <h1 id="install-check">Install Check</h1>
 <h2 id="objective-2">Objective</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>Check which installation process has issues</code></pre></div>
 <h2 id="instruction-any-os-2">Instruction @ Any OS</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>cmd) cd #{RVX_MINI_HOME}
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0;"><code>cmd) cd #(Cloned directory)
 cmd) make check</code></pre></div>
 <h1 id="navigate">Navigate</h1>
 <ul>
