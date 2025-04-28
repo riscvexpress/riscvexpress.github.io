@@ -90,19 +90,23 @@ if __name__ == '__main__':
             for input_latex_path in input_dir_path.glob(f'{input_path.stem}*.tex'):
                 assert input_latex_path.is_file(), input_latex_path
                 print(input_latex_path)
-                output_text = pypandoc.convert_text(input_latex_path.read_text(encoding='utf-8'), 'html', format='latex', extra_args=[
-                                                    '-s', '--mathjax'
-                                                    # ,f'--lua-filter={str(resource_path)}/colorbox.lua'
-                                                    ])
-                output_text = convert_terminal_html(output_text)
-                output_text = convert_gt_in_div_html(output_text)
+                output_html_path = output_path / f'{input_latex_path.stem}.html'
 
-                output_html_path = output_path / \
-                    f'{input_latex_path.stem}.html'
+                subprocess.run([
+                    'pandoc',
+                    str(input_latex_path),
+                    '-o', str(output_html_path),
+                    '-s',
+                    '--mathjax',
+                    '--filter', 'pandoc-crossref'
+                ], check=True)
+
+                output_text = output_html_path.read_text(encoding='utf-8')
+                output_text = convert_terminal_html(output_text)
+                output_text = convert_gt_in_div_html(output_text)                
                 output_html_path.write_text(output_text, encoding='utf-8')
 
-            figures_src_dir = input_dir_path.parent / 'figures'
-
+            figures_src_dir = input_dir_path / 'figures'
             if figures_src_dir.is_dir():
                 figures_dst_dir = output_path / 'figures'
                 figures_dst_dir.mkdir(parents=True, exist_ok=True)
