@@ -7,203 +7,200 @@
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <meta content="Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
 <title>RISC-V eXpress Install Manual</title>
-<style>
-    html {
-      color: #1a1a1a;
-      background-color: #fdfdfd;
-    }
-    body {
-      margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
-    }
-    @media (max-width: 600px) {
-      body {
-        font-size: 0.9em;
-        padding: 12px;
-      }
-      h1 {
-        font-size: 1.8em;
-      }
-    }
-    @media print {
-      html {
-        background-color: white;
-      }
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
-    p {
-      margin: 1em 0;
-    }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
-    }
-    img {
-      max-width: 100%;
-    }
-    svg {
-      height: auto;
-      max-width: 100%;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 1.4em;
-    }
-    h5, h6 {
-      font-size: 1em;
-      font-style: italic;
-    }
-    h6 {
-      font-weight: normal;
-    }
-    ol, ul {
-      padding-left: 1.7em;
-      margin-top: 1em;
-    }
-    li > ol, li > ul {
-      margin-top: 0;
-    }
-    blockquote {
-      margin: 1em 0 1em 1.7em;
-      padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
-      color: #606060;
-    }
-    code {
-      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
-      font-size: 85%;
-      margin: 0;
-      hyphens: manual;
-    }
-    pre {
-      margin: 1em 0;
-      overflow: auto;
-    }
-    pre code {
-      padding: 0;
-      overflow: visible;
-      overflow-wrap: normal;
-    }
-    .sourceCode {
-     background-color: transparent;
-     overflow: visible;
-    }
-    hr {
-      border: none;
-      border-top: 1px solid #1a1a1a;
-      height: 1px;
-      margin: 1em 0;
-    }
-    table {
-      margin: 1em 0;
-      border-collapse: collapse;
-      width: 100%;
-      overflow-x: auto;
-      display: block;
-      font-variant-numeric: lining-nums tabular-nums;
-    }
-    table caption {
-      margin-bottom: 0.75em;
-    }
-    tbody {
-      margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    th {
-      border-top: 1px solid #1a1a1a;
-      padding: 0.25em 0.5em 0.25em 0.5em;
-    }
-    td {
-      padding: 0.125em 0.5em 0.25em 0.5em;
-    }
-    header {
-      margin-bottom: 4em;
-      text-align: center;
-    }
-    #TOC li {
-      list-style: none;
-    }
-    #TOC ul {
-      padding-left: 1.3em;
-    }
-    #TOC > ul {
-      padding-left: 0;
-    }
-    #TOC a:not(:hover) {
-      text-decoration: none;
-    }
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    ul.task-list[class]{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
+<style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
   </style>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
 <body>
 <header id="title-block-header">
 <h1 class="title">RISC-V eXpress Install Manual</h1>
-<p class="author">Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin
-Lee<br/>
+<p class="author">Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin
+Lee<br/>
 ETRI, Daejeon, South Korea</p>
 </header>
 <h1 id="sec:overview">Overview</h1>
 <ul>
-<li><p>RISC-V eXpress (RVX) is a hardware/software development kit for
-designing low-power SoCs for embedded systems, such as MCUs or
-lightweight application processors.</p></li>
-<li><p>This manual explains how to install RVX on a local machine using
+<li><p>This manual explains how to install RVX on a local machine using
 the RVX Mini Git repository.</p></li>
 </ul>
 <h1 id="notice">Notice</h1>
 <ul>
-<li><p>All results produced using RVX are subject to the following
+<li><p>All results produced using RVX are subject to the following
 conditions:</p>
 <ul>
-<li><p>They must not be used beyond the predefined purpose and scope
-specified in advance for a particular class or research
+<li><p>They must not be used beyond the predefined purpose and scope
+specified in advance for a particular class or research
 project.</p></li>
-<li><p>They must not be distributed to third parties other than the
+<li><p>They must not be distributed to third parties other than the
 designated users or organizations.</p></li>
-<li><p>Prior approval and a technology transfer agreement are required
+<li><p>Prior approval and a technology transfer agreement are required
 for any commercial use.</p></li>
 </ul></li>
 <li><p>When using the RVX server provided by ETRI:</p>
 <ul>
-<li><p>Only the features available through RVX mini may be
+<li><p>Only the features available through RVX mini may be
 used.</p></li>
-<li><p>The user is fully responsible for any incidents or damages,
-including financial costs, resulting from intentional misuse or
+<li><p>The user is fully responsible for any incidents or damages,
+including financial costs, resulting from intentional misuse or
 violation of these terms.</p></li>
 </ul></li>
 </ul>
@@ -216,11 +213,11 @@ violation of these terms.</p></li>
 </ul></li>
 <li><p>A High-Performance Computer</p>
 <ul>
-<li><p>A capable machine is required to run license tools
+<li><p>A capable machine is required to run license tools
 efficiently.</p></li>
-<li><p>The actual performance needed depends on the specific license
+<li><p>The actual performance needed depends on the specific license
 tools being used.</p></li>
-<li><p>Note: the RVX engine itself does not require a high-performance
+<li><p>Note: the RVX engine itself does not require a high-performance
 machine.</p></li>
 </ul></li>
 <li><p>Recommended OS Version</p>
@@ -237,11 +234,11 @@ machine.</p></li>
 </ul></li>
 <li><p>For Linux systems, the locale setting must be <span style="background-color: lightgray">en_US.UTF-8</span>.</p>
 <ul>
-<li><p>If using a GUI, set the language format to United
+<li><p>If using a GUI, set the language format to United
 States.</p></li>
 <li><p>Or, comment out the line <span style="background-color: lightgray">SendEnv LANG LC*</span> in <span style="background-color: lightgray">/etc/ssh/ssh_config</span></p>
 <ul>
-<li><p>i.e., add a <span style="background-color: lightgray">#</span> at
+<li><p>i.e., add a <span style="background-color: lightgray">#</span> at
 the beginning).</p></li>
 </ul></li>
 </ul></li>
@@ -263,14 +260,14 @@ the beginning).</p></li>
 </ul>
 <h1 id="things-to-know">Things to Know</h1>
 <ul>
-<li><p>Any part starting with <span style="background-color: lightgray">#</span> should be replaced or
+<li><p>Any part starting with <span style="background-color: lightgray">#</span> should be replaced or
 modified according to your environment.</p></li>
-<li><p>On Linux, use the <span style="background-color: lightgray">bash</span> shell for command-line
+<li><p>On Linux, use the <span style="background-color: lightgray">bash</span> shell for command-line
 operations.</p></li>
-<li><p>On Windows, use the <span style="background-color: lightgray">Windows Power Shell</span> for
+<li><p>On Windows, use the <span style="background-color: lightgray">Windows Power Shell</span> for
 command-line operations.</p></li>
 <li><p><a href="skills-for-linux_en.html">Skills for Linux</a></p></li>
-<li><p><a href="skills-for-windows_en.html">Skills for
+<li><p><a href="skills-for-windows_en.html">Skills for
 Windows</a></p></li>
 </ul>
 <h1 id="step-1">Step 1</h1>
@@ -280,10 +277,10 @@ Windows</a></p></li>
 <h1 id="step-3">Step 3</h1>
 <p><a href="rvx_install_manual_en_step3.html">Install - Step3</a></p>
 <h1 id="step-4">Step 4</h1>
-<p>Carefully install the license programs you intend to use<br/>
-by following their respective manuals.<br/>
-Add the installation directory to the <span style="background-color: lightgray">PATH</span> environment
-variable.<br/>
+<p>Carefully install the license programs you intend to use<br/>
+by following their respective manuals.<br/>
+Add the installation directory to the <span style="background-color: lightgray">PATH</span> environment
+variable.<br/>
 On Windows, it may be added automatically.</p>
 <h1 id="step-5">Step 5</h1>
 <p><a href="rvx_install_manual_en_step5.html">Install - Step5</a></p>

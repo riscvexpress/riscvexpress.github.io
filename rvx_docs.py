@@ -11,15 +11,30 @@ def convert_terminal_html(html_text: str) -> str:
     soup = BeautifulSoup(html_text, "html.parser")
 
     for div in soup.find_all("div", class_="tcolorbox"):
-        code_tags = div.find_all("code")
-        if not code_tags:
+        p = div.find("p")
+        if not p:
             continue
 
-        # 모든 <code> 태그의 내용을 줄바꿈 기준으로 연결
-        content = "\n".join(code.get_text().replace("\\\\", "")
-                            for code in code_tags).strip()
+        # 줄 단위로 구성
+        lines = []
+        buffer = ""
 
-        # 새 터미널 박스 div 생성
+        for elem in p.children:
+            if elem.name == "br":
+                if buffer.strip():
+                    lines.append(buffer.strip())
+                buffer = ""
+            elif hasattr(elem, "get_text"):
+                buffer += elem.get_text()
+            else:
+                buffer += str(elem)
+
+        if buffer.strip():
+            lines.append(buffer.strip())
+
+        content = "\n".join(lines)
+
+        # 새 터미널 div 생성
         terminal_div = soup.new_tag("div")
         terminal_div["style"] = (
             "background-color: #1e1e1e; color: #d4d4d4; "
@@ -28,14 +43,13 @@ def convert_terminal_html(html_text: str) -> str:
             "margin: 1em 0; font-size: 1em; line-height: 1.4;"
         )
 
-        # 코드 삽입 (엔티티 이스케이프 적용)
-        code_pre = soup.new_tag("pre", style="margin: 0;")
+        code_pre = soup.new_tag(
+            "pre", style="margin: 0; white-space: pre-wrap;")
         code_code = soup.new_tag("code")
-        code_code.string = html.escape(content)
+        code_code.string = content
         code_pre.append(code_code)
         terminal_div.append(code_pre)
 
-        # 원래 div 교체
         div.replace_with(terminal_div)
 
     return str(soup)
@@ -90,20 +104,22 @@ if __name__ == '__main__':
             for input_latex_path in input_dir_path.glob(f'{input_path.stem}*.tex'):
                 assert input_latex_path.is_file(), input_latex_path
                 print(input_latex_path)
-                output_html_path = output_path / f'{input_latex_path.stem}.html'
+                output_html_path = output_path / \
+                    f'{input_latex_path.stem}.html'
 
-                subprocess.run([
-                    'pandoc',
-                    str(input_latex_path),
-                    '-o', str(output_html_path),
-                    '-s',
-                    '--mathjax',
-                    '--filter', 'pandoc-crossref'
-                ], check=True)
+                output_text = pypandoc.convert_text(
+                    input_latex_path.read_text(encoding='utf-8'),
+                    'html', format='latex',
+                    extra_args=[
+                        '-s',
+                        '--mathjax',
+                        '--filter=pandoc-crossref'
+                    ]
+                )
 
-                output_text = output_html_path.read_text(encoding='utf-8')
                 output_text = convert_terminal_html(output_text)
-                output_text = convert_gt_in_div_html(output_text)                
+                output_text = convert_gt_in_div_html(output_text)
+
                 output_html_path.write_text(output_text, encoding='utf-8')
 
             figures_src_dir = input_dir_path / 'figures'

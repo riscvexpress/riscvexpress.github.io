@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+<meta content="pandoc" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta content="Kyuseung Han, Sukho Lee, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
+<title>RISC-V eXpress CLI Manual for Linux/Windows - FPGA Prototyping -</title>
+<style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">RISC-V eXpress CLI Manual for Linux/Windows<br/>
+- FPGA Prototyping -</h1>
+<p class="author">Kyuseung Han, Sukho Lee, Jae-Jin Lee<br/>
+ETRI, Daejeon, South Korea</p>
+</header>
+<h1 id="overview">Overview</h1>
+<p>This manual is intended for validating applications on an FPGA
+platform. The hardware platform verified through RTL simulation is
+automatically prototyped onto the predefined FPGA. Applications
+developed by the user are then validated on this automatically generated
+FPGA prototype. The currently supported commercial boards are listed
+below.</p>
+<ul>
+<li><p><a href="https://digilent.com/shop/arty-a7-100t-artix-7-fpga-development-board/">arty-100t</a></p></li>
+<li><p><a href="https://digilent.com/reference/programmable-logic/genesys-2/">genesys2</a></p></li>
+</ul>
+<p>Note that this process requires a license for Xilinx Vivado, which
+must be obtained separately.</p>
+<h1 id="prototyping-functionality">Prototyping Functionality</h1>
+<h2 id="creating-a-prototyping-directory">Creating a Prototyping
+Directory</h2>
+<ul>
+<li><p>Prerequisite: <span style="background-color: lightgray">Synthesizing a
+Platform</span></p></li>
+<li><p>Command:</p>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(platform dir)
+cmd) make #(FPGA name) // i.e., make arty-100t</code></pre></div></li>
+<li><p>Result:<br/>
+<span style="background-color: lightgray">#(platform dir)/imp_#(FPGA
+name)_#(date)</span> is created,<br/>
+which we refer to as <span style="background-color: lightgray">#(fpga
+dir)</span>.</p></li>
+<li><p>Note: <span style="background-color: lightgray">#(fpga
+dir)</span> is automatically managed by the RVX tool.</p></li>
+</ul>
+<h2 id="creating-a-vivado-project">Creating a Vivado Project</h2>
+<ul>
+<li><p>Command:</p>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
+cmd) make project</code></pre></div></li>
+</ul>
+<h2 id="generating-an-fpga-bitstream">Generating an FPGA Bitstream</h2>
+<ul>
+<li><p>Included Process: <span style="background-color: lightgray">Creating a Vivado
+Project</span></p></li>
+<li><p>Command:</p>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
+cmd) make imp</code></pre></div></li>
+</ul>
+<h1 id="validating-functionality">Validating Functionality</h1>
+<p>For the following functionalities, you must power on the FPGA board
+and connect it to the host computer.</p>
+<h2 id="programming-the-fpga-with-the-generated-bitstream">Programming
+the FPGA with the Generated Bitstream</h2>
+<ul>
+<li><p>Prerequisite: <span style="background-color: lightgray">Generating an FPGA
+Bitstream</span></p></li>
+<li><p>Command:</p>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
+cmd) make program</code></pre></div></li>
+</ul>
+<h2 id="opening-the-terminal-to-view-printf-output">Opening the Terminal
+to View <span style="background-color: lightgray">printf</span>
+Output</h2>
+<ul>
+<li><p>Prerequisite: <span style="background-color: lightgray">Programming the FPGA with the
+Generated Bitstream</span></p></li>
+</ul>
+<h3 id="command-linux">Command @ Linux</h3>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
+cmd) make printf</code></pre></div>
+<h3 id="command-windows">Command @ Windows</h3>
+<figure id="fig:serial">
+<img alt="Figure 1: Device Manager and PuTTY" src="figures/printf_en.png" style="height:25.0%"/>
+<figcaption aria-hidden="true">Figure 1: Device Manager and
+PuTTY</figcaption>
+</figure>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
+cmd) make printf
+&gt; Device Manager and PuTTY will be launched.
+inst) Check the USB Serial Port number in Device Manager.
+&gt; In Figure 1, the port number is COM8.
+inst) On PuTTY, configure the settings as highlighted by the three red boxes in Figure 1.
+&gt; If you save the session, you can reuse these settings later.
+inst) Open</code></pre></div>
+<h2 id="running-an-application-on-the-fpga-prototype">Running an
+Application on the FPGA Prototype</h2>
+<h3 id="common">Common</h3>
+<ul>
+<li><p>Prerequisite: <span style="background-color: lightgray">Developing an
+Application</span></p></li>
+<li><p>Included Process: <span style="background-color: lightgray">Building an
+Application</span></p></li>
+</ul>
+<h3 id="running-with-application-build">Running with Application
+Build</h3>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
+cmd) make #(app name).all</code></pre></div>
+<h3 id="running-with-application-rebuild">Running with Application
+Rebuild</h3>
+<p><span style="background-color: lightgray">Rebuild</span> deletes all
+previous build results and performs <span style="background-color: lightgray">Build</span> from scratch.<br/>
+In contrast, <span style="background-color: lightgray">Build</span>
+compiles only the parts that have changed.</p>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
+cmd) make #(app name).reall</code></pre></div>
+<h1 id="auxiliary-functionality">Auxiliary Functionality</h1>
+<h2 id="open-a-vivado-project">Open a Vivado Project</h2>
+<ul>
+<li><p>Prerequisite: <span style="background-color: lightgray">Creating
+a Vivado Project</span></p></li>
+<li><p>Command:</p>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
+cmd) make open_project</code></pre></div></li>
+</ul>
+<h2 id="printing-available-fpga-list">Printing Available FPGA List</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(platform dir)
+cmd) make fpga_list</code></pre></div>
+<h2 id="printing-applications-list">Printing Applications List</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
+cmd) make app_list</code></pre></div>
+<h2 id="deleting-all-prototyping-directories">Deleting All Prototyping
+Directories</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(platform dir)
+cmd) make clean_imp</code></pre></div>
+<h2 id="enabling-keyboard-input-in-minicom">Enabling Keyboard Input in
+Minicom</h2>
+<figure id="fig:minicom">
+<img alt="Figure 2: Minicom" src="figures/minicom.png"/>
+<figcaption aria-hidden="true">Figure 2: Minicom</figcaption>
+</figure>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) sudo minicom -s
+inst) Select “Serial port setup”.
+inst) Configure the settings as shown in Figure 2.</code></pre></div>
+<h1 id="navigate">Navigate</h1>
+<ul>
+<li><p><a href="index.html">Home</a></p></li>
+<li><p><a href="rvx_cli_manual_en.html">Top</a></p></li>
+<li><p><a href="rvx_cli_manual_en_platform.html">Platform</a></p></li>
+<li><p><a href="rvx_cli_manual_en_app.html">Application</a></p></li>
+<li><p><a href="rvx_cli_manual_en_simulation.html">RTL
+Simulation</a></p></li>
+<li><p><a href="rvx_cli_manual_en_fpga.html">FPGA
+Prototyping</a></p></li>
+</ul>
+</body>
+</html>
