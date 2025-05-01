@@ -182,9 +182,9 @@ ETRI, Daejeon, South Korea</p>
 hardware platform. Applications developed in <span style="background-color: lightgray">#(app dir)</span> are converted into
 RISC-V binary files through the build process, and are then loaded into
 the main memory of the RTL platform at the start of simulation. The
-simulation automatically terminates when the application’s <span style="background-color: lightgray">main</span> function returns. Note
-that this process requires a license for the RTL simulator, which must
-be obtained separately.</p>
+simulation automatically terminates when the application’s <span style="background-color: lightgray">main</span> function returns.<br/>
+Note that this process requires a license for the RTL simulator, which
+must be obtained separately.</p>
 <h1 id="main-functionality">Main Functionality</h1>
 <h2 id="creating-an-rtl-simulation-directory">Creating an RTL Simulation
 Directory</h2>
@@ -202,6 +202,10 @@ dir)</span>.</p></li>
 <li><p>Note: <span style="background-color: lightgray">#(sim dir)</span>
 is automatically managed by the RVX tool.</p></li>
 </ul>
+<h2 id="cleaning-all-simulation-results">Cleaning All Simulation
+Results</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
+cmd) make clean</code></pre></div>
 <h2 id="simulating-the-rtl-platform-using-an-application">Simulating the
 RTL Platform Using an Application</h2>
 <h3 id="common">Common</h3>
@@ -236,7 +240,7 @@ Viewer for Debugging</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
 cmd) make view</code></pre></div>
 <h1 id="auxiliary-functionality">Auxiliary Functionality</h1>
-<h2 id="printing-applications-list">Printing Applications List</h2>
+<h2 id="displaying-applications-list">Displaying Applications List</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
 cmd) make app_list</code></pre></div>
 <h1 id="navigate">Navigate</h1>

@@ -191,61 +191,55 @@ the SoC and the name of the corresponding directory.</p>
 <h1 id="file-structure">File Structure</h1>
 <p>The structure under <span style="background-color: lightgray">#(platform dir)</span> is as
 follows:</p>
-<h2 id="user-environment">User Environment</h2>
 <div class="center">
 <table>
 <thead>
 <tr>
 <th style="text-align: center;">Path</th>
+<th style="text-align: center;">Usage</th>
 <th style="text-align: center;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align: left;">./#(platform name).xml</td>
+<td style="text-align: center;">Editable</td>
 <td style="text-align: left;">Platform description file</td>
 </tr>
 <tr>
 <td style="text-align: left;">./app/</td>
+<td style="text-align: center;">Editable</td>
 <td style="text-align: left;">Application development environment</td>
 </tr>
 <tr>
-<td style="text-align: left;">./sim_rtl/</td>
-<td style="text-align: left;">RTL simulation environment</td>
-</tr>
-<tr>
-<td style="text-align: left;">./imp_XXXX/</td>
-<td style="text-align: left;">FPGA prototyping environment</td>
-</tr>
-<tr>
 <td style="text-align: left;">./user/</td>
+<td style="text-align: center;">Editable</td>
 <td style="text-align: left;">User-managed environment</td>
 </tr>
 <tr>
 <td style="text-align: left;">./util/</td>
+<td style="text-align: center;">Editable</td>
 <td style="text-align: left;">Utility environment</td>
 </tr>
-</tbody>
-</table>
-</div>
-<h2 id="system-environment">System Environment</h2>
-<div class="center">
-<table>
-<thead>
 <tr>
-<th style="text-align: center;">Path</th>
-<th style="text-align: center;">Description</th>
+<td style="text-align: left;">./sim_rtl/</td>
+<td style="text-align: center;">Use Only</td>
+<td style="text-align: left;">RTL simulation environment</td>
 </tr>
-</thead>
-<tbody>
+<tr>
+<td style="text-align: left;">./imp_XXXX/</td>
+<td style="text-align: center;">Use Only</td>
+<td style="text-align: left;">FPGA prototyping environment</td>
+</tr>
 <tr>
 <td style="text-align: left;">./arch/</td>
-<td style="text-align: left;">Synthesized result from ./#(platform
-name).xml</td>
+<td style="text-align: center;">System Reserved</td>
+<td style="text-align: left;">Generated from ./#(platform name).xml</td>
 </tr>
 <tr>
 <td style="text-align: left;">./fpga_component/</td>
-<td style="text-align: left;">FPGA components used in imp_XXXX</td>
+<td style="text-align: center;">System Reserved</td>
+<td style="text-align: left;">Used in imp_XXXX</td>
 </tr>
 </tbody>
 </table>
@@ -281,6 +275,13 @@ dir)/arch</span> is created.</p></li>
 <li><p>Note: <span style="background-color: lightgray">#(platform
 dir)/arch</span> is automatically managed by the RVX tool.</p></li>
 </ul>
+<h2 id="cleaning-all-platform-results">Cleaning All Platform
+Results</h2>
+<p>The following files and/or directories are maintained:<br/>
+<span style="background-color: lightgray">./#(platform name).xml</span>,
+<span style="background-color: lightgray">./app</span>, <span style="background-color: lightgray">./user</span>, and <span style="background-color: lightgray">./util</span></p>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(platform dir)
+cmd) make clean</code></pre></div>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
