@@ -225,7 +225,7 @@ cmd) make imp</code></pre></div></li>
 cmd) make clean</code></pre></div>
 <h1 id="validating-functionality">Validating Functionality</h1>
 <p>For the following functionalities, you must power on the FPGA board
-and connect it to the host computer.</p>
+and connect it to your computer.</p>
 <h2 id="programming-the-fpga-with-the-generated-bitstream">Programming
 the FPGA with the Generated Bitstream</h2>
 <ul>
@@ -247,9 +247,9 @@ Generated Bitstream</span></p></li>
 cmd) make printf</code></pre></div>
 <h3 id="command-windows">Command @ Windows</h3>
 <figure id="fig:serial">
-<img alt="Figure 1: Device Manager and PuTTY" src="figures/printf_en.png" style="height:25.0%"/>
+<img alt="Figure 1: Device Manager and PuTTY." src="figures/printf_en.png" style="height:25.0%"/>
 <figcaption aria-hidden="true">Figure 1: Device Manager and
-PuTTY</figcaption>
+PuTTY.</figcaption>
 </figure>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
 cmd) make printf
@@ -263,23 +263,81 @@ inst) Open</code></pre></div>
 Application on the FPGA Prototype</h2>
 <h3 id="common">Common</h3>
 <ul>
-<li><p>Prerequisite: <span style="background-color: lightgray">Developing an
+<li><p>Prerequisite:</p>
+<ul>
+<li><p><span style="background-color: lightgray">Developing an
 Application</span></p></li>
-<li><p>Included Process: <span style="background-color: lightgray">Building an
-Application</span></p></li>
+<li><p><span style="background-color: lightgray">Programming the FPGA
+with the Generated Bitstream</span></p></li>
+<li><p><span style="background-color: lightgray">Opening the Terminal to
+View printf Output</span></p></li>
+</ul></li>
+<li><p>Note:</p>
+<ul>
+<li><p><span style="background-color: lightgray">Build</span> compiles
+only the parts that have changed.</p></li>
+</ul></li>
 </ul>
-<h3 id="running-with-application-build">Running with Application
-Build</h3>
+<h3 id="running-an-application">Running an Application</h3>
+<ul>
+<li><p>Included Process:</p>
+<ul>
+<li><p><span style="background-color: lightgray">Building an
+Application</span> with <span style="background-color: lightgray">BUILD_MODE=debug</span></p></li>
+</ul></li>
+</ul>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
-cmd) make #(app name).all</code></pre></div>
-<h3 id="running-with-application-rebuild">Running with Application
-Rebuild</h3>
-<p><span style="background-color: lightgray">Rebuild</span> deletes all
-previous build results and performs <span style="background-color: lightgray">Build</span> from scratch.<br/>
-In contrast, <span style="background-color: lightgray">Build</span>
-compiles only the parts that have changed.</p>
+cmd) make #(app name).run</code></pre></div>
+<h3 id="running-an-application-with-a-rebuild">Running an Application
+with a Rebuild</h3>
+<ul>
+<li><p>Included Process:</p>
+<ul>
+<li><p><span style="background-color: lightgray">Cleaning Build
+Results</span></p></li>
+<li><p><span style="background-color: lightgray">Building an
+Application</span> with <span style="background-color: lightgray">BUILD_MODE=debug</span></p></li>
+</ul></li>
+</ul>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
-cmd) make #(app name).reall</code></pre></div>
+cmd) make #(app name).rerun</code></pre></div>
+<h3 id="running-an-application-with-optimization">Running an Application
+with Optimization</h3>
+<ul>
+<li><p>Included Process:</p>
+<ul>
+<li><p><span style="background-color: lightgray">Building an
+Application</span> with <span style="background-color: lightgray">BUILD_MODE=release</span></p></li>
+</ul></li>
+</ul>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
+cmd) make #(app name).opt</code></pre></div>
+<h3 id="running-an-optimized-application-with-a-rebuild">Running an
+Optimized Application with a Rebuild</h3>
+<ul>
+<li><p>Included Process:</p>
+<ul>
+<li><p><span style="background-color: lightgray">Cleaning Build
+Results</span></p></li>
+<li><p><span style="background-color: lightgray">Building an
+Application</span> with <span style="background-color: lightgray">BUILD_MODE=release</span></p></li>
+</ul></li>
+</ul>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
+cmd) make #(app name).reopt</code></pre></div>
+<h3 id="running-an-application-with-profiling">Running an Application
+with Profiling</h3>
+<ul>
+<li><p>Included Process:</p>
+<ul>
+<li><p><span style="background-color: lightgray">Cleaning Build
+Results</span></p></li>
+<li><p><span style="background-color: lightgray">Building an
+Application</span> with <span style="background-color: lightgray">BUILD_MODE=profile</span></p></li>
+</ul></li>
+</ul>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
+cmd) make #(app name).profile</code></pre></div>
 <h1 id="auxiliary-functionality">Auxiliary Functionality</h1>
 <h2 id="open-a-vivado-project">Open a Vivado Project</h2>
 <ul>
@@ -303,8 +361,8 @@ cmd) make clean_imp</code></pre></div>
 <h2 id="enabling-keyboard-input-in-minicom">Enabling Keyboard Input in
 Minicom</h2>
 <figure id="fig:minicom">
-<img alt="Figure 2: Minicom Setup" src="figures/minicom_setup.png"/>
-<figcaption aria-hidden="true">Figure 2: Minicom Setup</figcaption>
+<img alt="Figure 2: Minicom Setup." src="figures/minicom_setup.png"/>
+<figcaption aria-hidden="true">Figure 2: Minicom Setup.</figcaption>
 </figure>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) sudo minicom -s
 inst) Select “Serial port setup”.
