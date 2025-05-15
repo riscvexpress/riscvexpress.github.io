@@ -176,6 +176,7 @@
 - RTL Simulation -</h1>
 <p class="author">Kyuseung Han, Sukho Lee, Jae-Jin Lee<br/>
 ETRI, Daejeon, South Korea</p>
+<p class="date">v2025-05-12 or later</p>
 </header>
 <h1 id="overview">Overview</h1>
 <p>This manual is intended for simulating applications on an RTL-based
@@ -185,7 +186,7 @@ the main memory of the RTL platform at the start of simulation. The
 simulation automatically terminates when the application’s <span style="background-color: lightgray">main</span> function returns.<br/>
 Note that this process requires a license for the RTL simulator, which
 must be obtained separately.</p>
-<h1 id="main-functionality">Main Functionality</h1>
+<h1 id="simulation-functionality">Simulation Functionality</h1>
 <h2 id="creating-an-rtl-simulation-directory">Creating an RTL Simulation
 Directory</h2>
 <ul>
@@ -206,6 +207,14 @@ is automatically managed by the RVX tool.</p></li>
 Results</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
 cmd) make clean</code></pre></div>
+<h2 id="compiling-the-platform-rtl-code">Compiling the Platform RTL
+Code</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
+cmd) make compile_test</code></pre></div>
+<h2 id="displaying-the-compilation-log-of-the-platform-rtl-code">Displaying
+the Compilation Log of the Platform RTL Code</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
+cmd) make compile_check</code></pre></div>
 <h2 id="simulating-the-rtl-platform-using-an-application">Simulating the
 RTL Platform Using an Application</h2>
 <h3 id="common">Common</h3>
@@ -231,8 +240,13 @@ only the parts that have changed.</p></li>
 <h3 id="simulating-the-platform-with-an-application">Simulating the
 Platform with an Application</h3>
 <ul>
-<li><p>Included Process: <span style="background-color: lightgray">Building an
+<li><p>Included Process:</p>
+<ul>
+<li><p><span style="background-color: lightgray">Building an
 Application</span></p></li>
+<li><p><span style="background-color: lightgray">Compiling the Platform
+RTL Code</span></p></li>
+</ul></li>
 </ul>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
 cmd) make #(app name).sim</code></pre></div>
@@ -245,6 +259,8 @@ the Platform Including an Application Rebuild</h3>
 Results</span></p></li>
 <li><p><span style="background-color: lightgray">Building an
 Application</span></p></li>
+<li><p><span style="background-color: lightgray">Compiling the Platform
+RTL Code</span></p></li>
 </ul></li>
 </ul>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
@@ -260,6 +276,8 @@ Results</span></p></li>
 Results</span></p></li>
 <li><p><span style="background-color: lightgray">Building an
 Application</span></p></li>
+<li><p><span style="background-color: lightgray">Compiling the Platform
+RTL Code</span></p></li>
 </ul></li>
 </ul>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
@@ -267,8 +285,13 @@ cmd) make #(app name).all // make clean #(app name).resim</code></pre></div>
 <h3 id="simulating-with-rtl-waveform-recording">Simulating with RTL
 Waveform Recording</h3>
 <ul>
-<li><p>Included Process: <span style="background-color: lightgray">Building an
+<li><p>Included Process:</p>
+<ul>
+<li><p><span style="background-color: lightgray">Building an
 Application</span></p></li>
+<li><p><span style="background-color: lightgray">Compiling the Platform
+RTL Code</span></p></li>
+</ul></li>
 </ul>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
 cmd) make #(app name).debug</code></pre></div>
@@ -281,6 +304,8 @@ and Recording</h3>
 Results</span></p></li>
 <li><p><span style="background-color: lightgray">Building an
 Application</span></p></li>
+<li><p><span style="background-color: lightgray">Compiling the Platform
+RTL Code</span></p></li>
 </ul></li>
 </ul>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
@@ -288,8 +313,13 @@ cmd) make #(app name).redebug</code></pre></div>
 <h3 id="simulating-with-rtl-waveform-recording-from-boot">Simulating
 with RTL Waveform Recording from Boot</h3>
 <ul>
-<li><p>Included Process: <span style="background-color: lightgray">Building an
+<li><p>Included Process:</p>
+<ul>
+<li><p><span style="background-color: lightgray">Building an
 Application</span></p></li>
+<li><p><span style="background-color: lightgray">Compiling the Platform
+RTL Code</span></p></li>
+</ul></li>
 </ul>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
 cmd) make #(app name).debug_init</code></pre></div>
@@ -301,6 +331,11 @@ cmd) make view</code></pre></div>
 <h2 id="displaying-applications-list">Displaying Applications List</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
 cmd) make app_list</code></pre></div>
+<h2 id="compiling-the-platform-rtl-code-one-by-one">Compiling the
+Platform RTL Code One by One</h2>
+<p>This command helps identify missing include files.</p>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
+cmd) make compile_test_all</code></pre></div>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>

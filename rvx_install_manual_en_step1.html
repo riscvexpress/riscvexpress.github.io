@@ -177,6 +177,7 @@
 <p class="author">Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin
 Lee<br/>
 ETRI, Daejeon, South Korea</p>
+<p class="date">v2025-05-12 or later</p>
 </header>
 <h1 id="overview">Overview</h1>
 <p>Install the environments for Git, make, python3, and Java.<br/>
@@ -198,7 +199,7 @@ Or, <a href="https://git-scm.com/download/win"><span class="uri">https://git-scm
 <h2 id="instruction-any-os">Instruction @ Any OS</h2>
 <p>If the version above does not meet the required specifications,<br/>
 please manually locate and install the appropriate version.</p>
-<h1 id="python-3">Python 3</h1>
+<h1 id="python3">Python3</h1>
 <h2 id="objective-1">Objective</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>Install and verify a Python version between 3.8 and 3.10.</code></pre></div>
 <h2 id="check-1">Check</h2>
@@ -206,9 +207,9 @@ please manually locate and install the appropriate version.</p>
 python.</p>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) python3 –version or python –version</code></pre></div>
 <h2 id="instruction-centos-1">Instruction @ CentOS</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) sudo yum install python3</code></pre></div>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) sudo yum install python3.X</code></pre></div>
 <h2 id="instruction-ubuntu-1">Instruction @ Ubuntu</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) sudo apt-get install python3</code></pre></div>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) sudo apt-get install python3.X python3.X-distutils</code></pre></div>
 <h2 id="instruction-linux-alternative">Instruction @ Linux
 (Alternative)</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) sudo yum install gcc zlib zlib-devel openssl openssl-devel
@@ -217,11 +218,11 @@ cmd) tar xvf Python-3.8.16.tar.xz
 cmd) cd Python-3.8.16; ./configure; make; sudo make install</code></pre></div>
 <h2 id="instruction-windows-1">Instruction @ Windows</h2>
 <p>Search for python3 in Microsoft Store and install version 3.8.<br/>
-Versions between 3.7 and 3.9 are acceptable.</p>
+Versions between 3.8 and 3.10 are acceptable.</p>
 <h2 id="instruction-windows-alternative">Instruction @ Windows
 (Alternative)</h2>
 <p>Download and install version 3.9.12 from python.org.<br/>
-Any version between 3.7 and 3.9 is acceptable,<br/>
+Any version between 3.8 and 3.10 is acceptable,<br/>
 but make sure to choose one that includes a Windows installer.<br/>
 During installation, be sure to check <span style="background-color: lightgray">Add Python 3.x to PATH</span>.<br/>
 If you forgot to do this, manually add the following directories to your
