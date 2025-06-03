@@ -93,12 +93,6 @@ if __name__ == '__main__':
     elif args.cmd == 'latex2html':
         input_dir_path = input_path
 
-        input_zip = input_dir_path.parent / f'{input_path.stem}.zip'
-        if input_zip.is_file():
-            remove_directory(input_dir_path)
-            with zipfile.ZipFile(input_zip, 'r') as zip_ref:
-                zip_ref.extractall(input_dir_path)
-
         if input_dir_path.is_dir():
             assert output_path.is_dir(), output_path
             for input_latex_path in input_dir_path.glob(f'{input_path.stem}*.tex'):
