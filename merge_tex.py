@@ -19,7 +19,7 @@ def flatten_tex(file_path: Path, search_path: Path, seen=None):
     except Exception as e:
         return f"% Error reading {file_path}: {e}\n"
 
-    pattern = re.compile(r'\\input\{([^\}]+)\}')
+    pattern = re.compile(r'^(?![^\n]*%)[^\n]*?\\input\{([^\}]+)\}', re.MULTILINE)
 
     def replacer(match):
         subfile = match.group(1)
@@ -30,7 +30,6 @@ def flatten_tex(file_path: Path, search_path: Path, seen=None):
         return flatten_tex(subfile_path, search_path, seen)
 
     return pattern.sub(replacer, content)
-
 
 def main():
     parser = argparse.ArgumentParser(description="Flatten LaTeX files by expanding all \\input{} commands")
