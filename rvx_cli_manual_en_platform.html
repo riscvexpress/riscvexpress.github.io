@@ -182,12 +182,12 @@ ETRI, Daejeon, South Korea</p>
 <p>A platform includes both the hardware and software associated with an
 SoC. It is organized under a directory that shares the same name as the
 SoC the user intends to design.</p>
-<figure id="fig:git-structure">
-<img alt="Figure 1: Overall Git Repository Structure." src="figures/git_structure.png" style="height:30.0%"/>
-<figcaption aria-hidden="true">Figure 1: Overall Git Repository
-Structure.</figcaption>
+<figure id="fig:platform-structure">
+<img alt="Figure 1: Detailed Structure of the Platform Directory." src="figures/directory_structure.png" style="height:30.0%"/>
+<figcaption aria-hidden="true">Figure 1: Detailed Structure of the
+Platform Directory.</figcaption>
 </figure>
-<p>In Figure <a data-reference="fig:git-structure" data-reference-type="ref" href="#fig:git-structure">1</a>, <span style="background-color: lightgray">lec_apb</span> is both the name of
+<p>In Figure <a data-reference="fig:platform-structure" data-reference-type="ref" href="#fig:platform-structure">1</a>, <span style="background-color: lightgray">lec_apb</span> is both the name of
 the SoC and the name of the corresponding directory.</p>
 <h1 id="file-structure">File Structure</h1>
 <p>The structure under <span style="background-color: lightgray">#(platform dir)</span> is as
@@ -205,7 +205,7 @@ follows:</p>
 <tr>
 <td style="text-align: left;">./#(platform name).xml</td>
 <td style="text-align: center;">Editable</td>
-<td style="text-align: left;">Platform description file</td>
+<td style="text-align: left;">SoC description file</td>
 </tr>
 <tr>
 <td style="text-align: left;">./app/</td>

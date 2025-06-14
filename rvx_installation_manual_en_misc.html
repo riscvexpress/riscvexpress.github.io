@@ -6,7 +6,7 @@
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <meta content="Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
-<title>RISC-V eXpress Install Manual - Step 5 -</title>
+<title>RISC-V eXpress Installation Manual - Miscellaneous -</title>
 <style>
     html {
       color: #1a1a1a;
@@ -172,45 +172,84 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RISC-V eXpress Install Manual<br/>
-- Step 5 -</h1>
+<h1 class="title">RISC-V eXpress Installation Manual<br/>
+- Miscellaneous -</h1>
 <p class="author">Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin
 Lee<br/>
 ETRI, Daejeon, South Korea</p>
 <p class="date">v2025-05-12 or later</p>
 </header>
-<h1 id="synchronization">Synchronization</h1>
-<h2 id="objective">Objective</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>This step fetches the environment from the RVX server.</code></pre></div>
+<h1 id="checking-rvx-version">Checking RVX Version</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd ${RVX_MINI_HOME}
+cmd) make sync_version</code></pre></div>
+<h1 id="handling-configuration-files">Handling Configuration Files</h1>
 <ul>
-<li><p>You must run this once when receiving the Git repository for the
-first time.</p></li>
-<li><p>After the first run, it will be automatically triggered during
-the update process.</p></li>
-<li><p>During synchronization, you will be prompted to enter your RVX
-server account credentials.</p></li>
-<li><p>Make sure you know your account credentials in advance.</p></li>
-<li><p>These credentials will be saved in
-${RVX_MINI_HOME}/.rvx_server_config.</p></li>
-<li><p>If you need to change your RVX account info, simply delete that
-file.</p></li>
+<li><p>If you encounter configuration issues,<br/>
+delete the relevant file(s) from the list below and try again:</p>
+<ul>
+<li><p>${RVX_MINI_HOME}/.rvx_path_config</p></li>
+<li><p>${RVX_MINI_HOME}/.rvx_sudo_config</p></li>
+<li><p>${RVX_MINI_HOME}/.rvx_tool_config</p></li>
+<li><p>${RVX_MINI_HOME}/.rvx_server_config</p></li>
+</ul></li>
+<li><p>If you delete ${RVX_MINI_HOME}/.rvx_key,<br/>
+make sure to also delete all of the files listed above.</p></li>
 </ul>
+<h1 id="changing-rtl-simulators">Changing RTL Simulators</h1>
+<p>The RTL simulator used in RVX is automatically selected based
+on<br/>
+the executable file found in the system’s <span style="background-color: lightgray">PATH</span> environment
+variable.<br/>
+If automatic selection fails,<br/>
+the simulator’s installation path has not been added to the <span style="background-color: lightgray">PATH</span>.<br/>
+If multiple simulators are installed,<br/>
+you can manually select one by modifying the settings as described
+below.</p>
+<ol>
+<li><p>Open ${RVX_MINI_HOME}/.rvx_path_config with a text
+editor.</p></li>
+<li><p>Set the value of <span style="background-color: lightgray">rtl_simulator</span> to one of the
+following:</p>
+<ul>
+<li><p>xcelium, ncsim, modelsim</p></li>
+</ul></li>
+</ol>
+<h1 id="updating">Updating</h1>
+<p>If an update message appears during usage, follow the steps
+below.<br/>
+After the update, you need to clean the platform and restart with <span style="background-color: lightgray">make syn</span>.</p>
+<h2 id="instruction-linux">Instruction @ Linux</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>inst) If you have any work in progress, backup it.
+cmd) cd ${RVX_MINI_HOME}
+cmd) ./update.sh
+inst) close and reopen the terminal.</code></pre></div>
+<h2 id="instruction-linux-1">Instruction @ Linux</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>inst) If you have any work in progress, backup it.
+cmd) cd ${RVX_MINI_HOME}
+cmd) update.bat
+inst) close and reopen the terminal.</code></pre></div>
+<h1 id="updating-manually">Updating Manually</h1>
+<p>Performed at the request of the administrator.<br/>
+After the update, you need to clean the platform and restart with <span style="background-color: lightgray">make syn</span>.</p>
+<h1 id="accessing-rvx-platform-examples">Accessing RVX Platform
+Examples</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd ${RVX_MINI_HOME}
+cmd) make example</code></pre></div>
 <h2 id="instruction-any-os">Instruction @ Any OS</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd ${RVX_MINI_HOME}
-cmd) make sync
-&gt; When prompted for SSH access, answer ‘no’</code></pre></div>
-<h1 id="force-resynchronization">(Force) Resynchronization</h1>
-<h2 id="objective-1">Objective</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>Run this if an issue occurs during the sync process.</code></pre></div>
-<h2 id="instruction-any-os-1">Instruction @ Any OS</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd ${RVX_MINI_HOME}
-cmd) make resync</code></pre></div>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>inst) If you have any work in progress, backup it.
+cmd) cd ${RVX_MINI_HOME}
+cmd) git checkout .
+cmd) git pull origin master
+cmd) git submodule init
+cmd) git submodule update
+cmd) make reconfig_python
+cmd) make pip3
+cmd) make config
+inst) close and reopen the terminal.</code></pre></div>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
-<li><p><a href="rvx_install_manual_en.html">Top</a></p></li>
-<li><p><a href="rvx_install_manual_en.html">Previous -
-Step4</a></p></li>
+<li><p><a href="rvx_installation_manual_en.html">Top</a></p></li>
 </ul>
 </body>
 </html>

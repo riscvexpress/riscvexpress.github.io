@@ -6,7 +6,7 @@
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <meta content="Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
-<title>RISC-V eXpress Install Manual</title>
+<title>RISC-V eXpress Installation Manual</title>
 <style>
     html {
       color: #1a1a1a;
@@ -172,7 +172,7 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RISC-V eXpress Install Manual</h1>
+<h1 class="title">RISC-V eXpress Installation Manual</h1>
 <p class="author">Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin
 Lee<br/>
 ETRI, Daejeon, South Korea</p>
@@ -181,7 +181,7 @@ ETRI, Daejeon, South Korea</p>
 <h1 id="sec:overview">Overview</h1>
 <ul>
 <li><p>This manual explains how to install RVX on a local machine using
-the RVX Mini Git repository.</p></li>
+the RVX design git repository.</p></li>
 </ul>
 <h1 id="notice">Notice</h1>
 <ul>
@@ -193,17 +193,30 @@ specified in advance for a particular class or research
 project.</p></li>
 <li><p>They must not be distributed to third parties other than the
 designated users or organizations.</p></li>
-<li><p>Prior approval and a technology transfer agreement are required
-for any commercial use.</p></li>
+<li><p>They are free for non-commercial research use, provided that the
+paper is cited. All other uses require prior approval and a technology
+transfer agreement.</p></li>
 </ul></li>
 <li><p>When using the RVX server provided by ETRI:</p>
 <ul>
-<li><p>Only the features available through RVX mini may be
-used.</p></li>
+<li><p>Only the features available through RVX may be used.</p></li>
 <li><p>The user is fully responsible for any incidents or damages,
 including financial costs, resulting from intentional misuse or
 violation of these terms.</p></li>
 </ul></li>
+</ul>
+<h1 id="things-to-know">Things to Know</h1>
+<ul>
+<li><p>Manuals are available online in online - <a href="riscvexpress.github.io"><span class="uri">riscvexpress.github.io</span></a></p></li>
+<li><p>Any part starting with <span style="background-color: lightgray">#</span> should be replaced or
+modified according to your environment.</p></li>
+<li><p>On Linux, use the <span style="background-color: lightgray">bash</span> shell for command-line
+operations.</p></li>
+<li><p>On Windows, use the <span style="background-color: lightgray">Windows Power Shell</span> for
+command-line operations.</p></li>
+<li><p><a href="skills-for-linux_en.html">Skills for Linux</a></p></li>
+<li><p><a href="skills-for-windows_en.html">Skills for
+Windows</a></p></li>
 </ul>
 <h1 id="requirements">Requirements</h1>
 <ul>
@@ -248,35 +261,28 @@ the beginning).</p></li>
 <li><p>Linux: Requires <span style="background-color: lightgray">sudo</span> privileges</p></li>
 <li><p>Windows: Requires administrator rights</p></li>
 </ul></li>
-<li><p>RVX Mini Git Repository</p>
+<li><p>RVX Design Git Repository</p>
 <ul>
-<li><p>Provided by the instructor or project supervisor</p></li>
+<li><p>Build your own design repository (See <a href="rvx_integration_manual_en.html">Integration Manual</a>)</p></li>
+<li><p>Or, use the repository provided by the instructor for the
+lecture</p></li>
 </ul></li>
-<li><p>RVX Server Information</p>
+<li><p>RVX Server Information (Windows Only)</p>
 <ul>
 <li><p>IP address, SSH port, account, password</p></li>
 <li><p>Provided by the instructor or project supervisor</p></li>
 <li><p>Account must not be shared between multiple computers.</p></li>
 </ul></li>
 </ul>
-<h1 id="things-to-know">Things to Know</h1>
-<ul>
-<li><p>Any part starting with <span style="background-color: lightgray">#</span> should be replaced or
-modified according to your environment.</p></li>
-<li><p>On Linux, use the <span style="background-color: lightgray">bash</span> shell for command-line
-operations.</p></li>
-<li><p>On Windows, use the <span style="background-color: lightgray">Windows Power Shell</span> for
-command-line operations.</p></li>
-<li><p><a href="skills-for-linux_en.html">Skills for Linux</a></p></li>
-<li><p><a href="skills-for-windows_en.html">Skills for
-Windows</a></p></li>
-</ul>
 <h1 id="step-1">Step 1</h1>
-<p><a href="rvx_install_manual_en_step1.html">Install - Step1</a></p>
+<p><a href="rvx_installation_manual_en_step1.html">Install -
+Step1</a></p>
 <h1 id="step-2">Step 2</h1>
-<p><a href="rvx_install_manual_en_step2.html">Install - Step2</a></p>
+<p><a href="rvx_installation_manual_en_step2.html">Install -
+Step2</a></p>
 <h1 id="step-3">Step 3</h1>
-<p><a href="rvx_install_manual_en_step3.html">Install - Step3</a></p>
+<p><a href="rvx_installation_manual_en_step3.html">Install -
+Step3</a></p>
 <h1 id="step-4">Step 4</h1>
 <p>Carefully install the license programs you intend to use<br/>
 by following their respective manuals.<br/>
@@ -285,9 +291,10 @@ variable.<br/>
 On Windows, it may be added automatically.<br/>
 During Vivado installation, don’t forget to install all devices.</p>
 <h1 id="step-5">Step 5</h1>
-<p><a href="rvx_install_manual_en_step5.html">Install - Step5</a></p>
+<p><a href="rvx_installation_manual_en_step5.html">Install -
+Step5</a></p>
 <h1 id="miscellaneous">Miscellaneous</h1>
-<p><a href="rvx_install_manual_en_misc.html">Miscellaneous</a></p>
+<p><a href="rvx_installation_manual_en_misc.html">Miscellaneous</a></p>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
