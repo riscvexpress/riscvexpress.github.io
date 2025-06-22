@@ -6,7 +6,7 @@
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <meta content="Kyuseung Han, Sukho Lee, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
-<title>RISC-V eXpress Repository Setup Manual</title>
+<title>RISC-V eXpress Software Development Manual - Debugging Methods -</title>
 <style>
     html {
       color: #1a1a1a;
@@ -172,96 +172,81 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RISC-V eXpress Repository Setup Manual</h1>
+<h1 class="title">RISC-V eXpress Software Development Manual<br/>
+- Debugging Methods -</h1>
 <p class="author">Kyuseung Han, Sukho Lee, Jae-Jin Lee<br/>
 ETRI, Daejeon, South Korea</p>
 <p class="date">v2025-05-12 or later</p>
 </header>
-<h1 id="sec:overview">Overview</h1>
+<h1 id="hardware-based-debugging">Hardware-based Debugging</h1>
 <ul>
-<li><p>This manual is intended to help you build your own design
-repository that is capable of utilizing RVX.</p></li>
+<li><p>Whether a hardware debugger can be used via tools like OpenOCD or
+GDB entirely depends on whether the RISC-V CPU includes JTAG
+functionality.</p></li>
+<li><p>None of the CPUs provided by RVX include this
+functionality.</p></li>
+<li><p>If users want to perform hardware-based debugging, they must
+obtain a CPU that supports it.</p></li>
 </ul>
-<h1 id="notice">Notice</h1>
+<h1 id="software-based-debugging">Software-based Debugging</h1>
 <ul>
-<li><p>All results produced using RVX are subject to the following
-conditions:</p>
-<ul>
-<li><p>They must not be used beyond the predefined purpose and scope
-specified in advance for a particular class or research
-project.</p></li>
-<li><p>They must not be distributed to third parties other than the
-designated users or organizations.</p></li>
-<li><p>They are free for non-commercial research use, provided that the
-paper is cited. All other uses require prior approval and a technology
-transfer agreement.</p></li>
-</ul></li>
-<li><p>When using the RVX server provided by ETRI:</p>
-<ul>
-<li><p>Only the features available through RVX may be used.</p></li>
-<li><p>The user is fully responsible for any incidents or damages,
-including financial costs, resulting from intentional misuse or
-violation of these terms.</p></li>
-</ul></li>
+<li><p>Variables can be printed using <span style="background-color: lightgray">printf</span> for debugging
+purposes.</p></li>
+<li><p>Include the header file <span style="background-color: lightgray">ervp_printf.h</span> to use this
+functionality.</p></li>
+<li><p>Several debugging functions, which are extensions of <span style="background-color: lightgray">printf</span>, are available as
+listed below:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Function Name</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">debug_printx(var)</td>
+<td style="text-align: center;">Prints <span style="background-color: lightgray">var</span> in <span style="background-color: lightgray">%08x</span> format.</td>
+</tr>
+<tr>
+<td style="text-align: center;">debug_printd(var)</td>
+<td style="text-align: center;">Prints <span style="background-color: lightgray">var</span> in <span style="background-color: lightgray">%d</span> format.</td>
+</tr>
+<tr>
+<td style="text-align: center;">debug_printf(var)</td>
+<td style="text-align: center;">Prints <span style="background-color: lightgray">var</span> in <span style="background-color: lightgray">%f</span> format.</td>
+</tr>
+<tr>
+<td style="text-align: center;">debug_printc(var)</td>
+<td style="text-align: center;">Prints <span style="background-color: lightgray">var</span> in <span style="background-color: lightgray">%c</span> format.</td>
+</tr>
+<tr>
+<td style="text-align: center;">debug_prints(var)</td>
+<td style="text-align: center;">Prints <span style="background-color: lightgray">var</span> in <span style="background-color: lightgray">%s</span> format.</td>
+</tr>
+<tr>
+<td style="text-align: center;">debug_printn()</td>
+<td style="text-align: center;">Prints a blank line.</td>
+</tr>
+<tr>
+<td style="text-align: center;">debug_print_line()</td>
+<td style="text-align: center;">Prints only the current code
+location.</td>
+</tr>
+</tbody>
+</table></li>
 </ul>
-<h1 id="things-to-know">Things to Know</h1>
-<ul>
-<li><p>Manuals are available online - <a href="riscvexpress.github.io"><span class="uri">riscvexpress.github.io</span></a></p></li>
-<li><p>Any part starting with <span style="background-color: lightgray">#</span> should be replaced or
-modified according to your environment.</p></li>
-<li><p>On Linux, use the <span style="background-color: lightgray">bash</span> shell for command-line
-operations.</p></li>
-<li><p>On Windows, use the <span style="background-color: lightgray">Windows Power Shell</span> for
-command-line operations.</p></li>
-<li><p><a href="skills-for-linux_en.html">Skills for Linux</a></p></li>
-<li><p><a href="skills-for-windows_en.html">Skills for
-Windows</a></p></li>
-</ul>
-<h1 id="creating-your-git-repository">Creating Your Git Repository</h1>
-<p>Create your git repository on a hosting service or a self-managed
-server.<br/>
-Names with generic or ambiguous meanings are strictly prohibited,<br/>
-as RVX features are deliberately disabled for repositories with such
-names.<br/>
-The following are examples of prohibited names.<br/>
-This list may be updated at any time without prior notice.</p>
-<ul>
-<li><p>rvx_etri, rvx_platform, rvx_alpha, rvx_beta, ...</p></li>
-</ul>
-<h1 id="integrating-rvx-into-your-repository">Integrating RVX into Your
-Repository</h1>
-<figure id="fig:repository-structure">
-<img alt="Figure 1: Basic Structure of the RVX Design Git Repository." src="figures/repository_structure.png" style="height:30.0%"/>
-<figcaption aria-hidden="true">Figure 1: Basic Structure of the RVX
-Design Git Repository.</figcaption>
-</figure>
-<ol>
-<li><p>Clone your repository.</p>
-<ul>
-<li><p>Denote the root directory of the git repository as <span style="background-color: lightgray">#(repo root)</span>.</p></li>
-</ul></li>
-<li><p>Add the following git repositories as submodules under <span style="background-color: lightgray">#(repo root)</span>.</p>
-<ul>
-<li><p>https://bitbucket.org/kyuseung_han/rvx_install.git</p></li>
-<li><p>https://bitbucket.org/kyuseung_han/rvx_init.git</p></li>
-</ul></li>
-<li><p>Copy the contents of <span style="background-color: lightgray">#(repo
-root)</span>/rvx_install/mini_git into <span style="background-color: lightgray">#(repo root)</span></p>
-<ul>
-<li><p>Refer to Figure <a data-reference="fig:repository-structure" data-reference-type="ref" href="#fig:repository-structure">1</a>.</p></li>
-</ul></li>
-<li><p>For <span style="background-color: lightgray">imp_class_info</span> directory,</p>
-<ul>
-<li><p>It contains information about FPGA or SoC boards.</p></li>
-<li><p>Thus, only the necessary board files need to be copied.</p></li>
-<li><p>Or, you may create a symbolic link to <span style="background-color: lightgray">imp_class_info</span>
-instead.</p></li>
-</ul></li>
-<li><p>Add the copied contents to git.</p></li>
-</ol>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
+<li><p><a href="rvx_sw_manual_en.html">Top</a></p></li>
+<li><p><a href="rvx_sw_manual_en_stdlib.html">Standard Library
+Porting</a></p></li>
+<li><p><a href="rvx_sw_manual_en_consistency.html">Data Consistency
+Management</a></p></li>
+<li><p><a href="rvx_sw_manual_en_caching.html">Caching Region Assignment
+for Global Variables</a></p></li>
+<li><p><a href="rvx_sw_manual_en_misc.html">Miscellaneous</a></p></li>
 </ul>
 </body>
 </html>

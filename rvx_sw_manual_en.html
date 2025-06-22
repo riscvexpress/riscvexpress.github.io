@@ -6,7 +6,7 @@
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <meta content="Kyuseung Han, Sukho Lee, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
-<title>RISC-V eXpress Repository Setup Manual</title>
+<title>RISC-V eXpress Software Development Manual</title>
 <style>
     html {
       color: #1a1a1a;
@@ -172,15 +172,19 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RISC-V eXpress Repository Setup Manual</h1>
+<h1 class="title">RISC-V eXpress Software Development Manual</h1>
 <p class="author">Kyuseung Han, Sukho Lee, Jae-Jin Lee<br/>
 ETRI, Daejeon, South Korea</p>
 <p class="date">v2025-05-12 or later</p>
 </header>
 <h1 id="sec:overview">Overview</h1>
 <ul>
-<li><p>This manual is intended to help you build your own design
-repository that is capable of utilizing RVX.</p></li>
+<li><p>This manual is intended for developing software for SoCs using
+RVX.</p></li>
+<li><p>All software must be developed with this constraint in mind to
+ensure correct functionality since the RVX SoC is designed as a
+lightweight platform and therefore does not support a general-purpose
+operating system.</p></li>
 </ul>
 <h1 id="notice">Notice</h1>
 <ul>
@@ -217,51 +221,20 @@ command-line operations.</p></li>
 <li><p><a href="skills-for-windows_en.html">Skills for
 Windows</a></p></li>
 </ul>
-<h1 id="creating-your-git-repository">Creating Your Git Repository</h1>
-<p>Create your git repository on a hosting service or a self-managed
-server.<br/>
-Names with generic or ambiguous meanings are strictly prohibited,<br/>
-as RVX features are deliberately disabled for repositories with such
-names.<br/>
-The following are examples of prohibited names.<br/>
-This list may be updated at any time without prior notice.</p>
-<ul>
-<li><p>rvx_etri, rvx_platform, rvx_alpha, rvx_beta, ...</p></li>
-</ul>
-<h1 id="integrating-rvx-into-your-repository">Integrating RVX into Your
-Repository</h1>
-<figure id="fig:repository-structure">
-<img alt="Figure 1: Basic Structure of the RVX Design Git Repository." src="figures/repository_structure.png" style="height:30.0%"/>
-<figcaption aria-hidden="true">Figure 1: Basic Structure of the RVX
-Design Git Repository.</figcaption>
-</figure>
-<ol>
-<li><p>Clone your repository.</p>
-<ul>
-<li><p>Denote the root directory of the git repository as <span style="background-color: lightgray">#(repo root)</span>.</p></li>
-</ul></li>
-<li><p>Add the following git repositories as submodules under <span style="background-color: lightgray">#(repo root)</span>.</p>
-<ul>
-<li><p>https://bitbucket.org/kyuseung_han/rvx_install.git</p></li>
-<li><p>https://bitbucket.org/kyuseung_han/rvx_init.git</p></li>
-</ul></li>
-<li><p>Copy the contents of <span style="background-color: lightgray">#(repo
-root)</span>/rvx_install/mini_git into <span style="background-color: lightgray">#(repo root)</span></p>
-<ul>
-<li><p>Refer to Figure <a data-reference="fig:repository-structure" data-reference-type="ref" href="#fig:repository-structure">1</a>.</p></li>
-</ul></li>
-<li><p>For <span style="background-color: lightgray">imp_class_info</span> directory,</p>
-<ul>
-<li><p>It contains information about FPGA or SoC boards.</p></li>
-<li><p>Thus, only the necessary board files need to be copied.</p></li>
-<li><p>Or, you may create a symbolic link to <span style="background-color: lightgray">imp_class_info</span>
-instead.</p></li>
-</ul></li>
-<li><p>Add the copied contents to git.</p></li>
-</ol>
-<h1 id="navigate">Navigate</h1>
-<ul>
-<li><p><a href="index.html">Home</a></p></li>
-</ul>
+<h1 id="standard-library-porting">Standard Library Porting</h1>
+<p><a href="rvx_sw_manual_en_stdlib.html">SW - Standard Library
+Porting</a></p>
+<h1 id="data-consistency-management">Data Consistency Management</h1>
+<p><a href="rvx_sw_manual_en_consistency.html">SW - Data Consistency
+Management</a></p>
+<h1 id="caching-region-assignment-for-global-variables">Caching Region
+Assignment for Global Variables</h1>
+<p><a href="rvx_sw_manual_en_caching.html">SW - Caching Region
+Assignment for Global Variables</a></p>
+<h1 id="debugging-methods">Debugging Methods</h1>
+<p><a href="rvx_sw_manual_en_debugging.html">SW - Debugging
+Methods</a></p>
+<h1 id="miscellaneous">Miscellaneous</h1>
+<p><a href="rvx_sw_manual_en_misc.html">SW - Miscellaneous</a></p>
 </body>
 </html>

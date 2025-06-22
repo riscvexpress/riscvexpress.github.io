@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+<meta content="pandoc" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta content="Kyuseung Han, Sukho Lee, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
+<title>RISC-V eXpress Software Development Manual - Data Consistency Management -</title>
+<style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">RISC-V eXpress Software Development Manual<br/>
+- Data Consistency Management -</h1>
+<p class="author">Kyuseung Han, Sukho Lee, Jae-Jin Lee<br/>
+ETRI, Daejeon, South Korea</p>
+<p class="date">v2025-05-12 or later</p>
+</header>
+<h1 id="overview">Overview</h1>
+<ul>
+<li><p>RVX does not provide abstraction for hardware caches, so
+software-level consistency management is required in certain
+cases.</p></li>
+<li><p>With a default caching policy, data consistency management is not
+required.</p></li>
+<li><p>To enhance performance, users must explicitly assign variables to
+cacheable regions and manage their consistency manually.</p></li>
+</ul>
+<h1 id="prerequisites">Prerequisites</h1>
+<ul>
+<li><p>Users should understand caching mechanisms and cache
+architectures from a computer architecture perspective.</p></li>
+<li><p>It is necessary to understand how C code is executed at the
+hardware level.</p></li>
+<li><p>If not well understood, it is advisable to rely on the default
+caching policy without attempting manual performance
+optimization.</p></li>
+</ul>
+<h1 id="caching-policy">Caching Policy</h1>
+<figure id="fig:cache-policy">
+<img alt="Figure 1: Caching policy defined in #(platform xml)." src="figures/cache_policy.png"/>
+<figcaption aria-hidden="true">Figure 1: Caching policy defined in <span style="background-color: lightgray">#(platform xml)</span>.</figcaption>
+</figure>
+<ul>
+<li><p>The caching policy can be defined in the <span style="background-color: lightgray">#(platform xml)</span> file (refer
+to Figure <a data-reference="fig:cache-policy" data-reference-type="ref" href="#fig:cache-policy">1</a>).</p></li>
+<li><p>CACHING_NONE</p>
+<ul>
+<li><p>The CPU does not cache any data.</p></li>
+</ul></li>
+<li><p>CACHING_SAFE</p>
+<ul>
+<li><p>The CPU caches only data that does not require software-level
+consistency management.</p></li>
+</ul></li>
+<li><p>CACHING_MOST</p>
+<ul>
+<li><p>The CPU aggressively caches most data to enhance
+performance.</p></li>
+<li><p>It is the user’s responsibility to manage data consistency in
+software.</p></li>
+</ul></li>
+<li><p>Note: The caching region varies depending on the policy.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">CACHING_NONE</th>
+<th style="text-align: center;">CACHING_SAFE</th>
+<th style="text-align: center;">CACHING_MOST</th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Start</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Variable</td>
+<td style="text-align: center;"><code>0x00000000</code></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">Last</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Variable</td>
+<td style="text-align: center;"><code>0xBFFFFFFF</code></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<h1 id="cacheability-of-variables">Cacheability of Variables</h1>
+<figure id="fig:cacheability">
+<img alt="Figure 2: Cacheability of Variables." src="figures/cacheability.png"/>
+<figcaption aria-hidden="true">Figure 2: Cacheability of
+Variables.</figcaption>
+</figure>
+<ul>
+<li><p>Figure <a data-reference="fig:cacheability" data-reference-type="ref" href="#fig:cacheability">2</a> is the most accurate.</p></li>
+<li><p>Static variables</p>
+<ul>
+<li><p>This does not refer to variables declared with the static
+keyword.</p></li>
+<li><p>Generally, these variables do not require consistency management,
+regardless of the caching policy.</p></li>
+<li><p>If global variables are cached for performance optimization,
+appropriate attributes must be set (see <a href="rvx_sw_manual_en_consistency.html">Data Consistency
+Management</a>).</p></li>
+<li><p>If hardware IP reads a local variable via a pointer, consistency
+management becomes necessary—but such usage typically reflects poor
+coding practice.</p></li>
+</ul></li>
+<li><p>Dynamic variables (allocated by <span style="background-color: lightgray">malloc</span>)</p>
+<ul>
+<li><p>Under the CACHING_NONE and CACHING_SAFE policies, consistency
+management is not required.</p></li>
+<li><p>If the CACHING_MOST policy is used, consistency management is
+required for dynamically allocated variables.</p></li>
+</ul></li>
+<li><p>Consistency Management</p>
+<ul>
+<li><p>Include the header file <span style="background-color: lightgray">core_dependent.h</span>.</p></li>
+<li><p>Insert <span style="background-color: lightgray">flush_cache()</span> at your
+discretion.</p></li>
+</ul></li>
+</ul>
+<h1 id="navigate">Navigate</h1>
+<ul>
+<li><p><a href="index.html">Home</a></p></li>
+<li><p><a href="rvx_sw_manual_en.html">Top</a></p></li>
+<li><p><a href="rvx_sw_manual_en_stdlib.html">Standard Library
+Porting</a></p></li>
+<li><p><a href="rvx_sw_manual_en_caching.html">Caching Region Assignment
+for Global Variables</a></p></li>
+<li><p><a href="rvx_sw_manual_en_debugging.html">Debugging
+Methods</a></p></li>
+<li><p><a href="rvx_sw_manual_en_misc.html">Miscellaneous</a></p></li>
+</ul>
+</body>
+</html>
