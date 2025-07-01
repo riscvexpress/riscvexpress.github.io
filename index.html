@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </head>
+    <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>RISC-V eXpress (RVX)</title>
@@ -70,6 +73,20 @@
     .link-text a:hover {
       text-decoration: underline;
     }
+
+    .link-button {
+  padding: 6px 12px;
+  background-color: #007acc;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 12px;
+  transition: background-color 0.2s;
+}
+
+.link-button:hover {
+  background-color: #0056b3;
+}
         </style>
     </head>
     <body>
@@ -91,6 +108,12 @@
                 <li>Extensible with AMBA-compliant IP blocks</li>
                 <li>Integrated with an SNN learning framework</li>
             </ul>
+            <div class="section-title">
+                Licensing
+                <a href="rvx_web_license.html" class="link-button">
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
             <div class="section-title">Publication & Citation</div>
             <div class="gray-box">
                 <strong>Paper Title:</strong>
@@ -120,4 +143,17 @@
             </div>
         </div>
     </body>
+    <footer style="
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 12px;
+  font-size: 14px;
+  color: #777;
+  background-color: #f9f9f9;
+  border-top: 1px solid #eee;">
+        Icons by
+        <a href="https://fontawesome.com/" target="_blank" rel="noopener noreferrer">Font Awesome</a>
+    </footer>
 </html>
