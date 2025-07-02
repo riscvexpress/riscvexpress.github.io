@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    </head>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>RISC-V eXpress (RVX)</title>
-        <style>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RISC-V eXpress (RVX)</title>
+  <style>
     body {
       margin: 0;
       padding: 0;
@@ -24,7 +26,7 @@
       background: white;
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       width: 90%;
       max-width: 700px;
     }
@@ -35,31 +37,6 @@
       font-weight: 700;
       color: #007acc;
       text-align: center;
-    }
-
-    .section-title {
-      font-size: 1.2em;
-      margin-top: 30px;
-      margin-bottom: 10px;
-      font-weight: bold;
-      color: #333;
-    }
-
-    .gray-box {
-      background-color: #f0f0f0;
-      padding: 16px 20px;
-      border-radius: 8px;
-      font-size: 1em;
-      line-height: 1.5;
-    }
-
-    .gray-box a {
-      color: #007acc;
-      text-decoration: none;
-    }
-
-    .gray-box a:hover {
-      text-decoration: underline;
     }
 
     .link-text a {
@@ -75,75 +52,107 @@
     }
 
     .link-button {
-  padding: 6px 12px;
-  background-color: #007acc;
-  color: white;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 12px;
-  transition: background-color 0.2s;
-}
+      padding: 6px 12px;
+      background-color: #007acc;
+      color: white;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 12px;
+      transition: background-color 0.2s;
+    }
 
-.link-button:hover {
-  background-color: #0056b3;
-}
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <h1>RISC-V eXpress Homepage</h1>
-            <div class="section-title">Overview</div>
-            <div class="gray-box">
-                RISC-V eXpress (RVX) is a hardware/software development kit
-                <br>
-                for designing low-power SoCs for embedded systems,
-                <br>
-                such as MCUs or lightweight application processors.
-            </div>
-            <div class="section-title">Key Features</div>
-            <ul>
-                <li>Compatible with both Linux and Windows</li>
-                <li>Free for non-commercial research use with citation</li>
-                <li>Designed for ease of use</li>
-                <li>Extensible with AMBA-compliant IP blocks</li>
-                <li>Integrated with an SNN learning framework</li>
-            </ul>
-            <div class="section-title">
-                Licensing
-                <a href="rvx_web_license.html" class="link-button">
-                    <i class="fas fa-arrow-up-right-from-square"></i>
-                </a>
-            </div>
-            <div class="section-title">Publication & Citation</div>
-            <div class="gray-box">
-                <strong>Paper Title:</strong>
-                Developing TEI-Aware Ultralow-Power SoC Platforms for IoT End Nodes
-                <br>
-                <strong>Journal:</strong>
-                IEEE Internet of Things Journal, vol. 8, no. 6, 2021
-                <br>
-                <strong>URL:</strong>
-                <a href="https://ieeexplore.ieee.org/document/9208740" target="_blank">
-                    https://ieeexplore.ieee.org/document/9208740
-                </a>
-                (Open Access)
-            </div>
-            <div class="section-title">Materials</div>
-            <div class="link-text">
-                <a href="rvx_repository_manual_en.html">Repository Setup Manual</a>
-                <a href="rvx_installation_manual_en.html">Installation Manual</a>
-                <a href="rvx_cli_manual_en.html">Command Line Interface Manual</a>
-                <a href="rvx_sw_manual_en.html">Software Development Manual</a>
-                <a href="https://rvx.coreicc.net/wiki" target="_blank">Wiki</a>
-            </div>
-            <div class="section-title">Downloads</div>
-            <div class="link-text">
-                <a href="downloads/rvx_installation_manual_en_v2025-07-02.pdf" target="_blank">Installation Manual (English, v2025-07-02)</a>
-                <a href="downloads/rvx_cli_manual_en_v2025-07-02.pdf" target="_blank">Command Line Interface Manual (English, v2025-07-02)</a>
-            </div>
-        </div>
-    </body>
-    <footer style="
+    .link-button:hover {
+      background-color: #0056b3;
+    }
+
+    .gray-box {
+      background-color: #f5f5f5;
+      border-left: 4px solid #007acc;
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      line-height: 1.6;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .gray-box p {
+      margin: 0.5rem 0;
+    }
+
+    .funding-note {
+      font-size: 0.9em;
+      color: #666;
+      margin-top: 0.5em;
+    }
+
+    .version-date {
+      color: #777;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>RISC-V eXpress Homepage</h1>
+    <h2>Overview</h2>
+    <div class="gray-box">
+      <p><strong>RISC-V eXpress (RVX)</strong> is a hardware/software development kit<br>
+        for designing low-power SoCs for embedded systems,<br>
+        such as MCUs or lightweight application processors.</p>
+      <p class="funding-note">
+        Developed by <strong>ETRI</strong>, South Korea, with support from the <br>
+        ICT R&D Program of MSIT/IITP (No. 2018-0-00197).
+      </p>
+    </div>
+    <h2>Key Features</h2>
+    <ul>
+      <li>Compatible with both Linux and Windows</li>
+      <li>Free for non-commercial research use with citation</li>
+      <li>Designed for ease of use</li>
+      <li>Extensible with AMBA-compliant IP blocks</li>
+      <li>Integrated with an SNN learning framework</li>
+    </ul>
+    <h2>Licensing
+      <a href="rvx_web_license.html" class="link-button">
+        <i class="fas fa-arrow-up-right-from-square"></i>
+      </a>
+    </h2>
+    <h2>Publication & Citation</h2>
+    <div class="gray-box">
+      <strong>Paper Title:</strong>
+      Developing TEI-Aware Ultralow-Power SoC Platforms for IoT End Nodes
+      <br>
+      <strong>Journal:</strong>
+      IEEE Internet of Things Journal, vol. 8, no. 6, 2021
+      <br>
+      <strong>URL:</strong>
+      <a href="https://ieeexplore.ieee.org/document/9208740" target="_blank">
+        https://ieeexplore.ieee.org/document/9208740
+      </a>
+      (Open Access)
+    </div>
+    <h2>Tutorials
+      <a href="rvx_tutorial.html" class="link-button">
+        <i class="fas fa-arrow-up-right-from-square"></i>
+      </a>
+    </h2>
+    <h2>Materials</h2>
+    <div class="link-text">
+      <a href="rvx_repository_manual_en.html">Repository Setup Manual</a>
+      <a href="rvx_installation_manual_en.html">Installation Manual</a>
+      <a href="rvx_cli_manual_en.html">Command Line Interface Manual</a>
+      <a href="rvx_sw_manual_en.html">Software Development Manual</a>
+      <a href="https://rvx.coreicc.net/wiki" target="_blank">Wiki</a>
+    </div>
+    <h2>Downloads</h2>
+    <div class="link-text">
+      <a href="downloads/rvx_installation_manual_en_v2025-07-02.pdf" target="_blank">Installation Manual <span class="version-date">(English, v2025-07-02)</span></a>
+      <a href="downloads/rvx_cli_manual_en_v2025-07-02.pdf" target="_blank">Command Line Interface Manual <span class="version-date">(English, v2025-07-02)</span></a>
+    </div>
+  </div>
+</body>
+<footer style="
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -153,7 +162,8 @@
   color: #777;
   background-color: #f9f9f9;
   border-top: 1px solid #eee;">
-        Icons by
-        <a href="https://fontawesome.com/" target="_blank" rel="noopener noreferrer">Font Awesome</a>
-    </footer>
+  Icons by
+  <a href="https://fontawesome.com/" target="_blank" rel="noopener noreferrer">Font Awesome</a>
+</footer>
+
 </html>
