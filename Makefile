@@ -1,6 +1,6 @@
 include ./rvx_init.mh
 
-MANUAL_LIST=skills-for rvx_web rvx_repository_manual_en rvx_installation_manual_en rvx_cli_manual_en rvx_sw_manual_en rvx_tutorial
+MANUAL_LIST=skills-for rvx_web rvx_repository_manual_en rvx_installation_manual_en rvx_cli_manual_en rvx_sw_manual_en rvx_tutorials
 
 clean:
 	-del *.zip

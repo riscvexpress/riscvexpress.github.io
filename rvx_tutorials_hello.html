@@ -5,8 +5,8 @@
 <meta charset="utf-8"/>
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
-<meta content="Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
-<title>RISC-V eXpress Tutorial</title>
+<meta content="Kyuseung Han ETRI, Daejeon, South Korea" name="author"/>
+<title>RISC-V eXpress Tutorial - Hello</title>
 <style>
     html {
       color: #1a1a1a;
@@ -172,19 +172,26 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RISC-V eXpress Tutorial</h1>
-<p class="author">Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin
-Lee<br/>
+<h1 class="title">RISC-V eXpress Tutorial - Hello</h1>
+<p class="author">Kyuseung Han<br/>
 ETRI, Daejeon, South Korea</p>
 <p class="date">v2025-07-02 or later</p>
 </header>
-<h1 id="tutorial-1---hello">Tutorial 1 - Hello</h1>
-<h2 id="cloning-the-tutorial-repository">Cloning the Tutorial
-Repository</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) git clone https://github.com/rvx-etri/rvx_tutorial.git</code></pre></div>
-<h2 id="installing-rvx">Installing RVX</h2>
-<p>Install RVX by following the instructions in <a href="rvx_installation_manual_en.html">the installation manual</a>.</p>
-<h2 id="simulating-the-platform">Simulating the Platform</h2>
+<h1 id="overview">Overview</h1>
+<p>This tutorial is intended to verify the most basic functionality of
+RVX.</p>
+<h1 id="prerequisite">Prerequisite</h1>
+<ul>
+<li><p><a href="https://github.com/rvx-etri/rvx_tutorials.git"><span class="uri">https://github.com/rvx-etri/rvx_tutorials.git</span></a></p></li>
+<li><p><a href="rvx_installation_manual_en.html">Installation
+manual</a></p></li>
+<li><p>An RTL simulator with mixed-language support (Not
+provided)</p></li>
+</ul>
+<h1 id="installing-rvx">Installing RVX</h1>
+<p>Install RVX by following the instructions in the installation manual,
+using the tutorial repository for cloning.</p>
+<h1 id="simulating-the-platform">Simulating the Platform</h1>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
 cmd) source ./rvx_setup.sh
 cmd) cd ./platform/tip_hello
@@ -192,6 +199,7 @@ cmd) make test</code></pre></div>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
+<li><p><a href="rvx_tutorials.html">Tutorial List</a></p></li>
 </ul>
 </body>
 </html>
