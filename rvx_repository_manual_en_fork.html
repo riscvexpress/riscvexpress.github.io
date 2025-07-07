@@ -176,7 +176,7 @@
 Fork</h1>
 <p class="author">Kyuseung Han, Sukho Lee, Jae-Jin Lee<br/>
 ETRI, Daejeon, South Korea</p>
-<p class="date">v2025-07-02 or later</p>
+<p class="date">v2025-07-07 or later</p>
 </header>
 <h1 id="sec:overview">Overview</h1>
 <ul>
@@ -213,7 +213,8 @@ command-line operations.</p></li>
 <li><p><a href="skills-for-windows_en.html">Skills for
 Windows</a></p></li>
 </ul>
-<h1 id="creating-your-repository">Creating Your Repository</h1>
+<h1 id="creating-and-cloning-your-repository">Creating and Cloning Your
+Repository</h1>
 <ul>
 <li><p>Create your git repository on a hosting service or a self-managed
 server.</p></li>
@@ -226,6 +227,7 @@ names.</p></li>
 <li><p>This list may be updated at any time without prior
 notice.</p></li>
 </ul></li>
+<li><p>Clone your repository onto your local machine.</p></li>
 </ul>
 <h1 id="cloning-an-existing-repository">Cloning an Existing
 Repository</h1>
@@ -235,13 +237,12 @@ Proceed to <a href="rvx_installation_manual_en_step2.html">Step 2</a> of
 the installation process.</p>
 <h1 id="importing-an-existing-repository-into-your-repository">Importing
 an Existing Repository into Your Repository</h1>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(existing repo)
-cmd) make fork TARGET=#(your repo)</code></pre></div>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory of existing repo)
+cmd) make fork TARGET=#(cloned directory of your repo)</code></pre></div>
 <h1 id="adding-content-to-your-repository">Adding Content to Your
 Repository</h1>
 <p>Adds the copied content to your own repository.<br/>
-To make it work without cloud support, be sure to include the <span style="background-color: lightgray">sync</span> folder using the -f
-option.</p>
+To make it work without cloud support, be sure to include the <span style="background-color: lightgray">sync</span> folder.</p>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="rvx_repository_manual_en_fork.html">Setting Up by a
