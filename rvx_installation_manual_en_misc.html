@@ -177,7 +177,7 @@
 <p class="author">Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin
 Lee<br/>
 ETRI, Daejeon, South Korea</p>
-<p class="date">v2025-07-02 or later</p>
+<p class="date">v2025-07-09 or later</p>
 </header>
 <h1 id="checking-rvx-version">Checking RVX Version</h1>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd ${RVX_MINI_HOME}
@@ -214,23 +214,6 @@ following:</p>
 <li><p>xcelium, ncsim, modelsim</p></li>
 </ul></li>
 </ol>
-<h1 id="updating">Updating</h1>
-<p>If an update message appears during usage, follow the steps
-below.<br/>
-After the update, you need to clean the platform and restart with <span style="background-color: lightgray">make syn</span>.</p>
-<h2 id="instruction-linux">Instruction @ Linux</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>inst) If you have any work in progress, backup it.
-cmd) cd ${RVX_MINI_HOME}
-cmd) ./update.sh
-inst) close and reopen the terminal.</code></pre></div>
-<h2 id="instruction-linux-1">Instruction @ Linux</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>inst) If you have any work in progress, backup it.
-cmd) cd ${RVX_MINI_HOME}
-cmd) update.bat
-inst) close and reopen the terminal.</code></pre></div>
-<h1 id="updating-manually">Updating Manually</h1>
-<p>Performed at the request of the administrator.<br/>
-After the update, you need to clean the platform and restart with <span style="background-color: lightgray">make syn</span>.</p>
 <h1 id="accessing-rvx-platform-examples">Accessing RVX Platform
 Examples</h1>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd ${RVX_MINI_HOME}
@@ -246,6 +229,24 @@ cmd) make reconfig_python
 cmd) make pip3
 cmd) make config
 inst) close and reopen the terminal.</code></pre></div>
+<h1 id="updating-rvx-cloud-only">Updating (RVX-cloud Only)</h1>
+<p>If an update message appears during usage, follow the steps
+below.<br/>
+After the update, you need to clean the platform and restart with <span style="background-color: lightgray">make syn</span>.</p>
+<h2 id="instruction-linux">Instruction @ Linux</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>inst) If you have any work in progress, backup it.
+cmd) cd ${RVX_MINI_HOME}
+cmd) ./update.sh
+inst) close and reopen the terminal.</code></pre></div>
+<h2 id="instruction-linux-1">Instruction @ Linux</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>inst) If you have any work in progress, backup it.
+cmd) cd ${RVX_MINI_HOME}
+cmd) update.bat
+inst) close and reopen the terminal.</code></pre></div>
+<h1 id="updating-manually-rvx-cloud-only">Updating Manually
+(RVX-cloud Only)</h1>
+<p>Performed at the request of the administrator.<br/>
+After the update, you need to clean the platform and restart with <span style="background-color: lightgray">make syn</span>.</p>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
