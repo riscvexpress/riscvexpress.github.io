@@ -5,8 +5,8 @@
 <meta charset="utf-8"/>
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
-<meta content="Kyuseung Han, Sukho Lee, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
-<title>RISC-V eXpress Software Development Manual - Debugging Methods -</title>
+<meta content="Kyuseung Han ETRI, Daejeon, South Korea" name="author"/>
+<title>RISC-V eXpress Tutorial - Hello</title>
 <style>
     html {
       color: #1a1a1a;
@@ -172,81 +172,34 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RISC-V eXpress Software Development Manual<br/>
-- Debugging Methods -</h1>
-<p class="author">Kyuseung Han, Sukho Lee, Jae-Jin Lee<br/>
+<h1 class="title">RISC-V eXpress Tutorial - Hello</h1>
+<p class="author">Kyuseung Han<br/>
 ETRI, Daejeon, South Korea</p>
-<p class="date">v2025-07-02 or later</p>
+<p class="date">v2025-07-10 or later</p>
 </header>
-<h1 id="hardware-based-debugging">Hardware-based Debugging</h1>
+<h1 id="overview">Overview</h1>
+<p>This tutorial is intended to verify the most basic functionality of
+RVX.</p>
+<h1 id="prerequisite">Prerequisite</h1>
 <ul>
-<li><p>Whether a hardware debugger can be used via tools like OpenOCD or
-GDB entirely depends on whether the RISC-V CPU includes JTAG
-functionality.</p></li>
-<li><p>None of the CPUs provided by RVX include this
-functionality.</p></li>
-<li><p>If users want to perform hardware-based debugging, they must
-obtain a CPU that supports it.</p></li>
+<li><p><a href="https://github.com/rvx-etri/rvx-tutorials.git"><span class="uri">https://github.com/rvx-etri/rvx-tutorials.git</span></a></p></li>
+<li><p><a href="rvx-installation-manual-en.html">Installation
+manual</a></p></li>
+<li><p>An RTL simulator with mixed-language support (Not
+provided)</p></li>
 </ul>
-<h1 id="software-based-debugging">Software-based Debugging</h1>
-<ul>
-<li><p>Variables can be printed using <span style="background-color: lightgray">printf</span> for debugging
-purposes.</p></li>
-<li><p>Include the header file <span style="background-color: lightgray">ervp_printf.h</span> to use this
-functionality.</p></li>
-<li><p>Several debugging functions, which are extensions of <span style="background-color: lightgray">printf</span>, are available as
-listed below:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Function Name</th>
-<th style="text-align: center;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">debug_printx(var)</td>
-<td style="text-align: center;">Prints <span style="background-color: lightgray">var</span> in <span style="background-color: lightgray">%08x</span> format.</td>
-</tr>
-<tr>
-<td style="text-align: center;">debug_printd(var)</td>
-<td style="text-align: center;">Prints <span style="background-color: lightgray">var</span> in <span style="background-color: lightgray">%d</span> format.</td>
-</tr>
-<tr>
-<td style="text-align: center;">debug_printf(var)</td>
-<td style="text-align: center;">Prints <span style="background-color: lightgray">var</span> in <span style="background-color: lightgray">%f</span> format.</td>
-</tr>
-<tr>
-<td style="text-align: center;">debug_printc(var)</td>
-<td style="text-align: center;">Prints <span style="background-color: lightgray">var</span> in <span style="background-color: lightgray">%c</span> format.</td>
-</tr>
-<tr>
-<td style="text-align: center;">debug_prints(var)</td>
-<td style="text-align: center;">Prints <span style="background-color: lightgray">var</span> in <span style="background-color: lightgray">%s</span> format.</td>
-</tr>
-<tr>
-<td style="text-align: center;">debug_printn()</td>
-<td style="text-align: center;">Prints a blank line.</td>
-</tr>
-<tr>
-<td style="text-align: center;">debug_print_line()</td>
-<td style="text-align: center;">Prints only the current code
-location.</td>
-</tr>
-</tbody>
-</table></li>
-</ul>
+<h1 id="installing-rvx">Installing RVX</h1>
+<p>Install RVX by following the instructions in the installation manual,
+using the tutorial repository for cloning.</p>
+<h1 id="simulating-the-platform">Simulating the Platform</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
+cmd) source ./rvx_setup.sh
+cmd) cd ./platform/tip_hello
+cmd) make test</code></pre></div>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
-<li><p><a href="rvx_sw_manual_en.html">Top</a></p></li>
-<li><p><a href="rvx_sw_manual_en_stdlib.html">Standard Library
-Porting</a></p></li>
-<li><p><a href="rvx_sw_manual_en_consistency.html">Data Consistency
-Management</a></p></li>
-<li><p><a href="rvx_sw_manual_en_caching.html">Caching Region Assignment
-for Global Variables</a></p></li>
-<li><p><a href="rvx_sw_manual_en_misc.html">Miscellaneous</a></p></li>
+<li><p><a href="rvx-tutorials.html">Tutorial List</a></p></li>
 </ul>
 </body>
 </html>

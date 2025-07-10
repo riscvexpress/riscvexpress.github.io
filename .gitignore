@@ -13,7 +13,7 @@ rvx_*.log
 rvx_python_config.mh
 python3.bat
 
-rvx_*_manual*/
-rvx_web*/
+rvx-*-manual*/
+rvx-web*/
 skills-for*/
-rvx_tutorial*/
+rvx-tutorial*/

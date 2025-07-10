@@ -1,6 +1,6 @@
 include ./rvx_init.mh
 
-MANUAL_LIST=skills-for rvx_web rvx_repository_manual_en rvx_installation_manual_en rvx_cli_manual_en rvx_sw_manual_en rvx_tutorials
+MANUAL_LIST=skills-for rvx-web rvx-repository-manual-en rvx-installation-manual-en rvx-cli-manual-en rvx-sw-manual-en rvx-tutorials
 
 clean:
 	-del *.zip
@@ -10,9 +10,9 @@ all: ${MANUAL_LIST}
 
 ${MANUAL_LIST}:
 	@${PYTHON3_CMD} unzip_tex.py -i ${CURDIR}/$@.zip
-	@${PYTHON3_CMD} -c "import shutil, os; d='${CURDIR}/$@'; f='${CURDIR}/rvx_dual_publish_l0.tex'; t=os.path.join(d, 'rvx_dual_publish_l0.tex'); \
+	@${PYTHON3_CMD} -c "import shutil, os; d='${CURDIR}/$@'; f='${CURDIR}/rvx-dual-publish-l0.tex'; t=os.path.join(d, 'rvx-dual-publish-l0.tex'); \
 os.path.isdir(d) and os.path.exists(t) and os.remove(t); os.path.isdir(d) and shutil.copyfile(f, t)"
-	@${PYTHON3_CMD} -c "import shutil, os; d='${CURDIR}/$@'; f='${CURDIR}/rvx_dual_publish_l1.tex'; t=os.path.join(d, 'rvx_dual_publish_l1.tex'); \
+	@${PYTHON3_CMD} -c "import shutil, os; d='${CURDIR}/$@'; f='${CURDIR}/rvx-dual-publish-l1.tex'; t=os.path.join(d, 'rvx-dual-publish-l1.tex'); \
 os.path.isdir(d) and os.path.exists(t) and os.remove(t); os.path.isdir(d) and shutil.copyfile(f, t)"
 	@${PYTHON3_CMD} merge_tex.py -i "${CURDIR}/$@/$@*.tex" -o ${CURDIR}/$@ -p ${CURDIR}/$@
 	@${PYTHON3_CMD} rvx_docs.py -cmd latex2html -i ${CURDIR}/$@ -o ${CURDIR} -r ${CURDIR}

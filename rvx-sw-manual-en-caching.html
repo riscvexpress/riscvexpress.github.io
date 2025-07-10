@@ -6,7 +6,7 @@
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <meta content="Kyuseung Han, Sukho Lee, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
-<title>RISC-V eXpress Software Development Manual - Miscellaneous -</title>
+<title>RISC-V eXpress Software Development Manual - Caching Region Assignment for Global Variables -</title>
 <style>
     html {
       color: #1a1a1a;
@@ -173,62 +173,71 @@
 <body>
 <header id="title-block-header">
 <h1 class="title">RISC-V eXpress Software Development Manual<br/>
-- Miscellaneous -</h1>
+- Caching Region Assignment for Global Variables -</h1>
 <p class="author">Kyuseung Han, Sukho Lee, Jae-Jin Lee<br/>
 ETRI, Daejeon, South Korea</p>
-<p class="date">v2025-07-02 or later</p>
+<p class="date">v2025-07-10 or later</p>
 </header>
-<h1 id="muticore">Muticore</h1>
-<h2 id="overview">Overview</h2>
+<h1 id="necessity">Necessity</h1>
 <ul>
-<li><p>RVX does not support cache coherency between multiple cores.
-Therefore, consistency management is also required across cores (see <a href="rvx_sw_manual_en_consistency.html">Data Consistency
-Management</a>).</p></li>
-<li><p>It is recommended that each core be used for independent
-tasks.</p></li>
-<li><p>Parallel processing using multiple cores to accelerate a single
-task is not recommended.</p></li>
+<li><p>If the software contains many global variables and there is
+insufficient non-cacheable memory, some variables should be placed in
+the cacheable region.</p></li>
+<li><p>Even when using the CACHING_MOST policy, global variables are not
+cached by default. To improve performance, they must be explicitly
+placed in the cacheable region.</p></li>
+<li><p>Consistency management is required for these variables.</p></li>
 </ul>
-<h2 id="programming-guidelines">Programming Guidelines</h2>
+<h1 id="how-to-specify-allocation">How to Specify Allocation</h1>
 <ul>
-<li><p>All cores execute the same program, and their behavior can be
-differentiated using their own <span style="background-color: lightgray">EXCLUSIVE_ID</span>.</p>
+<li><p>In C code, global variables can be explicitly assigned to
+specific data linking sections by using attributes.</p>
 <ul>
-<li><p>#include "core_dependent.h"</p></li>
+<li><p>#include "ervp_variable_allocation.h"</p></li>
 </ul></li>
-<li><p>Custom lock and barrier mechanisms are provided for
-synchronization.</p>
+<li><p>NOTCACHED_DATA</p>
 <ul>
-<li><p>#include "ervp_lock.h"</p></li>
-<li><p>#include "ervp_barrier.h"</p></li>
-<li><p>The “A” extension of the RISC-V ISA is not supported, and the use
-of assembly language is discouraged.</p></li>
+<li><p>Forces the variable to be allocated in a non-cacheable memory
+region.</p></li>
 </ul></li>
-</ul>
-<h1 id="pthread">pthread</h1>
-<p>Not officially supported.</p>
-<h1 id="miscellaneous">Miscellaneous</h1>
+<li><p>CACHED_DATA</p>
 <ul>
-<li><p>Variables using bit fields must be declared as <span style="background-color: lightgray">int</span> or <span style="background-color: lightgray">unsigned int</span>.</p></li>
-<li><p>Only the C language should be used; use of assembly language is
-discouraged.</p>
+<li><p>Forces the variable to be allocated in a cacheable memory
+region.</p></li>
+<li><p>Data consistency must be maintained manually, regardless of the
+caching policy.</p></li>
+</ul></li>
+<li><p>BIG_DATA</p>
 <ul>
-<li><p>Assembly is not guaranteed to work reliably as its behavior can
-vary depending on the target CPU.</p></li>
+<li><p>Forces the variable to be allocated in a cacheable memory
+region.</p></li>
+<li><p>Data consistency must be maintained manually, regardless of the
+caching policy.</p></li>
+<li><p>The variable is likely to be placed in a large memory
+region.</p></li>
+</ul></li>
+<li><p>BIG_DATA_BSS</p>
+<ul>
+<li><p>Forces the variable to be allocated in a cacheable memory
+region.</p></li>
+<li><p>Data consistency must be maintained manually, regardless of the
+caching policy.</p></li>
+<li><p>The variable is likely to be placed in a large memory
+region.</p></li>
+<li><p>The variable is initialized to zero.</p></li>
 </ul></li>
 </ul>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
-<li><p><a href="rvx_sw_manual_en.html">Top</a></p></li>
-<li><p><a href="rvx_sw_manual_en_stdlib.html">Standard Library
+<li><p><a href="rvx-sw-manual-en.html">Top</a></p></li>
+<li><p><a href="rvx-sw-manual-en-stdlib.html">Standard Library
 Porting</a></p></li>
-<li><p><a href="rvx_sw_manual_en_consistency.html">Data Consistency
+<li><p><a href="rvx-sw-manual-en-consistency.html">Data Consistency
 Management</a></p></li>
-<li><p><a href="rvx_sw_manual_en_caching.html">Caching Region Assignment
-for Global Variables</a></p></li>
-<li><p><a href="rvx_sw_manual_en_debugging.html">Debugging
+<li><p><a href="rvx-sw-manual-en-debugging.html">Debugging
 Methods</a></p></li>
+<li><p><a href="rvx-sw-manual-en-misc.html">Miscellaneous</a></p></li>
 </ul>
 </body>
 </html>

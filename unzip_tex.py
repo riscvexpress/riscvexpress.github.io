@@ -24,10 +24,15 @@ def unzip_tex(zip_path: Path):
 def main():
     parser = argparse.ArgumentParser(description="Unzip .zip file into named directory (cleaned first if exists)")
     parser.add_argument('-i', '--input', required=True, help='Path to .zip file')
-
+    
     args = parser.parse_args()
     zip_path = Path(args.input)
-
+    
+    alternative_zip_path = zip_path.parent / (zip_path.stem.replace('-','_') + zip_path.suffix)
+    if alternative_zip_path.is_file():
+        zip_path.unlink(missing_ok=True)
+        alternative_zip_path.rename(zip_path)
+    
     unzip_tex(zip_path)
 
 if __name__ == '__main__':

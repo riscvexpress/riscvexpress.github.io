@@ -5,8 +5,8 @@
 <meta charset="utf-8"/>
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
-<meta content="Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
-<title>RISC-V eXpress Installation Manual - Step 3 -</title>
+<meta content="Kyuseung Han, Sukho Lee, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
+<title>RISC-V eXpress Software Development Manual</title>
 <style>
     html {
       color: #1a1a1a;
@@ -172,40 +172,38 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RISC-V eXpress Installation Manual<br/>
-- Step 3 -</h1>
-<p class="author">Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin
-Lee<br/>
+<h1 class="title">RISC-V eXpress Software Development Manual</h1>
+<p class="author">Kyuseung Han, Sukho Lee, Jae-Jin Lee<br/>
 ETRI, Daejeon, South Korea</p>
-<p class="date">v2025-07-09 or later</p>
+<p class="date">v2025-07-10 or later</p>
 </header>
-<h1 id="olimex-driver-windows-only">Olimex Driver (Windows Only)</h1>
-<h2 id="instruction-windows">Instruction @ Windows</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>inst) Connect the Olimex ARM-USB-TINY-H cable to your computer.
-inst) Run the zadig program
-&gt; Run ‘zadig-2.5.exe’ from the ${RVX_MINI_HOME}\windows_binary directory.
-&gt; Or, Download it from ‘https://zadig.akeo.ie’ and run it.
-inst) In the zadig program,
-&gt; Select [Olimex OpenOCD JTAG ARM-USB-TINY-H (Interface 0)].
-&gt; Click [Install Driver].
-&gt; Select [Olimex OpenOCD JTAG ARM-USB-TINY-H (Interface 1)].
-&gt; Click [Install Driver].</code></pre></div>
-<h1 id="telnet-windows-only">Telnet (Windows Only)</h1>
-<h2 id="instruction-windows-1">Instruction @ Windows</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>inst) Open [Control Panel]
-&gt; e.g., type ‘control’ into the Windows Search bar.
-inst) Click [Programs]
-inst) Click [Turn Windows features on or off]
-inst) Enable [Telnet Client]
-inst) Confirm</code></pre></div>
+<h1 id="sec:overview">Overview</h1>
+<ul>
+<li><p>This manual is intended for developing software for SoCs using
+RVX.</p></li>
+<li><p>All software must be developed with this constraint in mind to
+ensure correct functionality since the RVX SoC is designed as a
+lightweight platform and therefore does not support a general-purpose
+operating system.</p></li>
+</ul>
+<h1 id="standard-library-porting">Standard Library Porting</h1>
+<p><a href="rvx-sw-manual-en-stdlib.html">SW - Standard Library
+Porting</a></p>
+<h1 id="data-consistency-management">Data Consistency Management</h1>
+<p><a href="rvx-sw-manual-en-consistency.html">SW - Data Consistency
+Management</a></p>
+<h1 id="caching-region-assignment-for-global-variables">Caching Region
+Assignment for Global Variables</h1>
+<p><a href="rvx-sw-manual-en-caching.html">SW - Caching Region
+Assignment for Global Variables</a></p>
+<h1 id="debugging-methods">Debugging Methods</h1>
+<p><a href="rvx-sw-manual-en-debugging.html">SW - Debugging
+Methods</a></p>
+<h1 id="miscellaneous">Miscellaneous</h1>
+<p><a href="rvx-sw-manual-en-misc.html">SW - Miscellaneous</a></p>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
-<li><p><a href="rvx_installation_manual_en.html">Top</a></p></li>
-<li><p><a href="rvx_installation_manual_en_step2.html">Previous -
-Step2</a></p></li>
-<li><p><a href="rvx_installation_manual_en.html">Next -
-Step4</a></p></li>
 </ul>
 </body>
 </html>

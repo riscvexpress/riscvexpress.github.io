@@ -6,7 +6,7 @@
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <meta content="Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
-<title>RISC-V eXpress Installation Manual - Step 5 -</title>
+<title>RISC-V eXpress Tutorials</title>
 <style>
     html {
       color: #1a1a1a;
@@ -172,65 +172,17 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RISC-V eXpress Installation Manual<br/>
-- Step 5 -</h1>
+<h1 class="title">RISC-V eXpress Tutorials</h1>
 <p class="author">Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin
 Lee<br/>
 ETRI, Daejeon, South Korea</p>
-<p class="date">v2025-07-02 or later</p>
+<p class="date">v2025-07-10 or later</p>
 </header>
-<h1 id="synchronization-rvx-pro-only">Synchronization
-(RVX-pro Only)</h1>
-<h2 id="objective">Objective</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>This step fetches the latest version of the RVX components from the RVX server.</code></pre></div>
-<ul>
-<li><p>You must run this at least once after receiving the
-repository.</p></li>
-<li><p>After the first run, it will be automatically triggered during
-the update process.</p></li>
-<li><p>During synchronization, you will be prompted to enter your RVX
-server account credentials.</p></li>
-<li><p>Make sure you know your account credentials in advance.</p></li>
-<li><p>These credentials will be saved in
-${RVX_MINI_HOME}/.rvx_server_config.</p></li>
-<li><p>If you need to change your RVX account info, simply delete that
-file.</p></li>
-<li><p>For RVX-free, the RVX components are already stored in the
-repository.</p></li>
-</ul>
-<h2 id="instruction-any-os">Instruction @ Any OS</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd ${RVX_MINI_HOME}
-cmd) make sync
-&gt; When prompted for SSH access, answer ‘no’.</code></pre></div>
-<h1 id="force-synchronization-rvx-pro-only">Force Synchronization
-(RVX-pro Only)</h1>
-<h2 id="objective-1">Objective</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>Run this if an issue occurs during the sync process.</code></pre></div>
-<h2 id="instruction-any-os-1">Instruction @ Any OS</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd ${RVX_MINI_HOME}
-cmd) make resync</code></pre></div>
-<h1 id="activation-linux-only">Activation (Linux Only)</h1>
-<h2 id="objective-2">Objective</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>This step activates RVX functionality by installing the RVX components.</code></pre></div>
-<ul>
-<li><p>For RVX-free, if the repository has been newly cloned or updated,
-this step must be executed at least once.</p></li>
-<li><p>For RVX-pro, since activation is already included in
-synchronization, there is no need to invoke it immediately
-afterward.</p></li>
-<li><p>For both RVX-free and RVX-pro, you can run this step if the
-installed RVX components are corrupted.</p></li>
-</ul>
-<h2 id="instruction-linux">Instruction @ Linux</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd ${RVX_MINI_HOME}
-cmd) make activate
-cmd) source rvx_setup.sh</code></pre></div>
+<h1 id="tutorial-list">Tutorial List</h1>
+<p><a href="rvx-tutorials-hello.html">Tutorial - Hello</a></p>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
-<li><p><a href="rvx_installation_manual_en.html">Top</a></p></li>
-<li><p><a href="rvx_installation_manual_en.html">Previous -
-Step4</a></p></li>
 </ul>
 </body>
 </html>
