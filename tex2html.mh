@@ -1,0 +1,16 @@
+clean:
+	-del *.zip
+	-rmdir ${MANUAL_LIST} /s /q
+
+all: ${MANUAL_LIST}
+
+${MANUAL_LIST}:
+	@${PYTHON3_CMD} ${TEX2HTML_DIR}/unzip_tex.py -i ${CURDIR}/$@.zip
+	@${PYTHON3_CMD} -c "import shutil, os; d='${CURDIR}/$@'; f='${TEX2HTML_DIR}/rvx-dual-publish-l0.tex'; t=os.path.join(d, 'rvx-dual-publish-l0.tex'); \
+os.path.isdir(d) and os.path.exists(t) and os.remove(t); os.path.isdir(d) and shutil.copyfile(f, t)"
+	@${PYTHON3_CMD} -c "import shutil, os; d='${CURDIR}/$@'; f='${TEX2HTML_DIR}/rvx-dual-publish-l1.tex'; t=os.path.join(d, 'rvx-dual-publish-l1.tex'); \
+os.path.isdir(d) and os.path.exists(t) and os.remove(t); os.path.isdir(d) and shutil.copyfile(f, t)"
+	@${PYTHON3_CMD} ${TEX2HTML_DIR}/merge_tex.py -i "${CURDIR}/$@/$@*.tex" -o ${CURDIR}/$@ -p ${CURDIR}/$@
+	@${PYTHON3_CMD} ${TEX2HTML_DIR}/rvx_docs.py -cmd latex2html -i ${CURDIR}/$@ -o ${CURDIR} -r ${CURDIR}
+
+.PHONY: ${MANUAL_LIST}
