@@ -5,8 +5,8 @@
 <meta charset="utf-8"/>
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
-<meta content="Kyuseung Han ETRI, Daejeon, South Korea" name="author"/>
-<title>RVX Tutorial: Hello</title>
+<meta content="Hyunguk Jang and Kyuseung Han ETRI, Daejeon, South Korea" name="author"/>
+<title>NPX Tutorial: From Spike-Based Learning to FPGA Prototyping</title>
 <style>
     html {
       color: #1a1a1a;
@@ -172,20 +172,26 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RVX Tutorial: Hello</h1>
-<p class="author">Kyuseung Han<br/>
+<h1 class="title">NPX Tutorial:<br/>
+From Spike-Based Learning to FPGA Prototyping</h1>
+<p class="author">Hyunguk Jang and Kyuseung Han<br/>
 ETRI, Daejeon, South Korea</p>
-<p class="date">v2025-07-10 or later</p>
+<p class="date">v2025-07-15 or later</p>
 </header>
 <h1 id="overview">Overview</h1>
-<p>This tutorial is intended to verify the most basic functionality of
-RVX.</p>
-<h1 id="prerequisite">Prerequisite</h1>
+<p>This tutorial offers step-by-step guidance covering the process from
+spike-based learning to FPGA prototyping.</p>
+<h1 id="prerequisites">Prerequisites</h1>
 <ul>
-<li><p><a href="https://github.com/rvx-etri/rvx-tutorials.git"><span class="uri">https://github.com/rvx-etri/rvx-tutorials.git</span></a></p></li>
-<li><p><a href="rvx-installation-manual-en.html">Installation
-Manual</a></p></li>
+<li><p><a href="https://github.com/rvx-etri/npx-xarvis.git"><span class="uri">https://github.com/rvx-etri/npx-xarvis.git</span></a></p></li>
+<li><p><a href="https://github.com/rvx-etri/npx-tutorials.git"><span class="uri">https://github.com/rvx-etri/npx-tutorials.git</span></a></p></li>
+<li><p><a href="npx-tutorials-xarvis.html">NPX Tutorial -
+Xarvis</a></p></li>
+<li><p><a href="../rvx-tutorials-hello.html">RVX Tutorial -
+Hello</a></p></li>
 <li><p>An RTL simulator with mixed-language support (Not
+provided)</p></li>
+<li><p>A Genesys2 FPGA board with an Olimex ARM-USB-TINY-H module (Not
 provided)</p></li>
 </ul>
 <h1 id="things-to-know">Things to Know</h1>
@@ -195,19 +201,51 @@ modified according to your environment.</p></li>
 <li><p>On Linux, use the <span style="background-color: lightgray">bash</span> shell for command-line
 operations.</p></li>
 </ul>
-<h1 id="installing-rvx-cloning-the-repository-included">Installing RVX
-(Cloning the Repository Included)</h1>
-<p>Install RVX by following the instructions in the installation manual,
-using the tutorial repository for cloning.</p>
-<h1 id="simulating-the-platform">Simulating the Platform</h1>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
-cmd) source ./rvx_setup.sh
-cmd) cd ./platform/tip_hello
-cmd) make test</code></pre></div>
+<h1 id="installing-the-xarvis-and-rvx-environment">Installing the Xarvis
+and RVX Environment</h1>
+<p>Follow the two tutorials in the Prerequisites to install both the
+Xarvis and RVX.<br/>
+The directories cloned from <span style="background-color: lightgray">npx-xarvis.git</span> and <span style="background-color: lightgray">npx-tutorials.git</span> are called
+<span style="background-color: lightgray">#(xarvis dir)</span> and <span style="background-color: lightgray">#(tutorial dir)</span>,
+respectively.<br/>
+In this tutorial, we’ll use <span style="background-color: lightgray">#(tutorial
+dir)/platform/starc_neugemm</span> as the platform directory, referred
+to as <span style="background-color: lightgray">#(platform
+dir)</span>.</p>
+<h1 id="synthesizing-the-processor">Synthesizing the Processor</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) source #(tutorial dir)/rvx_setup.sh
+cmd) cd #(platform dir)
+cmd) make syn</code></pre></div>
+<h1 id="training-an-example-application">Training an Example
+Application</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) source #(xarvis dir)/rvx_setup.sh
+cmd) cd #(platform dir)/util/npx
+cmd) make mnist_app</code></pre></div>
+<h1 id="running-an-npx-application-via-rtl-simulation">Running an NPX
+Application via RTL Simulation</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) source #(tutorial dir)/rvx_setup.sh
+cmd) cd #(platform dir)
+cmd) make sim_rtl
+cmd) cd sim_rtl
+cmd) make test_app_npx.all</code></pre></div>
+<h1 id="prototyping-the-processor-on-the-genesys2-board">Prototyping the
+Processor on the Genesys2 Board</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) source #(tutorial dir)/rvx_setup.sh
+cmd) cd #(platform dir)
+cmd) make genesys2
+cmd) cd imp_genesys2_YYYY-MM-DD
+cmd) make imp</code></pre></div>
+<h1 id="running-an-npx-application-on-the-genesys2-board">Running an NPX
+Application on the Genesys2 Board</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) source #(tutorial dir)/rvx_setup.sh
+cmd) cd #(platform dir)/imp_genesys2_YYYY-MM-DD
+cmd) make program
+cmd) make mcom
+cmd) make test_app_npx.all</code></pre></div>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
-<li><p><a href="rvx-tutorials.html">Tutorial List</a></p></li>
+<li><p><a href="npx-tutorials.html">Tutorial List</a></p></li>
 </ul>
 </body>
 </html>

@@ -5,8 +5,8 @@
 <meta charset="utf-8"/>
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
-<meta content="Kyuseung Han ETRI, Daejeon, South Korea" name="author"/>
-<title>RVX Tutorial: Hello</title>
+<meta content="Hyunguk Jang and Kyuseung Han ETRI, Daejeon, South Korea" name="author"/>
+<title>NPX Tutorial: Training Framework Xarvis</title>
 <style>
     html {
       color: #1a1a1a;
@@ -172,21 +172,21 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RVX Tutorial: Hello</h1>
-<p class="author">Kyuseung Han<br/>
+<h1 class="title">NPX Tutorial:<br/>
+Training Framework Xarvis</h1>
+<p class="author">Hyunguk Jang and Kyuseung Han<br/>
 ETRI, Daejeon, South Korea</p>
 <p class="date">v2025-07-10 or later</p>
 </header>
 <h1 id="overview">Overview</h1>
-<p>This tutorial is intended to verify the most basic functionality of
-RVX.</p>
+<p>Xarvis is a neuromorphic training environment for RVX, based on
+snnTorch.<br/>
+This tutorial walks you through the setup and execution process.</p>
 <h1 id="prerequisite">Prerequisite</h1>
 <ul>
-<li><p><a href="https://github.com/rvx-etri/rvx-tutorials.git"><span class="uri">https://github.com/rvx-etri/rvx-tutorials.git</span></a></p></li>
-<li><p><a href="rvx-installation-manual-en.html">Installation
-Manual</a></p></li>
-<li><p>An RTL simulator with mixed-language support (Not
-provided)</p></li>
+<li><p>Python version between 3.8 and 3.10 (see <a href="rvx-installation-manual-en-step1.html">Step1 of Installation
+Manual</a>).</p></li>
+<li><p><a href="https://github.com/rvx-etri/npx-xarvis.git"><span class="uri">https://github.com/rvx-etri/npx-xarvis.git</span></a></p></li>
 </ul>
 <h1 id="things-to-know">Things to Know</h1>
 <ul>
@@ -195,19 +195,46 @@ modified according to your environment.</p></li>
 <li><p>On Linux, use the <span style="background-color: lightgray">bash</span> shell for command-line
 operations.</p></li>
 </ul>
-<h1 id="installing-rvx-cloning-the-repository-included">Installing RVX
-(Cloning the Repository Included)</h1>
-<p>Install RVX by following the instructions in the installation manual,
-using the tutorial repository for cloning.</p>
-<h1 id="simulating-the-platform">Simulating the Platform</h1>
+<h1 id="install">Install</h1>
+<h2 id="cloning-the-repository">Cloning the Repository</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) git clone --recursive https://github.com/rvx-etri/npx-xarvis.git</code></pre></div>
+<h1 id="python3-configuration-for-npx">Python3 Configuration for
+NPX</h1>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
-cmd) source ./rvx_setup.sh
-cmd) cd ./platform/tip_hello
-cmd) make test</code></pre></div>
+cmd) make config_python
+inst) Verify that ‘‘rvx_python_config.mh’’ is generated.
+inst) Open ‘rvx_python_config.mh’ in a text editor
+&gt; If no path is listed, manually enter the path to the executable.
+&gt; If more than one path is listed, keep only the one you intend to use and delete the others.</code></pre></div>
+<h2 id="installing-snntorch-and-python-packages">Installing snnTorch and
+Python Packages</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
+cmd) make preinstall
+cmd) make install</code></pre></div>
+<h2 id="setting-up-bash-environment">Setting Up Bash Environment</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) make config
+&gt; Check that the file ./rvx_setup.sh has been created.
+inst) Add the line source #(cloned directory)/rvx_setup.sh to your .bashrc.
+&gt; Be sure to replace #(cloned directory) with the absolute path before adding it.
+inst) To apply the changes to .bashrc, close and reopen the terminal.</code></pre></div>
+<h1 id="run">Run</h1>
+<h2 id="checking-application-files">Checking Application Files</h2>
+<p>Xarvis uses text-based configuration files to define preprocessing
+steps, training parameters, and network structures.<br/>
+These files are located in <span style="background-color: lightgray">#(cloned
+directory)/npx_trainer/app</span>.<br/>
+An example configuration file is <span style="background-color: lightgray">check_app.cfg</span>.</p>
+<h2 id="training-an-example-application">Training an Example
+Application</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)/npx_trainer
+cmd) make check_app</code></pre></div>
+<h2 id="checking-the-trained-results">Checking the Trained Results</h2>
+<p>The training results will be generated in <span style="background-color: lightgray">#(cloned
+directory)/npx_trainer/result</span>.</p>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
-<li><p><a href="rvx-tutorials.html">Tutorial List</a></p></li>
+<li><p><a href="npx-tutorials.html">Tutorial List</a></p></li>
 </ul>
 </body>
 </html>
