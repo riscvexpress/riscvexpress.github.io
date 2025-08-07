@@ -5,8 +5,8 @@
 <meta charset="utf-8"/>
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
-<meta content="Kyuseung Han, Sukho Lee, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
-<title>RISC-V eXpress Repository Setup Manual - by a Fork</title>
+<meta content="Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
+<title>NPX eXpress Installation Manual</title>
 <style>
     html {
       color: #1a1a1a;
@@ -172,23 +172,20 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RISC-V eXpress Repository Setup Manual - by a
-Fork</h1>
-<p class="author">Kyuseung Han, Sukho Lee, Jae-Jin Lee<br/>
+<h1 class="title">NPX eXpress Installation Manual</h1>
+<p class="author">Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin
+Lee<br/>
 ETRI, Daejeon, South Korea</p>
-<p class="date">v2025-07-07 or later</p>
+<p class="date">v2025-07-10 or later</p>
 </header>
 <h1 id="sec:overview">Overview</h1>
 <ul>
-<li><p>This manual is intended to help you build your own design
-repository that is capable of utilizing RVX.</p></li>
-<li><p>This method creates the design repository by forking an existing
-one.</p></li>
-<li><p>This method is supported only on Linux.</p></li>
+<li><p>This manual explains how to install NPX on a local
+machine.</p></li>
 </ul>
 <h1 id="notice">Notice</h1>
 <ul>
-<li><p>All results produced using RVX are subject to the following
+<li><p>All results produced using NPX are subject to the following
 conditions:</p>
 <ul>
 <li><p>They must not be used beyond the predefined purpose and scope
@@ -203,53 +200,90 @@ transfer agreement.</p></li>
 </ul>
 <h1 id="things-to-know">Things to Know</h1>
 <ul>
-<li><p>Manuals are available online - <a href="riscvexpress.github.io"><span class="uri">riscvexpress.github.io</span></a></p></li>
+<li><p>Manuals are available online - <a href="riscvexpress.github.io/npx"><span class="uri">riscvexpress.github.io/npx</span></a></p></li>
 <li><p>Any part starting with <span style="background-color: lightgray">#</span> should be replaced or
 modified according to your environment.</p></li>
 <li><p>On Linux, use the <span style="background-color: lightgray">bash</span> shell for command-line
 operations.</p></li>
-<li><p>On Windows, use the <span style="background-color: lightgray">Windows Power Shell</span> for
-command-line operations.</p></li>
-<li><p><a href="skills-for-linux_en.html">Skills for Linux</a></p></li>
-<li><p><a href="skills-for-windows_en.html">Skills for
-Windows</a></p></li>
+<li><p><a href="../skills-for-linux_en.html">Skills for
+Linux</a></p></li>
 </ul>
-<h1 id="creating-and-cloning-your-repository">Creating and Cloning Your
-Repository</h1>
+<h1 id="requirements">Requirements</h1>
 <ul>
-<li><p>Create your git repository on a hosting service or a self-managed
-server.</p></li>
-<li><p>Names with generic meanings are strictly prohibited, as RVX
-features are deliberately disabled for repositories with such
-names.</p></li>
-<li><p>The following are examples of prohibited names.</p>
+<li><p>License Tools</p>
 <ul>
-<li><p>rvx_etri, rvx_platform, rvx_alpha, rvx_beta, ...</p></li>
-<li><p>This list may be updated at any time without prior
-notice.</p></li>
+<li><p>Mixed-language RTL Simulator: Modelsim/QuestaSim or
+Xcelium/NCSim/Incisive</p></li>
+<li><p>FPGA Tool: AMD Vivado 2022.1 or later</p></li>
 </ul></li>
-<li><p>Clone your repository onto your local machine.</p></li>
+<li><p>A High-Performance Computer</p>
+<ul>
+<li><p>A capable machine is required to run license tools
+efficiently.</p></li>
+<li><p>The actual performance needed depends on the specific license
+tools being used.</p></li>
+<li><p>Using a GPU is recommended for learning.</p></li>
+</ul></li>
+<li><p>Recommended OS Version</p>
+<ul>
+<li><p>Must be compatible with license tools, not just NPX.</p></li>
+<li><p>NPX-compatible OS</p>
+<ul>
+<li><p>CentOS 7 / 8</p></li>
+<li><p>Redhat 8 / 9</p></li>
+<li><p>Ubuntu 18 / 20 / 22 (recommended) / 24</p></li>
+</ul></li>
+</ul></li>
+<li><p>For Linux systems, the locale setting must be <span style="background-color: lightgray">en_US.UTF-8</span>.</p>
+<ul>
+<li><p>If using a GUI, set the language format to United
+States.</p></li>
+<li><p>Or, comment out the line <span style="background-color: lightgray">SendEnv LANG LC*</span> in <span style="background-color: lightgray">/etc/ssh/ssh_config</span></p>
+<ul>
+<li><p>i.e., add a <span style="background-color: lightgray">#</span> at
+the beginning).</p></li>
+</ul></li>
+</ul></li>
+<li><p>User Account</p>
+<ul>
+<li><p>Linux: Requires <span style="background-color: lightgray">sudo</span> privileges</p></li>
+</ul></li>
 </ul>
-<h1 id="cloning-an-existing-repository">Cloning an Existing
-Repository</h1>
-<p>Clone an any existing repository, such as <a href="https://github.com/rvx-etri/rvx-tutorials.git">a tutorial
-one</a>.<br/>
-<span style="background-color: lightgray">Proceed with the RVX
-installation</span> (<a href="rvx-installation-manual-en-step1.html">Manual</a>, <a href="rvx-tutorials-hello.html">Tutorial</a>).</p>
-<h1 id="importing-an-existing-repository-into-your-repository">Importing
-an Existing Repository into Your Repository</h1>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory of existing repo)
-cmd) make fork TARGET=#(cloned directory of your repo)</code></pre></div>
-<h1 id="adding-content-to-your-repository">Adding Content to Your
-Repository</h1>
-<p>Adds the copied content to your own repository.<br/>
-To make it work without cloud support, be sure to include the <span style="background-color: lightgray">sync</span> folder.</p>
+<h1 id="step-1---install-hw-frameworks">Step 1 - Install HW
+Frameworks</h1>
+<p>To install RVX in a Linux environment,<br/>
+follow the ‘RVX Tutorial: Hello’ using the NPX tutorial repository.</p>
+<ul>
+<li><p><a href="../rvx-tutorials-hello.html">RVX Tutorial:
+Hello</a></p></li>
+<li><p><a href="https://github.com/rvx-etri/npx-tutorials.git"><span class="uri">https://github.com/rvx-etri/npx-tutorials.git</span></a></p></li>
+</ul>
+<h1 id="step-2---install-learning-frameworks">Step 2 - Install Learning
+Frameworks</h1>
+<h2 id="cloning-the-xarvis-repository">Cloning the Xarvis
+Repository</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) git clone --recursive https://github.com/rvx-etri/npx-xarvis.git</code></pre></div>
+<h2 id="python3-configuration-for-npx">Python3 Configuration for
+NPX</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
+cmd) make config_python
+inst) Verify that ‘‘rvx_python_config.mh’’ is generated.
+inst) Open ‘rvx_python_config.mh’ in a text editor
+&gt; If no path is listed, manually enter the path to the executable.
+&gt; If more than one path is listed, keep only the one you intend to use and delete the others.</code></pre></div>
+<h2 id="installing-snntorch-and-python-packages">Installing snnTorch and
+Python Packages</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
+cmd) make preinstall
+cmd) make install</code></pre></div>
+<h2 id="setting-up-bash-environment">Setting Up Bash Environment</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) make config
+&gt; Check that the file ./rvx_setup.sh has been created.
+inst) Add the line source #(cloned directory)/rvx_setup.sh to your .bashrc.
+&gt; Be sure to replace #(cloned directory) with the absolute path before adding it.
+inst) To apply the changes to .bashrc, close and reopen the terminal.</code></pre></div>
 <h1 id="navigate">Navigate</h1>
 <ul>
-<li><p><a href="rvx-repository-manual-en-fork.html">Setting Up by a
-Fork</a></p></li>
-<li><p><a href="rvx-repository-manual-en-scatch.html">Setting up from
-Scratch (RVX-cloud Only)</a></p></li>
 <li><p><a href="index.html">Home</a></p></li>
 </ul>
 </body>
