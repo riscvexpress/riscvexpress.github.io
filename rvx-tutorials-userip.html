@@ -237,6 +237,37 @@ be explicitly specified by the user.</p></li>
 <li><p>This designation is used when the user IP does not include
 internal CDC logic for the interface.</p></li>
 </ul>
+<h1 id="generating-example-platforms">Generating Example Platforms</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
+cmd) source ./rvx_setup.sh
+cmd) make example
+cmd) cd ./rvx_platform_example/test_user_ip</code></pre></div>
+<p>This directory is hereafter referred to as #(example dir).</p>
+<h1 id="specifying-the-interfaces">Specifying the Interfaces</h1>
+<p>Define the interface descriptions in your own <span style="background-color: lightgray">#(platform xml)</span>,<br/>
+using <span style="background-color: lightgray">#(example
+dir)/test_user_ip.xml</span> as an example.</p>
+<h1 id="connecting-ips-to-the-noc">Connecting IPs to the NoC</h1>
+<p>When you run <span style="background-color: lightgray">make
+syn</span>, a file named <span style="background-color: lightgray">#(platform
+dir)/user/rtl/include/#(platform name)_user_region.vh</span> is
+generated.<br/>
+This file is called <span style="background-color: lightgray">#(user
+region file)</span>.<br/>
+<br/>
+Write the code to connect your IPs to the NoC in <span style="background-color: lightgray">#(user region file)</span>.<br/>
+The example file is <span style="background-color: lightgray">#(example
+dir)/user/rtl/include/test_user_ip_user_region.vh</span>).</p>
+<h1 id="note-on-user-region-file">Note on <span style="background-color: lightgray">#(user region file)</span></h1>
+<p>Once created, <span style="background-color: lightgray">#(user region
+file)</span> is not automatically updated when <span style="background-color: lightgray">#(platform xml)</span> is modified,
+in order to preserve any user modifications.<br/>
+<br/>
+Instead, the updated file reflecting the changes is generated in <span style="background-color: lightgray">#(platform
+dir)/user/template</span>.<br/>
+Therefore, you can review that file and manually apply the necessary
+changes to <span style="background-color: lightgray">#(user region
+file)</span>.</p>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
