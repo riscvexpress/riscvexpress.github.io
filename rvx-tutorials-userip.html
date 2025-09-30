@@ -242,32 +242,52 @@ internal CDC logic for the interface.</p></li>
 cmd) source ./rvx_setup.sh
 cmd) make example
 cmd) cd ./rvx_platform_example/test_user_ip</code></pre></div>
-<p>This directory is hereafter referred to as #(example dir).</p>
+<p>This directory is hereafter referred to as <span style="background-color: lightgray">#(example dir)</span>.</p>
 <h1 id="specifying-the-interfaces">Specifying the Interfaces</h1>
-<p>Define the interface descriptions in your own <span style="background-color: lightgray">#(platform xml)</span>,<br/>
-using <span style="background-color: lightgray">#(example
-dir)/test_user_ip.xml</span> as an example.</p>
+<ul>
+<li><p>Define the interface descriptions in your own <span style="background-color: lightgray">#(platform xml)</span>.</p></li>
+<li><p><span style="background-color: lightgray">#(example
+dir)/test_user_ip.xml</span> is an example.</p></li>
+</ul>
 <h1 id="connecting-ips-to-the-noc">Connecting IPs to the NoC</h1>
-<p>When you run <span style="background-color: lightgray">make
+<ul>
+<li><p>When you run <span style="background-color: lightgray">make
 syn</span>, a file named <span style="background-color: lightgray">#(platform
-dir)/user/rtl/include/#(platform name)_user_region.vh</span> is
-generated.<br/>
-This file is called <span style="background-color: lightgray">#(user
-region file)</span>.<br/>
+name)_user_region.vh</span> is generated in <span style="background-color: lightgray">#(platform
+dir)/user/rtl/include</span>.</p>
+<ul>
+<li><p>This file is called <span style="background-color: lightgray">#(user region file)</span>.</p></li>
+</ul></li>
+<li><p>Write the code to connect your IPs to the NoC in <span style="background-color: lightgray">#(user region file)</span>.</p>
+<ul>
+<li><p>The example file is <span style="background-color: lightgray">#(example
+dir)/user/rtl/include/test_user_ip_user_region.vh</span>).</p></li>
+<li><p>Because <span style="background-color: lightgray">#(user region
+file)</span> is part of a Verilog HDL file, only Verilog is allowed, not
+SystemVerilog.</p></li>
+</ul></li>
+</ul>
+<h1 id="note-on-user-ips">Note on User IPs</h1>
+<p>In <span style="background-color: lightgray">#(user region
+file)</span>, IPs must be instantiated and connected to ports using
+Verilog-style syntax.<br/>
+Therefore, if the IPs are designed in VHDL or SystemVerilog, additional
+work may be required.<br/>
 <br/>
-Write the code to connect your IPs to the NoC in <span style="background-color: lightgray">#(user region file)</span>.<br/>
-The example file is <span style="background-color: lightgray">#(example
-dir)/user/rtl/include/test_user_ip_user_region.vh</span>).</p>
+For parameter and port declarations in the IP top module, only features
+compatible with Verilog should be used.<br/>
+To ensure this, it may be necessary to modify the IP top module itself
+or create a new wrapper module as the top-level interface.</p>
 <h1 id="note-on-user-region-file">Note on <span style="background-color: lightgray">#(user region file)</span></h1>
-<p>Once created, <span style="background-color: lightgray">#(user region
-file)</span> is not automatically updated when <span style="background-color: lightgray">#(platform xml)</span> is modified,
-in order to preserve any user modifications.<br/>
-<br/>
-Instead, the updated file reflecting the changes is generated in <span style="background-color: lightgray">#(platform
-dir)/user/template</span>.<br/>
-Therefore, you can review that file and manually apply the necessary
-changes to <span style="background-color: lightgray">#(user region
-file)</span>.</p>
+<ul>
+<li><p>Once created, <span style="background-color: lightgray">#(user
+region file)</span> is not automatically updated when <span style="background-color: lightgray">#(platform xml)</span> is modified,
+in order to preserve any user modifications.</p></li>
+<li><p>Instead, the updated file reflecting the changes is generated in
+<span style="background-color: lightgray">#(platform
+dir)/user/template</span>. Therefore, you can review that file and
+manually apply the necessary changes to <span style="background-color: lightgray">#(user region file)</span>.</p></li>
+</ul>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>

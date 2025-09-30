@@ -5,8 +5,8 @@
 <meta charset="utf-8"/>
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
-<meta content="Kyuseung Han, Sukho Lee, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
-<title>RISC-V eXpress Software Development Manual</title>
+<meta content="Kyuseung Han ETRI, Daejeon, South Korea" name="author"/>
+<title>RVX Tutorial: File I/O</title>
 <style>
     html {
       color: #1a1a1a;
@@ -172,66 +172,39 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RISC-V eXpress Software Development Manual</h1>
-<p class="author">Kyuseung Han, Sukho Lee, Jae-Jin Lee<br/>
+<h1 class="title">RVX Tutorial: File I/O</h1>
+<p class="author">Kyuseung Han<br/>
 ETRI, Daejeon, South Korea</p>
 <p class="date">v2025-07-10 or later</p>
 </header>
-<h1 id="sec:overview">Overview</h1>
+<h1 id="overview">Overview</h1>
+<p>This tutorial explains how to use file I/O in the RVX SoCs.</p>
+<h1 id="prerequisite">Prerequisite</h1>
 <ul>
-<li><p>This manual is intended for developing software for SoCs using
-RVX.</p></li>
-<li><p>All software must be developed with this constraint in mind to
-ensure correct functionality since the RVX SoC is designed as a
-lightweight platform and therefore does not support a general-purpose
-operating system.</p></li>
-</ul>
-<h1 id="notice">Notice</h1>
-<ul>
-<li><p>All results produced using RVX are subject to the following
-conditions:</p>
-<ul>
-<li><p>They must not be used beyond the predefined purpose and scope
-specified in advance for a particular class or research
-project.</p></li>
-<li><p>They must not be distributed to third parties other than the
-designated users or organizations.</p></li>
-<li><p>They are free for non-commercial research use, provided that the
-paper is cited. All other uses require prior approval and a technology
-transfer agreement.</p></li>
-</ul></li>
+<li><p><a href="rvx-tutorials-hello.html">Tutorial - Hello</a></p></li>
+<li><p><a href="rvx-sw-manual-en-stdlib.html">SW - Standard Library
+Porting</a></p></li>
+<li><p>Prototyped SoC on FPGA board</p></li>
 </ul>
 <h1 id="things-to-know">Things to Know</h1>
 <ul>
-<li><p>Manuals are available online - <a href="riscvexpress.github.io"><span class="uri">riscvexpress.github.io</span></a></p></li>
 <li><p>Any part starting with <span style="background-color: lightgray">#</span> should be replaced or
 modified according to your environment.</p></li>
 <li><p>On Linux, use the <span style="background-color: lightgray">bash</span> shell for command-line
 operations.</p></li>
-<li><p>On Windows, use the <span style="background-color: lightgray">Windows Power Shell</span> for
-command-line operations.</p></li>
-<li><p><a href="skills-for-linux_en.html">Skills for Linux</a></p></li>
-<li><p><a href="skills-for-windows_en.html">Skills for
-Windows</a></p></li>
 </ul>
-<h1 id="standard-library-porting">Standard Library Porting</h1>
-<p><a href="rvx-sw-manual-en-stdlib.html">SW - Standard Library
-Porting</a></p>
-<h1 id="data-consistency-management">Data Consistency Management</h1>
-<p><a href="rvx-sw-manual-en-consistency.html">SW - Data Consistency
-Management</a></p>
-<h1 id="caching-region-assignment-for-global-variables">Caching Region
-Assignment for Global Variables</h1>
-<p><a href="rvx-sw-manual-en-caching.html">SW - Caching Region
-Assignment for Global Variables</a></p>
-<h1 id="debugging-methods">Debugging Methods</h1>
-<p><a href="rvx-sw-manual-en-debugging.html">SW - Debugging
-Methods</a></p>
-<h1 id="miscellaneous">Miscellaneous</h1>
-<p><a href="rvx-sw-manual-en-misc.html">SW - Miscellaneous</a></p>
+<h1 id="generating-example-platforms">Generating Example Platforms</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
+cmd) source ./rvx_setup.sh
+cmd) make example
+cmd) cd ./rvx_platform_example/test_fileio</code></pre></div>
+<h1 id="reading-the-manual">Reading the Manual</h1>
+<p>See the File I/O Porting section in the Standard Library Porting
+manual.</p>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
+<li><p><a href="rvx-tutorials.html">Tutorial List</a></p></li>
 </ul>
 </body>
 </html>
