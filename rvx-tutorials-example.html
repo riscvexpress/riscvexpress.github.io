@@ -5,8 +5,8 @@
 <meta charset="utf-8"/>
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
-<meta content="ETRI, Daejeon, South Korea" name="author"/>
-<title>RISC-V eXpress Tutorials</title>
+<meta content="Kyuseung Han ETRI, Daejeon, South Korea" name="author"/>
+<title>RVX Tutorials with Examples</title>
 <style>
     html {
       color: #1a1a1a;
@@ -172,21 +172,52 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RISC-V eXpress Tutorials</h1>
-<p class="author">ETRI, Daejeon, South Korea</p>
+<h1 class="title">RVX Tutorials with Examples</h1>
+<p class="author">Kyuseung Han<br/>
+ETRI, Daejeon, South Korea</p>
 <p class="date">v2025-07-10 or later</p>
 </header>
-<h1 id="tutorial-list">Tutorial List</h1>
-<p><a href="rvx-tutorials-hello.html">Tutorial: Hello</a><br/>
-<a href="materials/rvx_tutorial_fork_kr.pdf">Tutorial: Setting Up Your
-Repository by a Fork (Korean)</a><br/>
-<a href="rvx-tutorials-example.html">Tutorials with Examples</a><br/>
-<a href="rvx-tutorials-userip.html">Tutorial: Integrating User IPs into
-the Platform</a><br/>
-<a href="rvx-tutorials-fileio.html">Tutorial: Using File I/O</a></p>
+<h1 id="overview">Overview</h1>
+<h1 id="prerequisite">Prerequisite</h1>
+<ul>
+<li><p><a href="https://github.com/rvx-etri/rvx-tutorials.git"><span class="uri">https://github.com/rvx-etri/rvx-tutorials.git</span></a></p></li>
+<li><p><a href="rvx-installation-manual-en.html">Installation
+Manual</a></p></li>
+</ul>
+<h1 id="things-to-know">Things to Know</h1>
+<ul>
+<li><p>Any part starting with <span style="background-color: lightgray">#</span> should be replaced or
+modified according to your environment.</p></li>
+<li><p>On Linux, use the <span style="background-color: lightgray">bash</span> shell for command-line
+operations.</p></li>
+</ul>
+<h1 id="downloading-example-platforms">Downloading Example
+Platforms</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
+cmd) source ./rvx_setup.sh
+cmd) make example
+inst) Examples are downloaded to ./rvx_platform_example</code></pre></div>
+<h1 id="integrating-user-ips-into-the-platform">Integrating User IPs
+into the Platform</h1>
+<ul>
+<li><p><span style="background-color: lightgray">./rvx_platform_example/test_user_ip</span></p></li>
+<li><p><a href="rvx-tutorials-userip.html">Tutorial: Integrating User
+IPs into the Platform</a></p></li>
+</ul>
+<h1 id="using-file-io">Using File I/O</h1>
+<ul>
+<li><p><span style="background-color: lightgray">./rvx_platform_example/test_fileio</span></p></li>
+<li><p><a href="rvx-tutorials-fileio.html">Tutorial: Using File
+I/O</a></p></li>
+</ul>
+<h1 id="profiling-c-functions">Profiling C Functions</h1>
+<ul>
+<li><p><span style="background-color: lightgray">./rvx_platform_example/test_profiling</span></p></li>
+</ul>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
+<li><p><a href="rvx-tutorials.html">Tutorial List</a></p></li>
 </ul>
 </body>
 </html>
