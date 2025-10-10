@@ -187,8 +187,8 @@ simulation automatically terminates when the application’s <span style="backgr
 Note that this process requires a license for the mixed-language RTL
 simulator, which must be obtained separately.</p>
 <h1 id="simulation-functionality">Simulation Functionality</h1>
-<h2 id="creating-an-rtl-simulation-directory">Creating an RTL Simulation
-Directory</h2>
+<h2 id="creating-an-rtl-simulation-directory">- Creating an RTL
+Simulation Directory</h2>
 <ul>
 <li><p>Prerequisite: <span style="background-color: lightgray">Synthesizing a
 Platform</span></p></li>
@@ -203,20 +203,20 @@ dir)</span>.</p></li>
 <li><p>Note: <span style="background-color: lightgray">#(sim dir)</span>
 is automatically managed by the RVX tool.</p></li>
 </ul>
-<h2 id="cleaning-all-simulation-results">Cleaning All Simulation
+<h2 id="cleaning-all-simulation-results">- Cleaning All Simulation
 Results</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
 cmd) make clean</code></pre></div>
-<h2 id="compiling-the-platform-rtl-code">Compiling the Platform RTL
+<h2 id="compiling-the-platform-rtl-code">- Compiling the Platform RTL
 Code</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
 cmd) make compile_test</code></pre></div>
-<h2 id="displaying-the-compilation-log-of-the-platform-rtl-code">Displaying
-the Compilation Log of the Platform RTL Code</h2>
+<h2 id="displaying-the-compilation-log-of-the-platform-rtl-code">-
+Displaying the Compilation Log of the Platform RTL Code</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
 cmd) make compile_check</code></pre></div>
-<h2 id="simulating-the-rtl-platform-using-an-application">Simulating the
-RTL Platform Using an Application</h2>
+<h2 id="simulating-the-rtl-platform-using-an-application">- Simulating
+the RTL Platform Using an Application</h2>
 <h3 id="common">Common</h3>
 <ul>
 <li><p>Prerequisite: <span style="background-color: lightgray">Developing an
@@ -324,20 +324,21 @@ RTL Code</span></p></li>
 </ul>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
 cmd) make #(app name).debug_init</code></pre></div>
-<h2 id="opening-the-waveform-viewer-for-debugging">Opening the Waveform
-Viewer for Debugging</h2>
+<h2 id="opening-the-waveform-viewer-for-debugging">- Opening the
+Waveform Viewer for Debugging</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
 cmd) make view</code></pre></div>
 <h1 id="auxiliary-functionality">Auxiliary Functionality</h1>
-<h2 id="displaying-applications-list">Displaying Applications List</h2>
+<h2 id="displaying-applications-list">- Displaying Applications
+List</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
 cmd) make app_list</code></pre></div>
-<h2 id="compiling-the-platform-rtl-code-one-by-one">Compiling the
+<h2 id="compiling-the-platform-rtl-code-one-by-one">- Compiling the
 Platform RTL Code One by One</h2>
 <p>This command helps identify missing include files.</p>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
 cmd) make compile_test_all</code></pre></div>
-<h2 id="identifying-rtl-compilation-failures">Identifying RTL
+<h2 id="identifying-rtl-compilation-failures">- Identifying RTL
 Compilation Failures</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
 cmd) make compile_check</code></pre></div>

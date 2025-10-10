@@ -195,7 +195,7 @@ be obtained separately.<br/>
 Also, all boards must be connected to your computer using the <a href="https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/">Olimex
 ARM-USB-TINY-H</a> module.</p>
 <h1 id="prototyping-functionality">Prototyping Functionality</h1>
-<h2 id="creating-a-prototyping-directory">Creating a Prototyping
+<h2 id="creating-a-prototyping-directory">- Creating a Prototyping
 Directory</h2>
 <ul>
 <li><p>Prerequisite: <span style="background-color: lightgray">Synthesizing a
@@ -211,13 +211,14 @@ dir)</span>.</p></li>
 <li><p>Note: <span style="background-color: lightgray">#(fpga
 dir)</span> is automatically managed by the RVX tool.</p></li>
 </ul>
-<h2 id="creating-a-vivado-project">Creating a Vivado Project</h2>
+<h2 id="creating-a-vivado-project">- Creating a Vivado Project</h2>
 <ul>
 <li><p>Command:</p>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
 cmd) make project</code></pre></div></li>
 </ul>
-<h2 id="generating-an-fpga-bitstream">Generating an FPGA Bitstream</h2>
+<h2 id="generating-an-fpga-bitstream">- Generating an FPGA
+Bitstream</h2>
 <ul>
 <li><p>Included Process: <span style="background-color: lightgray">Creating a Vivado
 Project</span></p></li>
@@ -228,13 +229,13 @@ cmd) make imp</code></pre></div></li>
 A bitstream and reports are generated in the <span style="background-color: lightgray">#(fpga dir)/imp_result</span>
 directory.</p></li>
 </ul>
-<h2 id="cleaning-all-vivado-results">Cleaning All Vivado Results</h2>
+<h2 id="cleaning-all-vivado-results">- Cleaning All Vivado Results</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
 cmd) make clean</code></pre></div>
 <h1 id="validating-functionality">Validating Functionality</h1>
 <p>For the following functionalities, you must power on the FPGA board
 and connect it to your computer.</p>
-<h2 id="programming-the-fpga-with-the-generated-bitstream">Programming
+<h2 id="programming-the-fpga-with-the-generated-bitstream">- Programming
 the FPGA with the Generated Bitstream</h2>
 <ul>
 <li><p>Prerequisite: <span style="background-color: lightgray">Generating an FPGA
@@ -243,8 +244,8 @@ Bitstream</span></p></li>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
 cmd) make program</code></pre></div></li>
 </ul>
-<h2 id="opening-the-terminal-to-view-printf-output">Opening the Terminal
-to View <span style="background-color: lightgray">printf</span>
+<h2 id="opening-the-terminal-to-view-printf-output">- Opening the
+Terminal to View <span style="background-color: lightgray">printf</span>
 Output</h2>
 <ul>
 <li><p>Prerequisite: <span style="background-color: lightgray">Programming the FPGA with the
@@ -267,7 +268,7 @@ inst) Check the USB Serial Port number in Device Manager.
 inst) On PuTTY, configure the settings as highlighted by the three red boxes in Figure 1.
 &gt; If you save the session, you can reuse these settings later.
 inst) Open</code></pre></div>
-<h2 id="running-an-application-on-the-fpga-prototype">Running an
+<h2 id="running-an-application-on-the-fpga-prototype">- Running an
 Application on the FPGA Prototype</h2>
 <h3 id="common">Common</h3>
 <ul>
@@ -347,7 +348,7 @@ Application</span> with <span style="background-color: lightgray">BUILD_MODE=pro
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
 cmd) make #(app name).profile</code></pre></div>
 <h1 id="auxiliary-functionality">Auxiliary Functionality</h1>
-<h2 id="open-a-vivado-project">Open a Vivado Project</h2>
+<h2 id="open-a-vivado-project">- Open a Vivado Project</h2>
 <ul>
 <li><p>Prerequisite: <span style="background-color: lightgray">Creating
 a Vivado Project</span></p></li>
@@ -355,18 +356,19 @@ a Vivado Project</span></p></li>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
 cmd) make open_project</code></pre></div></li>
 </ul>
-<h2 id="displaying-available-fpga-list">Displaying Available FPGA
+<h2 id="displaying-available-fpga-list">- Displaying Available FPGA
 List</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(platform dir)
 cmd) make fpga_list</code></pre></div>
-<h2 id="displaying-applications-list">Displaying Applications List</h2>
+<h2 id="displaying-applications-list">- Displaying Applications
+List</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
 cmd) make app_list</code></pre></div>
-<h2 id="deleting-all-prototyping-directories">Deleting All Prototyping
+<h2 id="deleting-all-prototyping-directories">- Deleting All Prototyping
 Directories</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(platform dir)
 cmd) make clean_imp</code></pre></div>
-<h2 id="enabling-keyboard-input-in-minicom">Enabling Keyboard Input in
+<h2 id="enabling-keyboard-input-in-minicom">- Enabling Keyboard Input in
 Minicom</h2>
 <figure id="fig:minicom">
 <img alt="Figure 2: Minicom Setup." src="figures/minicom-setup.png"/>

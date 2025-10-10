@@ -184,7 +184,7 @@ ETRI, Daejeon, South Korea</p>
 Check whether Python3 is installed and configured properly.
 Resolve conflicts when multiple versions of Python3 are installed.</code></pre></div>
 <h1 id="git-repository-cloning">Git Repository Cloning</h1>
-<h2 id="instruction-any-os">Instruction @ Any OS</h2>
+<h2 id="instruction-any-os">- Instruction @ Any OS</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>inst) Open a terminal.
 inst) Navigate to the parent directory where you want to clone.
 cmd) git clone --recursive #(design repository URL)
@@ -193,19 +193,19 @@ cmd) git submodule init
 cmd) git submodule update</code></pre></div>
 <h1 id="python3-configuration-for-rvx">Python3 Configuration for
 RVX</h1>
-<h2 id="objective">Objective</h2>
+<h2 id="objective">- Objective</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>Set the python3 command used in RVX.</code></pre></div>
-<h2 id="check">Check</h2>
+<h2 id="check">- Check</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
 cmd) make check_python</code></pre></div>
-<h2 id="instruction-linux">Instruction @ Linux</h2>
+<h2 id="instruction-linux">- Instruction @ Linux</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
 cmd) make config_python
-inst) Verify that ‘‘rvx_python_config.mh’’ is generated.
+inst) Verify that ‘rvx_python_config.mh’ is generated.
 inst) Open ‘rvx_python_config.mh’ in a text editor
 &gt; If no path is listed, manually enter the path to the executable.
 &gt; If more than one path is listed, keep only the one you intend to use and delete the others.</code></pre></div>
-<h2 id="instruction-windows">Instruction @ Windows</h2>
+<h2 id="instruction-windows">- Instruction @ Windows</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
 cmd) make config_python
 inst) Verify that ‘rvx_python_config.mh’ and ‘python3.bat’ are generated.
@@ -215,18 +215,18 @@ inst) Open ‘python3.bat’ in a text editor
 &gt; If more than one path is listed, keep only the one you intend to use and delete the others.
 &gt; Do NOT remove ‘%*’ at the end of the line.
 &gt; If the directory name contains spaces, enclose it in double quotation marks as shown below.
-ex) C:\Users\‘‘Kyuseung Han’’\... %*</code></pre></div>
+ex) C:\Users\“Kyuseung Han”\... %*</code></pre></div>
 <h1 id="python3-library-install">Python3 Library Install</h1>
-<h2 id="objective-1">Objective</h2>
+<h2 id="objective-1">- Objective</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>Install python3 libaries.</code></pre></div>
-<h2 id="check-1">Check</h2>
+<h2 id="check-1">- Check</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) make check_pip</code></pre></div>
-<h2 id="instruction-any-os-1">Instruction @ Any OS</h2>
+<h2 id="instruction-any-os-1">- Instruction @ Any OS</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) make pip</code></pre></div>
 <p>If you encounter any issues, try:</p>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) make fix_pip</code></pre></div>
 <h1 id="preparation">Preparation</h1>
-<h2 id="instruction-linux-1">Instruction @ Linux</h2>
+<h2 id="instruction-linux-1">- Instruction @ Linux</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
 cmd) make prepare
 &gt; Check that the file ./rvx_setup.sh has been created.
@@ -234,18 +234,18 @@ inst) Add the line source #(cloned directory)/rvx_setup.sh to your .bashrc.
 &gt; Be sure to replace #(cloned directory) with the absolute path before adding it.
 inst) To apply the changes to .bashrc, close and reopen the terminal.
 &gt; Now, #(cloned directory) is registered as ${RVX_MINI_HOME}.</code></pre></div>
-<h2 id="instruction-windows-1">Instruction @ Windows</h2>
+<h2 id="instruction-windows-1">- Instruction @ Windows</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
 cmd) make prepare
 inst) Update the PATH variable
 &gt; If a message indicates that it was updated successfully, proceed to the next step.
-&gt; If a WARNING appears, manually add ‘‘#(cloned directory)\windows_binary’’ to the PATH.
+&gt; If a WARNING appears, manually add ‘#(cloned directory)\windows_binary’ to the PATH.
 inst) To apply the changes to PATH variable, close and reopen the terminal.
 &gt; Now, #(cloned directory) is registered as ${RVX_MINI_HOME}.</code></pre></div>
 <h1 id="install-check">Install Check</h1>
-<h2 id="objective-2">Objective</h2>
+<h2 id="objective-2">- Objective</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>Check which installation process has issues</code></pre></div>
-<h2 id="instruction-any-os-2">Instruction @ Any OS</h2>
+<h2 id="instruction-any-os-2">- Instruction @ Any OS</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
 cmd) make check</code></pre></div>
 <h1 id="navigate">Navigate</h1>

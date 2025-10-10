@@ -228,7 +228,7 @@ performed using either RTL simulation or FPGA prototyping.</p>
 </table>
 </div>
 <h1 id="functionality">Functionality</h1>
-<h2 id="creating-an-application-directory">Creating an Application
+<h2 id="creating-an-application-directory">- Creating an Application
 Directory</h2>
 <ul>
 <li><p>Command:</p>
@@ -240,11 +240,11 @@ name)</span> is created,<br/>
 which we refer to as <span style="background-color: lightgray">#(app
 dir)</span>.</p></li>
 </ul>
-<h2 id="developing-an-application">Developing an Application</h2>
+<h2 id="developing-an-application">- Developing an Application</h2>
 <p>The application software must be written in C,<br/>
 and the source code should be stored in <span style="background-color: lightgray">#(app dir)/src</span>.<br/>
 The location of the source code can be changed by modifying <span style="background-color: lightgray">#(app dir)</span>.</p>
-<h2 id="building-an-application-including-compiling">Building an
+<h2 id="building-an-application-including-compiling">- Building an
 Application (Including Compiling)</h2>
 <ul>
 <li><p>Prerequisite: <span style="background-color: lightgray">Synthesizing a
@@ -259,22 +259,22 @@ dir)/rtl.release</span> is created.<br/>
 dir)/rtl.release</span> is automatically managed by the RVX
 tool.</p></li>
 </ul>
-<h2 id="cleaning-build-results">Cleaning Build Results</h2>
+<h2 id="cleaning-build-results">- Cleaning Build Results</h2>
 <p>The following files and/or directories are maintained:<br/>
 <span style="background-color: lightgray">./Makefile</span>, <span style="background-color: lightgray">./compile_list</span>, and <span style="background-color: lightgray">./src</span></p>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(app dir)
 cmd) make clean</code></pre></div>
 <h1 id="auxiliary-functionality">Auxiliary Functionality</h1>
-<h2 id="specifying-compile-options-manually">Specifying Compile Options
-Manually</h2>
+<h2 id="specifying-compile-options-manually">- Specifying Compile
+Options Manually</h2>
 <p>Specify <span style="background-color: lightgray">CFLAGS_RELEASE</span>, <span style="background-color: lightgray">CFLAGS_DEBUG</span>, and/or <span style="background-color: lightgray">CFLAGS_PROFILE</span><br/>
 in <span style="background-color: lightgray">#(app
 dir)/rvx_each.mh</span>, depending on your needs.</p>
-<h2 id="specifying-compile-sources-manually">Specifying Compile Sources
-Manually</h2>
+<h2 id="specifying-compile-sources-manually">- Specifying Compile
+Sources Manually</h2>
 <p>Edit <span style="background-color: lightgray">#(app
 dir)/compile_list</span>.</p>
-<h2 id="updating-makefile-after-rvx-update">Updating <span style="background-color: lightgray">Makefile</span> after RVX
+<h2 id="updating-makefile-after-rvx-update">- Updating <span style="background-color: lightgray">Makefile</span> after RVX
 Update</h2>
 <p>This is not mandatory unless an error occurs.</p>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(app dir)
