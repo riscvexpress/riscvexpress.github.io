@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+<meta content="pandoc" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<meta content="Kyuseung Han ETRI, Daejeon, South Korea" name="author"/>
+<title>RVX Tutorial: Creating Clock Signals</title>
+<style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">RVX Tutorial: Creating Clock Signals</h1>
+<p class="author">Kyuseung Han<br/>
+ETRI, Daejeon, South Korea</p>
+<p class="date">v2025-07-10 or later</p>
+</header>
+<h1 id="overview">Overview</h1>
+<p>This tutorial explains how to add or modify clock signals.</p>
+<h1 id="prerequisite">Prerequisite</h1>
+<ul>
+<li><p><a href="rvx-tutorials-example.html">Tutorials with
+Examples</a></p></li>
+</ul>
+<h1 id="things-to-know">Things to Know</h1>
+<ul>
+<li><p>Any part starting with <span style="background-color: lightgray">#</span> should be replaced or
+modified according to your environment.</p></li>
+<li><p>On Linux, use the <span style="background-color: lightgray">bash</span> shell for command-line
+operations.</p></li>
+</ul>
+<h1 id="location-of-an-example-platform">Location of an Example
+Platform</h1>
+<ul>
+<li><p><span style="background-color: lightgray">#(cloned
+directory)/rvx_platform_example/test_clock</span></p></li>
+<li><p>This directory will hereafter be referred to as <span style="background-color: lightgray">#(example dir)</span>.</p></li>
+</ul>
+<h1 id="defining-clock-signals">Defining Clock Signals</h1>
+<ul>
+<li><p>Define the clock signals in your own <span style="background-color: lightgray">#(platform xml)</span>.</p></li>
+<li><p>An example is provided in <span style="background-color: lightgray">#(example
+dir)/test_clock.xml</span>.</p></li>
+<li><p>You can define new clock signals,</p></li>
+<li><p>Or, you can modify the operating frequency of predefined
+ones.</p></li>
+<li><p>Note that defining a clock signal does not guarantee its hardware
+implementation (PLL).</p></li>
+</ul>
+<h1 id="implementing-pll-in-chip-fabrication">Implementing PLL in Chip
+Fabrication</h1>
+<ul>
+<li><p>Due to the different operating speeds of the IPs, multiple clock
+signals are required inside the SoC.</p></li>
+<li><p>To address this, a single clock source (e.g., a crystal
+oscillator) is typically received from outside the chip, and multiple
+clock signals are generated through a PLL IP.</p></li>
+<li><p>The PLL IP is an analog circuit that cannot be provided in RTL
+form. It must be designed according to the target fabrication process
+and is usually available for purchase.</p></li>
+</ul>
+<h1 id="implementing-pll-in-rtl-simulation">Implementing PLL in RTL
+Simulation</h1>
+<p>No action is required for users.<br/>
+For reference,</p>
+<ul>
+<li><p>The RVX tool automatically generates a virtual PLL IP for RTL
+simulation.</p></li>
+<li><p>This process occurs when <span style="background-color: lightgray">make sim_rtl</span> is executed in
+<span style="background-color: lightgray">#(platform
+dir)</span>.</p></li>
+<li><p>The generated file will be located in <span style="background-color: lightgray">#(platform
+dir)/sim_rtl/src</span>.</p></li>
+</ul>
+<h1 id="implementing-pll-in-fpga-prototyping">Implementing PLL in FPGA
+Prototyping</h1>
+<h2 id="automatic-process">Automatic Process</h2>
+<p>No action is required for users for most cases.<br/>
+For reference,</p>
+<ul>
+<li><p>The RVX tool automatically generates a TCL script for creating a
+Vivado PLL IP (.xci) and a module declaration (.v).</p></li>
+<li><p>This process occurs when <span style="background-color: lightgray">make #(fpga name)</span> is executed
+in <span style="background-color: lightgray">#(platform dir)</span></p>
+<ul>
+<li><p>The generated directory is referred to as <span style="background-color: lightgray">#(fpga dir)</span>.</p></li>
+</ul></li>
+<li><p>The generated files will be located in <span style="background-color: lightgray">#(fpga dir)/xci</span> and <span style="background-color: lightgray">#(fpga dir)/src</span>.</p></li>
+</ul>
+<h2 id="manual-process">Manual Process</h2>
+<p>The automatic process can sometimes fail because the Vivado PLL IP
+cannot generate every possible combination of clock signals.<br/>
+In such cases, you need to check the synthesis failure log for the .xci
+file and make the necessary corrections.<br/>
+Depending on the situation, you may also need to modify the clock
+definition itself.</p>
+<h1 id="predefined-clock-signals">Predefined Clock Signals</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Clock Name</th>
+<th style="text-align: center;">Usages</th>
+<th style="text-align: center;">Editable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">clk_system</td>
+<td style="text-align: center;">System Peripherals</td>
+<td style="text-align: center;">O</td>
+</tr>
+<tr>
+<td style="text-align: center;">clk_system_*</td>
+<td style="text-align: center;">System Peripherals</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr>
+<td style="text-align: center;">clk_core</td>
+<td style="text-align: center;">RISC-V Cores</td>
+<td style="text-align: center;">O</td>
+</tr>
+<tr>
+<td style="text-align: center;">clk_local_access</td>
+<td style="text-align: center;">RISC-V Core Peripherals</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr>
+<td style="text-align: center;">clk_process_*</td>
+<td style="text-align: center;">RISC-V Core Peripherals</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr>
+<td style="text-align: center;">clk_noc</td>
+<td style="text-align: center;">System Interconnect</td>
+<td style="text-align: center;">O</td>
+</tr>
+<tr>
+<td style="text-align: center;">clk_dram_if</td>
+<td style="text-align: center;">DDR</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr>
+<td style="text-align: center;">clk_dram_sys</td>
+<td style="text-align: center;">DDR</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr>
+<td style="text-align: center;">clk_dram_ref</td>
+<td style="text-align: center;">DDR</td>
+<td style="text-align: center;">X</td>
+</tr>
+</tbody>
+</table>
+<h1 id="navigate">Navigate</h1>
+<ul>
+<li><p><a href="index.html">Home</a></p></li>
+<li><p><a href="rvx-tutorials.html">Tutorial List</a></p></li>
+</ul>
+</body>
+</html>

@@ -248,8 +248,8 @@ directory)/rvx_platform_example/test_user_ip</span></p></li>
 <h1 id="specifying-the-interfaces">Specifying the Interfaces</h1>
 <ul>
 <li><p>Define the interface descriptions in your own <span style="background-color: lightgray">#(platform xml)</span>.</p></li>
-<li><p><span style="background-color: lightgray">#(example
-dir)/test_user_ip.xml</span> is an example.</p></li>
+<li><p>An example is provided in <span style="background-color: lightgray">#(example
+dir)/test_user_ip.xml</span>.</p></li>
 </ul>
 <h1 id="connecting-ips-to-the-noc">Connecting IPs to the NoC</h1>
 <ul>
@@ -267,6 +267,21 @@ dir)/user/rtl/include/test_user_ip_user_region.vh</span>).</p></li>
 <li><p>Because <span style="background-color: lightgray">#(user region
 file)</span> is part of a Verilog HDL file, only Verilog is allowed, not
 SystemVerilog.</p></li>
+</ul></li>
+<li><p>Use <span style="background-color: lightgray">rstnn_user</span>
+or <span style="background-color: lightgray">rstpp_user</span> for reset
+signals.</p>
+<ul>
+<li><p>For the power-on reset, <span style="background-color: lightgray">global_rstnn</span> and <span style="background-color: lightgray">global_rstpp</span> are
+available.</p></li>
+</ul></li>
+<li><p>For clocks, you can use the predefined signals or create new
+ones.</p>
+<ul>
+<li><p><a href="rvx-tutorials-clock.html">Tutorial: Creating Clock
+Signals</a></p></li>
+<li><p><span style="background-color: lightgray">clk_system</span> is
+recommended for APB interfaces.</p></li>
 </ul></li>
 </ul>
 <h1 id="note-on-user-ips">Note on User IPs</h1>
