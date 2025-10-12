@@ -5,8 +5,8 @@
 <meta charset="utf-8"/>
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
-<meta content="Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
-<title>RVX Installation Manual - Step 5 for RVX-cloud -</title>
+<meta content="Kyuseung Han, Sukho Lee, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
+<title>RVX FPGA Setup Manual</title>
 <style>
     html {
       color: #1a1a1a;
@@ -172,45 +172,70 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RVX Installation Manual<br/>
-- Step 5 for RVX-cloud -</h1>
-<p class="author">Kyuseung Han, Sukho Lee, Hyunguk Jang, Jae-Jin
-Lee<br/>
+<h1 class="title">RVX FPGA Setup Manual</h1>
+<p class="author">Kyuseung Han, Sukho Lee, Jae-Jin Lee<br/>
 ETRI, Daejeon, South Korea</p>
 <p class="date">v2025-07-10 or later</p>
 </header>
-<h1 id="synchronization">Synchronization</h1>
-<h2 id="objective">- Objective</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>This step fetches the latest version of the RVX components from the RVX server.</code></pre></div>
+<h1 id="sec:overview">Overview</h1>
 <ul>
-<li><p>You must run this at least once after receiving the
-repository.</p></li>
-<li><p>After the first run, it will be automatically triggered during
-the update process.</p></li>
-<li><p>During synchronization, you will be prompted to enter your RVX
-server account credentials.</p></li>
-<li><p>Make sure you know your account credentials in advance.</p></li>
-<li><p>These credentials will be saved in
-${RVX_MINI_HOME}/.rvx_server_config.</p></li>
-<li><p>If you need to change your RVX account info, simply delete that
-file.</p></li>
+<li><p>This manual provides information about the supported FPGA boards
+and explains how to connect them to your computer for use with
+RVX.</p></li>
 </ul>
-<h2 id="instruction-any-os">- Instruction @ Any OS</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd ${RVX_MINI_HOME}
-cmd) make sync
-&gt; When prompted for SSH access, answer ‘no’.</code></pre></div>
-<h1 id="force-synchronization">Force Synchronization</h1>
-<h2 id="objective-1">- Objective</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>Run this if an issue occurs during the sync process.</code></pre></div>
-<h2 id="instruction-any-os-1">- Instruction @ Any OS</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd ${RVX_MINI_HOME}
-cmd) make resync</code></pre></div>
+<h1 id="recommended-amd-vivado-version">Recommended AMD Vivado
+Version</h1>
+<p>2022.1 or later</p>
+<h1 id="supported-commercial-fpga-boards">Supported Commercial FPGA
+boards</h1>
+<ul>
+<li><p><a href="https://digilent.com/shop/arty-a7-100t-artix-7-fpga-development-board/">Digilent
+Arty A7-100T</a>, referred to as <span style="background-color: lightgray">arty-100t</span> in the RVX.</p>
+<ul>
+<li><p><a href="https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/">Olimex
+ARM-USB-TINY-H</a> module is required.</p></li>
+<li><p>Vivado freely supports this board.</p></li>
+</ul></li>
+<li><p><a href="https://digilent.com/reference/programmable-logic/genesys-2/">Digilent
+Genesys2</a>, referred to as <span style="background-color: lightgray">genesys2</span> in the RVX.</p>
+<ul>
+<li><p><a href="https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/">Olimex
+ARM-USB-TINY-H</a> module is required.</p></li>
+<li><p>A valid license for Vivado is required.</p></li>
+</ul></li>
+</ul>
+<h1 id="connection-for-arty-100t">Connection for <span style="background-color: lightgray">arty-100t</span></h1>
+<figure>
+<img src="figures/arty-100t.png"/>
+</figure>
+<ul>
+<li><p>Micro-B USB port should be connected to your computer for FPGA
+programming and UART communication.</p></li>
+<li><p>PMOD port should be connected to your computer for RVX JTAG
+communication via the Olimex module (See PMOD-to-Olimex
+section).</p></li>
+</ul>
+<h1 id="connection-for-genesys2">Connection for <span style="background-color: lightgray">genesys2</span></h1>
+<figure>
+<img src="figures/genesys2.png"/>
+</figure>
+<ul>
+<li><p>Micro-B USB port should be connected to your computer for FPGA
+programming.</p></li>
+<li><p>Another Micro-B USB port should be connected to your computer for
+UART communication. PMOD port should be connected to your computer for
+RVX JTAG communication via the Olimex module (See PMOD-to-Olimex
+section).</p></li>
+</ul>
+<h1 id="sec:pmod-to-olimex">PMOD-to-Olimex Wire Mapping</h1>
+<p>Connect the five labeled wires according to the pin mapping
+below.</p>
+<figure>
+<img src="figures/pmod2olimex.png"/>
+</figure>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
-<li><p><a href="rvx-installation-manual-en.html">Top</a></p></li>
-<li><p><a href="rvx-installation-manual-en.html">Previous -
-Step4</a></p></li>
 </ul>
 </body>
 </html>

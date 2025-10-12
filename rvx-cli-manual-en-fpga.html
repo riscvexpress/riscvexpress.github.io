@@ -6,7 +6,7 @@
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <meta content="Kyuseung Han, Sukho Lee, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
-<title>RISC-V eXpress CLI Manual for Linux/Windows - FPGA Prototyping -</title>
+<title>RVX CLI Manual for Linux/Windows - FPGA Prototyping -</title>
 <style>
     html {
       color: #1a1a1a;
@@ -172,28 +172,20 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RISC-V eXpress CLI Manual for Linux/Windows<br/>
+<h1 class="title">RVX CLI Manual for Linux/Windows<br/>
 - FPGA Prototyping -</h1>
 <p class="author">Kyuseung Han, Sukho Lee, Jae-Jin Lee<br/>
 ETRI, Daejeon, South Korea</p>
 <p class="date">v2025-07-10 or later</p>
 </header>
 <h1 id="overview">Overview</h1>
-<p>This manual is intended for validating applications on an FPGA
-platform. The hardware platform verified through RTL simulation is
-automatically prototyped onto the predefined FPGA. Applications
-developed by the user are then validated on this FPGA prototype. The
-currently supported commercial boards are listed below.</p>
 <ul>
-<li><p>arty-100t (<a href="https://digilent.com/shop/arty-a7-100t-artix-7-fpga-development-board/">Digilent
-Arty A7-100T</a>)</p></li>
-<li><p>genesys2 (<a href="https://digilent.com/reference/programmable-logic/genesys-2/">Digilent
-Genesys2</a>)</p></li>
+<li><p>This manual is intended for validating applications on an FPGA
+platform.</p></li>
+<li><p>This process requires an FPGA board compatible with RVX (<a href="rvx-fpga-manual-en.html">Supported Boards</a>).</p></li>
+<li><p>This process also requires a license for AMD Vivado, which must
+be obtained separately.</p></li>
 </ul>
-<p>Note that this process requires a license for AMD Vivado, which must
-be obtained separately.<br/>
-Also, all boards must be connected to your computer using the <a href="https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/">Olimex
-ARM-USB-TINY-H</a> module.</p>
 <h1 id="prototyping-functionality">Prototyping Functionality</h1>
 <h2 id="creating-a-prototyping-directory">- Creating a Prototyping
 Directory</h2>
@@ -238,8 +230,12 @@ and connect it to your computer.</p>
 <h2 id="programming-the-fpga-with-the-generated-bitstream">- Programming
 the FPGA with the Generated Bitstream</h2>
 <ul>
-<li><p>Prerequisite: <span style="background-color: lightgray">Generating an FPGA
+<li><p>Prerequisite:</p>
+<ul>
+<li><p><span style="background-color: lightgray">Generating an FPGA
 Bitstream</span></p></li>
+<li><p>An FPGA board connected to your computer - <a href="rvx-fpga-manual-en.html">Manual</a></p></li>
+</ul></li>
 <li><p>Command:</p>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
 cmd) make program</code></pre></div></li>

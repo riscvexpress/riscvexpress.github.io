@@ -178,14 +178,17 @@ ETRI, Daejeon, South Korea</p>
 <p class="date">v2025-07-10 or later</p>
 </header>
 <h1 id="overview">Overview</h1>
-<p>This tutorial explains how to use file I/O in the RVX SoCs.</p>
+<ul>
+<li><p>This tutorial explains how to use file I/O in the RVX
+SoCs.</p></li>
+</ul>
 <h1 id="prerequisite">Prerequisite</h1>
 <ul>
 <li><p><a href="rvx-tutorials-example.html">Tutorials with
 Examples</a></p></li>
 <li><p><a href="rvx-sw-manual-en-stdlib.html">SW - Standard Library
 Porting</a></p></li>
-<li><p>Prototyped SoC on FPGA board</p></li>
+<li><p>An FPGA board connected to your computer - <a href="rvx-fpga-manual-en.html">Manual</a></p></li>
 </ul>
 <h1 id="things-to-know">Things to Know</h1>
 <ul>
@@ -201,9 +204,34 @@ Platform</h1>
 directory)/rvx_platform_example/test_fileio</span></p></li>
 <li><p>This directory will hereafter be referred to as <span style="background-color: lightgray">#(example dir)</span>.</p></li>
 </ul>
-<h1 id="reading-the-manual">Reading the Manual</h1>
-<p>See the File I/O Porting section in the Standard Library Porting
-manual.</p>
+<h1 id="generating-an-fpga-bitstream-of-the-example-platform">Generating
+an FPGA Bitstream of the Example Platform</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
+cmd) source ./rvx_setup.sh
+cmd) cd ./platform/tip_hello
+cmd) make clean
+cmd) make syn
+cmd) make arty-100t // or the FPGA board you have
+cmd) cd imp_arty-100t_XXXX // referred to as #(fpga dir)
+cmd) make imp</code></pre></div>
+<h1 id="programming-and-validating-the-fpga-bitstream">Programming and
+Validating the FPGA Bitstream</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>inst) Connect the FPGA board to your computer.
+cmd) make program
+cmd) make printf
+cmd) make hello.all</code></pre></div>
+<h1 id="running-the-example-application">Running the Example
+Application</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) make test_fileio.all</code></pre></div>
+<h1 id="retrieving-output-files-to-a-pc">Retrieving Output Files to a
+PC</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) make dump
+inst) Check the generated files in #(fpga dir)/dump</code></pre></div>
+<h1 id="using-file-io-in-other-applications">Using File I/O in Other
+Applications</h1>
+<p>Refer to the ‘File I/O Porting’ section in the manual below:<br/>
+<a href="rvx-sw-manual-en-stdlib.html">SW - Standard Library
+Porting</a>.</p>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
