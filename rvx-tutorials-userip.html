@@ -287,17 +287,21 @@ Signals</a></p></li>
 recommended for APB interfaces.</p></li>
 </ul></li>
 </ul>
+<h1 id="debugging-user-ips-on-fpga-prototypes">Debugging User IPs on
+FPGA Prototypes</h1>
+<p><a href="rvx-tutorials-debugging.html">Tutorial: Debugging Methods on
+FPGA Prototypes</a></p>
 <h1 id="note-on-user-ips">Note on User IPs</h1>
-<p>In <span style="background-color: lightgray">#(user region
+<ul>
+<li><p>In <span style="background-color: lightgray">#(user region
 file)</span>, IPs must be instantiated and connected to ports using
-Verilog-style syntax.<br/>
-Therefore, if the IPs are designed in VHDL or SystemVerilog, additional
-work may be required.<br/>
-<br/>
-For parameter and port declarations in the IP top module, only features
-compatible with Verilog should be used.<br/>
-To ensure this, it may be necessary to modify the IP top module itself
-or create a new wrapper module as the top-level interface.</p>
+Verilog-style syntax. Therefore, if the IPs are designed in VHDL or
+SystemVerilog, additional work may be required.</p></li>
+<li><p>For parameter and port declarations in the IP top module, only
+features compatible with Verilog should be used. To ensure this, it may
+be necessary to modify the IP top module itself or create a new wrapper
+module as the top-level interface.</p></li>
+</ul>
 <h1 id="note-on-user-region-file">Note on <span style="background-color: lightgray">#(user region file)</span></h1>
 <ul>
 <li><p>Once created, <span style="background-color: lightgray">#(user

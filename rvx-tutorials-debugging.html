@@ -5,8 +5,8 @@
 <meta charset="utf-8"/>
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
-<meta content="Kyuseung Han, Sukho Lee, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
-<title>RVX Software Development Manual - Debugging Methods -</title>
+<meta content="Kyuseung Han ETRI, Daejeon, South Korea" name="author"/>
+<title>RVX Tutorial: Debugging Methods on FPGA Prototypes</title>
 <style>
     html {
       color: #1a1a1a;
@@ -172,21 +172,27 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RVX Software Development Manual<br/>
-- Debugging Methods -</h1>
-<p class="author">Kyuseung Han, Sukho Lee, Jae-Jin Lee<br/>
+<h1 class="title">RVX Tutorial: Debugging Methods on FPGA
+Prototypes</h1>
+<p class="author">Kyuseung Han<br/>
 ETRI, Daejeon, South Korea</p>
 <p class="date">v2025-07-10 or later</p>
 </header>
-<h1 id="hardware-based-debugging">Hardware-based Debugging</h1>
+<h1 id="overview">Overview</h1>
 <ul>
-<li><p>Whether a hardware debugger can be used via tools like OpenOCD or
-GDB entirely depends on whether the RISC-V CPU includes JTAG
-functionality.</p></li>
-<li><p>None of the CPUs provided by RVX include this
-functionality.</p></li>
-<li><p>If users want to perform hardware-based debugging, they must
-obtain a CPU that supports it.</p></li>
+<li><p>This tutorial introduces methods for debugging an SoC built with
+RVX on FPGA prototypes.</p></li>
+</ul>
+<h1 id="prerequisite">Prerequisite</h1>
+<ul>
+<li><p><a href="rvx-tutorials-hello.html">Tutorial: Hello</a></p></li>
+</ul>
+<h1 id="things-to-know">Things to Know</h1>
+<ul>
+<li><p>Any part starting with <span style="background-color: lightgray">#</span> should be replaced or
+modified according to your environment.</p></li>
+<li><p>On Linux, use the <span style="background-color: lightgray">bash</span> shell for command-line
+operations.</p></li>
 </ul>
 <h1 id="software-based-debugging">Software-based Debugging</h1>
 <ul>
@@ -236,17 +242,94 @@ location.</td>
 </tbody>
 </table></li>
 </ul>
+<h1 id="cpu-debugger-based-debugging-not-supported">CPU Debugger-based
+Debugging (NOT supported)</h1>
+<ul>
+<li><p>If a RISC-V CPU includes JTAG functionality (via the RISC-V Debug
+Module), users can use OpenOCD or GDB for debugging.</p></li>
+<li><p>None of the CPUs provided by RVX include this
+functionality.</p></li>
+<li><p>If users want to use this feature, they must obtain a CPU that
+supports it.</p></li>
+</ul>
+<h1 id="noc-debugger-based-debugging">NoC Debugger-based Debugging</h1>
+<p>This method can only read values based on the memory address.</p>
+<h1 id="vivado-ila-based-debugging">Vivado ILA-based Debugging</h1>
+<h2 id="overview-1">- Overview</h2>
+<ul>
+<li><p>This method requires some understanding of Vivado ILA to
+use.</p></li>
+<li><p>The ILA is a technique that allows you to monitor specific
+signals defined during design time for debugging purposes.</p></li>
+<li><p>While it enables observation of many signals, the ILA module
+becomes part of the design itself, which limits both the number of
+signals and the time span that can be captured.</p></li>
+<li><p>RVX provides a feature that automatically generates and
+integrates an ILA into the design once the debugging signals are
+specified.</p></li>
+</ul>
+<h2 id="location-of-an-example-platform">- Location of an Example
+Platform</h2>
+<ul>
+<li><p><span style="background-color: lightgray">#(cloned
+directory)/rvx_platform_example/test_ila</span></p></li>
+<li><p>This directory will hereafter be referred to as <span style="background-color: lightgray">#(example dir)</span>.</p></li>
+</ul>
+<h2 id="defining-debugging-signals">- Defining Debugging Signals</h2>
+<ul>
+<li><p>Define the signals in <span style="background-color: lightgray">#(platform
+dir)/user/ila/common</span>.</p>
+<ul>
+<li><p>Or, <span style="background-color: lightgray">#(platform
+dir)/user/ila/#(fpga name)</span>.</p></li>
+<li><p>All XML files in these directories will be converted into ILA
+modules.</p></li>
+<li><p>The names of the XML files can be chosen based on
+readability.</p></li>
+</ul></li>
+<li><p>An example is provided in <span style="background-color: lightgray">#(example
+dir)/user/ila/common/core.xml</span>.</p></li>
+<li><p>The <span style="background-color: lightgray">&lt;clock&gt;</span> tag sets the
+clock signal used for sampling.</p></li>
+<li><p>The <span style="background-color: lightgray">&lt;signal&gt;</span> block defines
+a signal to be monitored.</p>
+<ul>
+<li><p><span style="background-color: lightgray">&lt;name&gt;</span>
+specifies the display name shown in the ILA GUI,</p></li>
+<li><p><span style="background-color: lightgray">&lt;value&gt;</span>
+defines the actual signal to be monitored, and</p></li>
+<li><p><span style="background-color: lightgray">&lt;width&gt;</span>
+indicates its bit width.</p></li>
+</ul></li>
+<li><p>The signal paths for <span style="background-color: lightgray">&lt;clock&gt;</span> and <span style="background-color: lightgray">&lt;value&gt;</span> should be
+specified based on <span style="background-color: lightgray">#(platform
+name).v</span>.</p>
+<ul>
+<li><p>It can be specified using a hierarchical path even if it is not
+declared as a port.</p></li>
+<li><p>For reference, the file <span style="background-color: lightgray">ila_description.vh</span> is
+generated from the XML file, which is a part of <span style="background-color: lightgray">#(platform name).v</span>.</p></li>
+</ul></li>
+</ul>
+<h2 id="generating-ilas-from-xml-files">- Generating ILAs from XML
+Files</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
+cmd) make ila</code></pre></div>
+<h2 id="generating-an-fpga-bitstream-including-ilas">- Generating an
+FPGA Bitstream Including ILAs</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
+inst) change IMP_MODE from ‘release’ to ‘debug’ in ‘#(fpga dir)/set_design.tcl’
+cmd) make imp</code></pre></div>
+<h2 id="debugging-applications-on-fpga-prototypes">- Debugging
+Applications on FPGA Prototypes</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) make program // The Vivado GUI will be launched
+inst) Set the trigger conditions of ILAs in the GUI
+cmd) make printf
+cmd) make #(app name).all</code></pre></div>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
-<li><p><a href="rvx-sw-manual-en.html">Top</a></p></li>
-<li><p><a href="rvx-sw-manual-en-stdlib.html">Standard Library
-Porting</a></p></li>
-<li><p><a href="rvx-sw-manual-en-consistency.html">Data Consistency
-Management</a></p></li>
-<li><p><a href="rvx-sw-manual-en-caching.html">Caching Region Assignment
-for Global Variables</a></p></li>
-<li><p><a href="rvx-sw-manual-en-misc.html">Miscellaneous</a></p></li>
+<li><p><a href="rvx-tutorials.html">Tutorial List</a></p></li>
 </ul>
 </body>
 </html>
