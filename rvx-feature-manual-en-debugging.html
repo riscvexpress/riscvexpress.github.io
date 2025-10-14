@@ -6,7 +6,7 @@
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <meta content="Kyuseung Han ETRI, Daejeon, South Korea" name="author"/>
-<title>RVX Tutorial: Debugging Methods on FPGA Prototypes</title>
+<title>RVX Manual: Debugging Methods on FPGA Prototypes</title>
 <style>
     html {
       color: #1a1a1a;
@@ -172,20 +172,20 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RVX Tutorial: Debugging Methods on FPGA
-Prototypes</h1>
+<h1 class="title">RVX Manual: Debugging Methods on FPGA Prototypes</h1>
 <p class="author">Kyuseung Han<br/>
 ETRI, Daejeon, South Korea</p>
 <p class="date">v2025-07-10 or later</p>
 </header>
 <h1 id="overview">Overview</h1>
 <ul>
-<li><p>This tutorial introduces methods for debugging an SoC built with
+<li><p>This manual introduces methods for debugging an SoC built with
 RVX on FPGA prototypes.</p></li>
 </ul>
 <h1 id="prerequisite">Prerequisite</h1>
 <ul>
 <li><p><a href="rvx-tutorials-hello.html">Tutorial: Hello</a></p></li>
+<li><p>An FPGA board connected to your computer - <a href="rvx-fpga-manual-en.html">Manual</a></p></li>
 </ul>
 <h1 id="things-to-know">Things to Know</h1>
 <ul>
@@ -277,6 +277,10 @@ directory)/rvx_platform_example/test_ila</span></p></li>
 </ul>
 <h2 id="defining-debugging-signals">- Defining Debugging Signals</h2>
 <ul>
+<li><p>Run <span style="background-color: lightgray">make user</span> in
+<span style="background-color: lightgray">#(platform dir)</span> if
+<span style="background-color: lightgray">#(platform dir)/user</span>
+does not exist.</p></li>
 <li><p>Define the signals in <span style="background-color: lightgray">#(platform
 dir)/user/ila/common</span>.</p>
 <ul>
@@ -317,6 +321,7 @@ Files</h2>
 cmd) make ila</code></pre></div>
 <h2 id="generating-an-fpga-bitstream-including-ilas">- Generating an
 FPGA Bitstream Including ILAs</h2>
+<p>Assume that you already have the platform for debugging.</p>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
 inst) change IMP_MODE from ‘release’ to ‘debug’ in ‘#(fpga dir)/set_design.tcl’
 cmd) make imp</code></pre></div>
@@ -324,12 +329,14 @@ cmd) make imp</code></pre></div>
 Applications on FPGA Prototypes</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) make program // The Vivado GUI will be launched
 inst) Set the trigger conditions of ILAs in the GUI
+inst) Open another terminal in the same directory.
 cmd) make printf
 cmd) make #(app name).all</code></pre></div>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
-<li><p><a href="rvx-tutorials.html">Tutorial List</a></p></li>
+<li><p><a href="rvx-feature-manual-en.html">Feature Manual
+List</a></p></li>
 </ul>
 </body>
 </html>

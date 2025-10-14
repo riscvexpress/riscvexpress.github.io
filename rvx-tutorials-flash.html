@@ -6,7 +6,7 @@
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <meta content="Kyuseung Han ETRI, Daejeon, South Korea" name="author"/>
-<title>RVX Tutorial: Creating Clock Signals</title>
+<title>RVX Tutorial: Using Flash Memory for Standalone FPGA Prototypes</title>
 <style>
     html {
       color: #1a1a1a;
@@ -172,20 +172,24 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RVX Tutorial: Creating Clock Signals</h1>
+<h1 class="title">RVX Tutorial: Using Flash Memory for Standalone FPGA
+Prototypes</h1>
 <p class="author">Kyuseung Han<br/>
 ETRI, Daejeon, South Korea</p>
 <p class="date">v2025-07-10 or later</p>
 </header>
 <h1 id="overview">Overview</h1>
 <ul>
-<li><p>This tutorial explains how to add or modify clock
-signals.</p></li>
+<li><p>This tutorial introduces a method for building standalone FPGA
+prototypes using flash memory.</p></li>
+<li><p>By storing the FPGA bitstream and application in flash memory,
+the application automatically starts when power is supplied.</p></li>
+<li><p>Not all FPGA boards are supported.</p></li>
 </ul>
 <h1 id="prerequisite">Prerequisite</h1>
 <ul>
-<li><p><a href="rvx-tutorials-example.html">Tutorials with
-Examples</a></p></li>
+<li><p><a href="rvx-tutorials-hello.html">Tutorial: Hello</a></p></li>
+<li><p>An FPGA board connected to your computer - <a href="rvx-fpga-manual-en.html">Manual</a></p></li>
 </ul>
 <h1 id="things-to-know">Things to Know</h1>
 <ul>
@@ -198,126 +202,57 @@ operations.</p></li>
 Platform</h1>
 <ul>
 <li><p><span style="background-color: lightgray">#(cloned
-directory)/rvx_platform_example/test_clock</span></p></li>
+directory)/rvx_platform_example/test_flash</span></p></li>
 <li><p>This directory will hereafter be referred to as <span style="background-color: lightgray">#(example dir)</span>.</p></li>
 </ul>
-<h1 id="defining-clock-signals">Defining Clock Signals</h1>
+<h1 id="integrating-flash-interface-into-socs">Integrating Flash
+Interface into SoCs</h1>
 <ul>
-<li><p>Define the clock signals in your own <span style="background-color: lightgray">#(platform xml)</span>.</p></li>
+<li><p>The code below inserts the flash interface into your SoCs.</p>
+<figure>
+<img src="figures/spi-flash.png"/>
+</figure></li>
 <li><p>An example is provided in <span style="background-color: lightgray">#(example
-dir)/test_clock.xml</span>.</p></li>
-<li><p>You can define new clock signals,</p></li>
-<li><p>Or, you can modify the operating frequency of predefined
-ones.</p></li>
-<li><p>Note that defining a clock signal does not guarantee its hardware
-implementation (PLL).</p></li>
+dir)/test_flash.xml</span>.</p></li>
 </ul>
-<h1 id="implementing-pll-in-chip-fabrication">Implementing PLL in Chip
-Fabrication</h1>
+<h1 id="generating-an-fpga-bitstream">Generating an FPGA Bitstream</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(example dir)
+cmd) make syn
+cmd) make arty-100t // or the FPGA board you have
+cmd) cd imp_arty-100t_XXXX // referred to as #(fpga dir)
+cmd) make imp</code></pre></div>
+<h1 id="writing-the-fpga-bitstream-to-flash-memory">Writing the FPGA
+Bitstream to Flash Memory</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
+inst) Connect the FPGA board to your computer.
+cmd) make program_flash
+inst) Turn the power of the FPGA board off and on.
+cmd) make printf
+cmd) make hello.all
+inst) Check whether the application is working properly.</code></pre></div>
+<h1 id="writing-the-application-binary-to-flash-memory">Writing the
+Application Binary to Flash Memory</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
+cmd) make flash_server
+cmd) make hello.flash
+inst) Set the boot mode switch to ON.
+inst) Press the reset button on the FPGA board.
+inst) Check whether the application is working properly.</code></pre></div>
+<h1 id="verifying-standalone-fpga-prototypes">Verifying Standalone FPGA
+Prototypes</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>inst) Set the boot mode switch to ON.
+inst) Turn the power of the FPGA board off and on.
+inst) Check whether the application is working properly.</code></pre></div>
+<h1 id="applying-this-to-other-platforms">Applying This to Other
+Platforms</h1>
 <ul>
-<li><p>Due to the different operating speeds of the IPs, multiple clock
-signals are required inside the SoC.</p></li>
-<li><p>To address this, a single clock source (e.g., a crystal
-oscillator) is typically received from outside the chip, and multiple
-clock signals are generated through a PLL IP.</p></li>
-<li><p>The PLL IP is an analog circuit that cannot be provided in RTL
-form. It must be designed according to the target fabrication process
-and is usually available for purchase.</p></li>
+<li><p>Assume that you have a fully developed platform.</p></li>
+<li><p>Write the code for the flash interface in your <span style="background-color: lightgray">#(platform xml)</span>.</p></li>
+<li><p>Copy ‘flash_server’ from <span style="background-color: lightgray">#(example dir)/app</span> to <span style="background-color: lightgray">#(platform dir)/app</span></p></li>
+<li><p>Run the commands you learned from this tutorial.</p></li>
 </ul>
-<h1 id="implementing-pll-in-rtl-simulation">Implementing PLL in RTL
-Simulation</h1>
-<p>No action is required for users.<br/>
-For reference,</p>
-<ul>
-<li><p>The RVX tool automatically generates a virtual PLL IP for RTL
-simulation.</p></li>
-<li><p>This process occurs when <span style="background-color: lightgray">make sim_rtl</span> is executed in
-<span style="background-color: lightgray">#(platform
-dir)</span>.</p></li>
-<li><p>The generated file will be located in <span style="background-color: lightgray">#(platform
-dir)/sim_rtl/src</span>.</p></li>
-</ul>
-<h1 id="implementing-pll-in-fpga-prototyping">Implementing PLL in FPGA
-Prototyping</h1>
-<h2 id="automatic-process">Automatic Process</h2>
-<p>No action is required for users for most cases.<br/>
-For reference,</p>
-<ul>
-<li><p>The RVX tool automatically generates a TCL script for creating a
-Vivado PLL IP (.xci) and a module declaration (.v).</p></li>
-<li><p>This process occurs when <span style="background-color: lightgray">make #(fpga name)</span> is executed
-in <span style="background-color: lightgray">#(platform dir)</span></p>
-<ul>
-<li><p>The generated directory is referred to as <span style="background-color: lightgray">#(fpga dir)</span>.</p></li>
-</ul></li>
-<li><p>The generated files will be located in <span style="background-color: lightgray">#(fpga dir)/xci</span> and <span style="background-color: lightgray">#(fpga dir)/src</span>.</p></li>
-</ul>
-<h2 id="manual-process">Manual Process</h2>
-<p>The automatic process can sometimes fail because the Vivado PLL IP
-cannot generate every possible combination of clock signals.<br/>
-In such cases, you need to check the synthesis failure log for the .xci
-file and make the necessary corrections.<br/>
-Depending on the situation, you may also need to modify the clock
-definition itself.</p>
-<h1 id="predefined-clock-signals">Predefined Clock Signals</h1>
-<p>All clocks have a default frequency of 50 MHz unless otherwise
-assigned.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Clock Name</th>
-<th style="text-align: center;">Usages</th>
-<th style="text-align: center;">Editable</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">clk_system</td>
-<td style="text-align: center;">System Peripherals</td>
-<td style="text-align: center;">O</td>
-</tr>
-<tr>
-<td style="text-align: center;">clk_system_*</td>
-<td style="text-align: center;">System Peripherals</td>
-<td style="text-align: center;">X</td>
-</tr>
-<tr>
-<td style="text-align: center;">clk_core</td>
-<td style="text-align: center;">RISC-V Cores</td>
-<td style="text-align: center;">O</td>
-</tr>
-<tr>
-<td style="text-align: center;">clk_local_access</td>
-<td style="text-align: center;">RISC-V Core Peripherals</td>
-<td style="text-align: center;">X</td>
-</tr>
-<tr>
-<td style="text-align: center;">clk_process_*</td>
-<td style="text-align: center;">RISC-V Core Peripherals</td>
-<td style="text-align: center;">X</td>
-</tr>
-<tr>
-<td style="text-align: center;">clk_noc</td>
-<td style="text-align: center;">System Interconnect</td>
-<td style="text-align: center;">O</td>
-</tr>
-<tr>
-<td style="text-align: center;">clk_dram_if</td>
-<td style="text-align: center;">DDR</td>
-<td style="text-align: center;">X</td>
-</tr>
-<tr>
-<td style="text-align: center;">clk_dram_sys</td>
-<td style="text-align: center;">DDR</td>
-<td style="text-align: center;">X</td>
-</tr>
-<tr>
-<td style="text-align: center;">clk_dram_ref</td>
-<td style="text-align: center;">DDR</td>
-<td style="text-align: center;">X</td>
-</tr>
-</tbody>
-</table>
+<h1 id="note">Note</h1>
+<p>Make sure to set the boot mode switch to OFF.</p>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>

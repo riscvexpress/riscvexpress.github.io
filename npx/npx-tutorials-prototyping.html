@@ -191,8 +191,7 @@ Xarvis</a></p></li>
 Hello</a></p></li>
 <li><p>An RTL simulator with mixed-language support (Not
 provided)</p></li>
-<li><p>A Genesys2 FPGA board with an Olimex ARM-USB-TINY-H module (Not
-provided)</p></li>
+<li><p>A Genesys2 FPGA board connected to your computer - <a href="rvx-fpga-manual-en.html">Manual</a> (Not provided)</p></li>
 </ul>
 <h1 id="things-to-know">Things to Know</h1>
 <ul>
@@ -233,14 +232,14 @@ Processor on the Genesys2 Board</h1>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) source #(tutorial dir)/rvx_setup.sh
 cmd) cd #(platform dir)
 cmd) make genesys2
-cmd) cd imp_genesys2_YYYY-MM-DD
+cmd) cd imp_genesys2_YYYY-MM-DD // referred to as #(fpga dir)
 cmd) make imp</code></pre></div>
 <h1 id="running-an-npx-application-on-the-genesys2-board">Running an NPX
 Application on the Genesys2 Board</h1>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) source #(tutorial dir)/rvx_setup.sh
-cmd) cd #(platform dir)/imp_genesys2_YYYY-MM-DD
+cmd) cd #(fpga dir)
 cmd) make program
-cmd) make mcom
+cmd) make printf
 cmd) make test_app_npx.all</code></pre></div>
 <h1 id="navigate">Navigate</h1>
 <ul>

@@ -6,7 +6,7 @@
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <meta content="Kyuseung Han ETRI, Daejeon, South Korea" name="author"/>
-<title>RVX Tutorial: Hello</title>
+<title>RVX Manual: Understanding HDL Code Structure</title>
 <style>
     html {
       color: #1a1a1a;
@@ -172,80 +172,29 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">RVX Tutorial: Hello</h1>
+<h1 class="title">RVX Manual: Understanding HDL Code Structure</h1>
 <p class="author">Kyuseung Han<br/>
 ETRI, Daejeon, South Korea</p>
 <p class="date">v2025-07-10 or later</p>
 </header>
 <h1 id="overview">Overview</h1>
 <ul>
-<li><p>This tutorial is intended to verify the most basic functionality
-of RVX.</p></li>
+<li><p>This manual helps you understand the structure of the HDL code
+generated and used by the RVX tool.</p></li>
 </ul>
-<h1 id="prerequisite">Prerequisite</h1>
-<ul>
-<li><p><a href="https://github.com/rvx-etri/rvx-tutorials.git"><span class="uri">https://github.com/rvx-etri/rvx-tutorials.git</span></a></p></li>
-<li><p><a href="rvx-installation-manual-en.html">Installation
-Manual</a></p></li>
-<li><p>An RTL simulator with mixed-language support (Not
-provided)</p></li>
-<li><p>An FPGA board connected to your computer - <a href="rvx-fpga-manual-en.html">Manual</a> (Not provided)</p></li>
-</ul>
-<h1 id="things-to-know">Things to Know</h1>
-<ul>
-<li><p>Any part starting with <span style="background-color: lightgray">#</span> should be replaced or
-modified according to your environment.</p></li>
-<li><p>On Linux, use the <span style="background-color: lightgray">bash</span> shell for command-line
-operations.</p></li>
-</ul>
-<h1 id="installing-rvx-cloning-the-repository-included">Installing RVX
-(Cloning the Repository Included)</h1>
-<p>Install RVX by following the instructions in the installation manual,
-using the tutorial repository for cloning.</p>
-<h1 id="understating-socs">Understating SoCs</h1>
-<p>Typically, an SoC means a chip that integrates a small computer
-within itself.<br/>
-Simply put, it is a chip that runs your computer program.<br/>
-It is used in environments where a general-purpose computer cannot be
-employed because of its size and power constraints.<br/>
-To achieve these advantages, both hardware and software for SoCs are
-co-designed from the outset, focusing on the execution of a limited set
-of application programs.<br/>
-<br/>
-RVX is a CAD tool for developing both hardware and software for SoC
-design.<br/>
-Its primary purpose is to run and accelerate C programs on hardware
-operating at around 100 MHz.<br/>
-For this purpose, this tutorial demonstrates how to run the simplest
-‘Hello, World’ C program on hardware.</p>
-<h1 id="running-the-c-program-using-rtl-simulation">Running the C
-Program Using RTL Simulation</h1>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
-cmd) source ./rvx_setup.sh
-cmd) cd ./platform/tip_hello
-cmd) make clean
-cmd) make syn
-cmd) make sim_rtl
-cmd) cd sim_rtl
-cmd) make hello.all</code></pre></div>
-<h1 id="running-the-c-program-using-fpga-prototyping">Running the C
-Program Using FPGA Prototyping</h1>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
-cmd) source ./rvx_setup.sh
-cmd) cd ./platform/tip_hello
-cmd) make clean
-cmd) make syn
-cmd) make arty-100t // or the FPGA board you have
-cmd) cd imp_arty-100t_XXXX // referred to as #(fpga dir)
-cmd) make imp
-inst) Connect the FPGA board to your computer.
-cmd) make program
-cmd) make printf
-cmd) make hello.all</code></pre></div>
+<h1 id="block-hierarchy">Block Hierarchy</h1>
+<figure id="fig:block-hierarchy">
+<p><img alt="image" src="figures/block-hierarchy.png"/> <span data-label="fig:block-hierarchy" id="fig:block-hierarchy"></span></p>
+</figure>
+<h1 id="file-mapping">File Mapping</h1>
+<figure id="fig:file-mapping">
+<p><img alt="image" src="figures/file-mapping.png"/> <span data-label="fig:file-mapping" id="fig:file-mapping"></span></p>
+</figure>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
-<li><p><a href="rvx-tutorials.html">Tutorial List</a></p></li>
+<li><p><a href="rvx-feature-manual-en.html">Feature Manual
+List</a></p></li>
 </ul>
 </body>
 </html>
