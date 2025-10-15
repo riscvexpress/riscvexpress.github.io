@@ -204,34 +204,39 @@ Platform</h1>
 directory)/rvx_platform_example/test_fileio</span></p></li>
 <li><p>This directory will hereafter be referred to as <span style="background-color: lightgray">#(example dir)</span>.</p></li>
 </ul>
-<h1 id="generating-an-fpga-bitstream-of-the-example-platform">Generating
-an FPGA Bitstream of the Example Platform</h1>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
-cmd) source ./rvx_setup.sh
-cmd) cd ./platform/tip_hello
-cmd) make clean
+<h1 id="converting-input-files-to-headers">Converting Input Files to
+Headers</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(example dir)
 cmd) make syn
+cmd) ./util/fakefile
+cmd) make all</code></pre></div>
+<h1 id="generating-an-fpga-bitstream">Generating an FPGA Bitstream</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(example dir)
 cmd) make arty-100t // or the FPGA board you have
 cmd) cd imp_arty-100t_XXXX // referred to as #(fpga dir)
 cmd) make imp</code></pre></div>
 <h1 id="programming-and-validating-the-fpga-bitstream">Programming and
 Validating the FPGA Bitstream</h1>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>inst) Connect the FPGA board to your computer.
+cmd) cd #(fpga dir)
 cmd) make program
 cmd) make printf
 cmd) make hello.all</code></pre></div>
 <h1 id="running-the-example-application">Running the Example
 Application</h1>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) make test_fileio.all</code></pre></div>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
+cmd) make test_fileio.all</code></pre></div>
 <h1 id="retrieving-output-files-to-a-pc">Retrieving Output Files to a
 PC</h1>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) make dump
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
+cmd) make dump
 inst) Check the generated files in #(fpga dir)/dump</code></pre></div>
 <h1 id="applying-this-to-other-applications">Applying This to Other
 Applications</h1>
 <p>Refer to the ‘File I/O Porting’ section in the manual below:<br/>
 <a href="rvx-sw-manual-en-stdlib.html">SW - Standard Library
-Porting</a>.</p>
+Porting</a>.<br/>
+Make sure to uncomment ‘USE_FAKEFILE=true’ in <span style="background-color: lightgray">#(app dir)/rvx_each.mh</span>.</p>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
