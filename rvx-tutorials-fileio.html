@@ -188,6 +188,7 @@ SoCs.</p></li>
 Examples</a></p></li>
 <li><p><a href="rvx-sw-manual-en-stdlib.html">SW - Standard Library
 Porting</a></p></li>
+<li><p>An RTL simulator with mixed-language support</p></li>
 <li><p>An FPGA board connected to your computer - <a href="rvx-fpga-manual-en.html">Manual</a></p></li>
 </ul>
 <h1 id="things-to-know">Things to Know</h1>
@@ -196,6 +197,8 @@ Porting</a></p></li>
 modified according to your environment.</p></li>
 <li><p>On Linux, use the <span style="background-color: lightgray">bash</span> shell for command-line
 operations.</p></li>
+<li><p>On Windows, use the <span style="background-color: lightgray">Windows Power Shell</span> for
+command-line operations.</p></li>
 </ul>
 <h1 id="location-of-an-example-platform">Location of an Example
 Platform</h1>
@@ -210,6 +213,13 @@ Headers</h1>
 cmd) make syn
 cmd) ./util/fakefile
 cmd) make all</code></pre></div>
+<h1 id="running-an-rtl-simulation-of-a-simple-application">Running an
+RTL Simulation of a Simple Application</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(example dir)
+cmd) make sim_rtl
+cmd) cd sim_rtl
+cmd) make test_fileio_sim
+inst) Check the generated files in ./dump</code></pre></div>
 <h1 id="generating-an-fpga-bitstream">Generating an FPGA Bitstream</h1>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(example dir)
 cmd) make arty-100t // or the FPGA board you have
@@ -231,6 +241,9 @@ PC</h1>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
 cmd) make dump
 inst) Check the generated files in #(fpga dir)/dump</code></pre></div>
+<h1 id="working-with-csv-files">Working with CSV files</h1>
+<p>Try running the ‘test_matrix_file’ application on both RTL simulation
+and FPGA prototype.</p>
 <h1 id="applying-this-to-other-applications">Applying This to Other
 Applications</h1>
 <p>Refer to the ‘File I/O Porting’ section in the manual below:<br/>

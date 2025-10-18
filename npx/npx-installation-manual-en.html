@@ -205,8 +205,12 @@ transfer agreement.</p></li>
 modified according to your environment.</p></li>
 <li><p>On Linux, use the <span style="background-color: lightgray">bash</span> shell for command-line
 operations.</p></li>
+<li><p>On Windows, use the <span style="background-color: lightgray">Windows Power Shell</span> for
+command-line operations.</p></li>
 <li><p><a href="../skills-for-linux_en.html">Skills for
 Linux</a></p></li>
+<li><p><a href="../skills-for-windows_en.html">Skills for
+Windows</a></p></li>
 </ul>
 <h1 id="requirements">Requirements</h1>
 <ul>
@@ -222,16 +226,19 @@ Xcelium/NCSim/Incisive</p></li>
 efficiently.</p></li>
 <li><p>The actual performance needed depends on the specific license
 tools being used.</p></li>
-<li><p>Using a GPU is recommended for learning.</p></li>
+<li><p>Note: the RVX engine itself does not require a high-performance
+machine.</p></li>
 </ul></li>
 <li><p>Recommended OS Version</p>
 <ul>
-<li><p>Must be compatible with license tools, not just NPX.</p></li>
-<li><p>NPX-compatible OS</p>
+<li><p>Must be compatible with license tools, not just RVX.</p></li>
+<li><p>RVX-compatible OS</p>
 <ul>
 <li><p>CentOS 7 / 8</p></li>
 <li><p>Redhat 8 / 9</p></li>
 <li><p>Ubuntu 18 / 20 / 22 (recommended) / 24</p></li>
+<li><p>Windows 10 Home / Enterprise</p></li>
+<li><p>Windows 11 Home</p></li>
 </ul></li>
 </ul></li>
 <li><p>For Linux systems, the locale setting must be <span style="background-color: lightgray">en_US.UTF-8</span>.</p>
@@ -247,12 +254,26 @@ the beginning).</p></li>
 <li><p>User Account</p>
 <ul>
 <li><p>Linux: Requires <span style="background-color: lightgray">sudo</span> privileges</p></li>
+<li><p>Windows: Requires administrator rights</p></li>
+</ul></li>
+<li><p>RVX Design Git Repository</p>
+<ul>
+<li><p>Build your own design repository (See <a href="rvx-repository-manual-en.html">Repository Setup
+Manual</a>)</p></li>
+<li><p>Or, use the repository provided by the instructor for the
+lecture</p></li>
+</ul></li>
+<li><p>RVX Server Information (Windows Only) - <a href="../rvx-web-license.html">License</a></p>
+<ul>
+<li><p>IP address, SSH port, account, password</p></li>
+<li><p>Provided by the instructor or project supervisor</p></li>
+<li><p>Account must not be shared between multiple computers.</p></li>
 </ul></li>
 </ul>
 <h1 id="step-1---install-hw-frameworks">Step 1 - Install HW
 Frameworks</h1>
-<p>To install RVX in a Linux environment,<br/>
-follow the ‘RVX Tutorial: Hello’ using the NPX tutorial repository.</p>
+<p>To install RVX, follow the ‘RVX Tutorial: Hello’ using the NPX
+tutorial repository.</p>
 <ul>
 <li><p><a href="../rvx-tutorials-hello.html">RVX Tutorial:
 Hello</a></p></li>
@@ -263,25 +284,52 @@ Frameworks</h1>
 <h2 id="cloning-the-xarvis-repository">Cloning the Xarvis
 Repository</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) git clone --recursive https://github.com/rvx-etri/npx-xarvis.git</code></pre></div>
-<h2 id="python3-configuration-for-npx">Python3 Configuration for
-NPX</h2>
+<h2 id="python3-configuration-for-rvx">- Python3 Configuration for
+RVX</h2>
+<h2 id="objective">- Objective</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>Set the python3 command used in RVX.</code></pre></div>
+<h3 id="check">Check</h3>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
+cmd) make check_python
+cmd) make check_pip</code></pre></div>
+<h3 id="instruction-linux">Instruction @ Linux</h3>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
 cmd) make config_python
 inst) Verify that ‘rvx_python_config.mh’ is generated.
 inst) Open ‘rvx_python_config.mh’ in a text editor
 &gt; If no path is listed, manually enter the path to the executable.
 &gt; If more than one path is listed, keep only the one you intend to use and delete the others.</code></pre></div>
+<h3 id="instruction-windows">Instruction @ Windows</h3>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
+cmd) make config_python
+inst) Verify that ‘rvx_python_config.mh’ and ‘python3.bat’ are generated.
+inst) Do NOT modify ‘rvx_python_config.mh’
+inst) Open ‘python3.bat’ in a text editor
+&gt; If no path is listed, manually enter the path to the executable.
+&gt; If more than one path is listed, keep only the one you intend to use and delete the others.
+&gt; Do NOT remove ‘%*’ at the end of the line.
+&gt; If the directory name contains spaces, enclose it in double quotation marks as shown below.
+ex) C:\Users\“Kyuseung Han”\... %*</code></pre></div>
 <h2 id="installing-snntorch-and-python-packages">Installing snnTorch and
 Python Packages</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
 cmd) make preinstall
 cmd) make install</code></pre></div>
-<h2 id="setting-up-bash-environment">Setting Up Bash Environment</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) make config
+<h1 id="setting-up-bash-environment">Setting Up Bash Environment</h1>
+<h2 id="instruction-linux-1">- Instruction @ Linux</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
+cmd) make config
 &gt; Check that the file ./rvx_setup.sh has been created.
 inst) Add the line source #(cloned directory)/rvx_setup.sh to your .bashrc.
 &gt; Be sure to replace #(cloned directory) with the absolute path before adding it.
-inst) To apply the changes to .bashrc, close and reopen the terminal.</code></pre></div>
+inst) To apply the changes to .bashrc, close and reopen the terminal.
+&gt; Now, #(cloned directory) is registered as ${XARVIS_HOME}.</code></pre></div>
+<h2 id="instruction-windows-1">- Instruction @ Windows</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
+cmd) make config
+inst) This command add the environment variable
+inst) To apply the changes, close and reopen the terminal.
+&gt; Now, #(cloned directory) is registered as ${XARVIS_HOME}.</code></pre></div>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>

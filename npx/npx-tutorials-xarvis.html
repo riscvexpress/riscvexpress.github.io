@@ -194,31 +194,64 @@ Manual</a></p></li>
 modified according to your environment.</p></li>
 <li><p>On Linux, use the <span style="background-color: lightgray">bash</span> shell for command-line
 operations.</p></li>
+<li><p>On Windows, use the <span style="background-color: lightgray">Windows Power Shell</span> for
+command-line operations.</p></li>
 </ul>
-<h1 id="install">Install</h1>
-<h2 id="cloning-the-repository">Cloning the Repository</h2>
+<h1 id="git-make-and-python3">Git, Make, and Python3</h1>
+<p>If you install Xarvis before RVX,<br/>
+please follow the manual below to install Git, make, and python3.<br/>
+<a href="../rvx-installation-manual-en-step1.html">Install - Git, make,
+and python3</a></p>
+<h1 id="git-repository-cloning">Git Repository Cloning</h1>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) git clone --recursive https://github.com/rvx-etri/npx-xarvis.git</code></pre></div>
-<h1 id="python3-configuration-for-npx">Python3 Configuration for
-NPX</h1>
+<h1 id="python3-configuration-for-rvx">Python3 Configuration for
+RVX</h1>
+<h2 id="objective">- Objective</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>Set the python3 command used in RVX.</code></pre></div>
+<h2 id="check">- Check</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
+cmd) make check_python
+cmd) make check_pip</code></pre></div>
+<h2 id="instruction-linux">- Instruction @ Linux</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
 cmd) make config_python
 inst) Verify that ‘rvx_python_config.mh’ is generated.
 inst) Open ‘rvx_python_config.mh’ in a text editor
 &gt; If no path is listed, manually enter the path to the executable.
 &gt; If more than one path is listed, keep only the one you intend to use and delete the others.</code></pre></div>
-<h2 id="installing-snntorch-and-python-packages">Installing snnTorch and
-Python Packages</h2>
+<h2 id="instruction-windows">- Instruction @ Windows</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
+cmd) make config_python
+inst) Verify that ‘rvx_python_config.mh’ and ‘python3.bat’ are generated.
+inst) Do NOT modify ‘rvx_python_config.mh’
+inst) Open ‘python3.bat’ in a text editor
+&gt; If no path is listed, manually enter the path to the executable.
+&gt; If more than one path is listed, keep only the one you intend to use and delete the others.
+&gt; Do NOT remove ‘%*’ at the end of the line.
+&gt; If the directory name contains spaces, enclose it in double quotation marks as shown below.
+ex) C:\Users\“Kyuseung Han”\... %*</code></pre></div>
+<h1 id="installing-snntorch-and-python-packages">Installing snnTorch and
+Python Packages</h1>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
 cmd) make preinstall
 cmd) make install</code></pre></div>
-<h2 id="setting-up-bash-environment">Setting Up Bash Environment</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) make config
+<h1 id="setting-up-bash-environment">Setting Up Bash Environment</h1>
+<h2 id="instruction-linux-1">- Instruction @ Linux</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
+cmd) make config
 &gt; Check that the file ./rvx_setup.sh has been created.
 inst) Add the line source #(cloned directory)/rvx_setup.sh to your .bashrc.
 &gt; Be sure to replace #(cloned directory) with the absolute path before adding it.
-inst) To apply the changes to .bashrc, close and reopen the terminal.</code></pre></div>
+inst) To apply the changes to .bashrc, close and reopen the terminal.
+&gt; Now, #(cloned directory) is registered as ${XARVIS_HOME}.</code></pre></div>
+<h2 id="instruction-windows-1">- Instruction @ Windows</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)
+cmd) make config
+inst) This command add the environment variable
+inst) To apply the changes, close and reopen the terminal.
+&gt; Now, #(cloned directory) is registered as ${XARVIS_HOME}.</code></pre></div>
 <h1 id="run">Run</h1>
-<h2 id="checking-application-files">Checking Application Files</h2>
+<h2 id="checking-application-files">- Checking Application Files</h2>
 <p>Xarvis uses text-based configuration files to define preprocessing
 steps, training parameters, and network structures.<br/>
 These files are located in <span style="background-color: lightgray">#(cloned
@@ -228,7 +261,8 @@ An example configuration file is <span style="background-color: lightgray">check
 Application</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory)/npx_trainer
 cmd) make check_app</code></pre></div>
-<h2 id="checking-the-trained-results">Checking the Trained Results</h2>
+<h2 id="checking-the-trained-results">- Checking the Trained
+Results</h2>
 <p>The training results will be generated in <span style="background-color: lightgray">#(cloned
 directory)/npx_trainer/result</span>.</p>
 <h1 id="navigate">Navigate</h1>
