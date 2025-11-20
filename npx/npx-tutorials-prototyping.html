@@ -212,14 +212,17 @@ In this tutorial, we’ll use <span style="background-color: lightgray">#(tutori
 dir)/platform/starc_neugemm</span> as the platform directory, referred
 to as <span style="background-color: lightgray">#(platform
 dir)</span>.</p>
-<h1 id="synthesizing-the-processor">Synthesizing the Processor</h1>
+<h1 id="synchronizing-with-xarvis">Synchronizing with Xarvis</h1>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) source #(tutorial dir)/rvx_setup.sh
-cmd) cd #(platform dir)
+cmd) source #(xarvis dir)/rvx_setup.sh
+cmd) cd #(platform dir)/util/npx
+cmd) make setup</code></pre></div>
+<h1 id="synthesizing-the-processor">Synthesizing the Processor</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(platform dir)
 cmd) make syn</code></pre></div>
 <h1 id="training-an-example-application">Training an Example
 Application</h1>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) source #(xarvis dir)/rvx_setup.sh
-cmd) cd #(platform dir)/util/npx
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(platform dir)/util/npx
 cmd) make mnist_app</code></pre></div>
 <h1 id="running-an-npx-application-via-rtl-simulation">Running an NPX
 Application via RTL Simulation</h1>
@@ -227,7 +230,7 @@ Application via RTL Simulation</h1>
 cmd) cd #(platform dir)
 cmd) make sim_rtl
 cmd) cd sim_rtl
-cmd) make test_app_npx.all</code></pre></div>
+cmd) make test_npx_app.all</code></pre></div>
 <h1 id="prototyping-the-processor-on-the-genesys2-board">Prototyping the
 Processor on the Genesys2 Board</h1>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) source #(tutorial dir)/rvx_setup.sh
@@ -241,7 +244,7 @@ Application on the Genesys2 Board</h1>
 cmd) cd #(fpga dir)
 cmd) make program
 cmd) make printf
-cmd) make test_app_npx.all</code></pre></div>
+cmd) make test_npx_app.all</code></pre></div>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>
