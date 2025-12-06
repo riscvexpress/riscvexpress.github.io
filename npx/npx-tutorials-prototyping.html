@@ -176,7 +176,7 @@
 From Spike-Based Learning to FPGA Prototyping</h1>
 <p class="author">Hyunguk Jang and Kyuseung Han<br/>
 ETRI, Daejeon, South Korea</p>
-<p class="date">v2025-07-15 or later</p>
+<p class="date">v2025-12-06 or later</p>
 </header>
 <h1 id="overview">Overview</h1>
 <p>This tutorial offers step-by-step guidance covering the process from
@@ -190,7 +190,7 @@ Xarvis</a></p></li>
 <li><p><a href="../rvx-tutorials-hello.html">RVX Tutorial -
 Hello</a></p></li>
 <li><p>An RTL simulator with mixed-language support</p></li>
-<li><p>A Genesys2 FPGA board connected to your computer - <a href="rvx-fpga-manual-en.html">Manual</a></p></li>
+<li><p>A Genesys2 FPGA board connected to your computer - <a href="../rvx-fpga-manual-en.html">Manual</a></p></li>
 </ul>
 <h1 id="things-to-know">Things to Know</h1>
 <ul>
@@ -206,7 +206,8 @@ and RVX Environment</h1>
 <p>Follow the two tutorials in the Prerequisites to install both the
 Xarvis and RVX.<br/>
 The directories cloned from <span style="background-color: lightgray">npx-xarvis.git</span> and <span style="background-color: lightgray">npx-tutorials.git</span> are called
-<span style="background-color: lightgray">#(xarvis dir)</span> and <span style="background-color: lightgray">#(tutorial dir)</span>,
+<span style="background-color: lightgray">${XARVIS_HOME}</span> and
+<span style="background-color: lightgray">#(tutorial dir)</span>,
 respectively.<br/>
 In this tutorial, we’ll use <span style="background-color: lightgray">#(tutorial
 dir)/platform/starc_neugemm</span> as the platform directory, referred
@@ -214,7 +215,7 @@ to as <span style="background-color: lightgray">#(platform
 dir)</span>.</p>
 <h1 id="synchronizing-with-xarvis">Synchronizing with Xarvis</h1>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) source #(tutorial dir)/rvx_setup.sh
-cmd) source #(xarvis dir)/rvx_setup.sh
+cmd) source ${XARVIS_HOME}/rvx_setup.sh
 cmd) cd #(platform dir)/util/npx
 cmd) make setup</code></pre></div>
 <h1 id="synthesizing-the-processor">Synthesizing the Processor</h1>
