@@ -179,9 +179,14 @@ Lee<br/>
 ETRI, Daejeon, South Korea</p>
 <p class="date">v2025-07-10 or later</p>
 </header>
-<h1 id="olimex-driver-windows-only">Olimex Driver (Windows Only)</h1>
+<h1 id="overview">Overview</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>This is a setup for connecting and using the FPGA board with your computer.
+This is independent of the Vivado installation.</code></pre></div>
+<h1 id="olimex-driver-optional">Olimex Driver (Optional)</h1>
+<p>Depending on your FPGA board (<a href="rvx-fpga-manual-en.html">FPGA
+Manual</a>).</p>
 <h2 id="instruction-windows">- Instruction @ Windows</h2>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>inst) Connect the Olimex ARM-USB-TINY-H cable to your computer.
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>inst) Connect the OLIMEX-JTAG cable to your computer.
 inst) Run the zadig program
 &gt; Run ‘zadig-2.5.exe’ from the ${RVX_MINI_HOME}\windows_binary directory.
 &gt; Or, Download it from ‘https://zadig.akeo.ie’ and run it.
@@ -190,14 +195,34 @@ inst) In the zadig program,
 &gt; Click [Install Driver].
 &gt; Select [Olimex OpenOCD JTAG ARM-USB-TINY-H (Interface 1)].
 &gt; Click [Install Driver].</code></pre></div>
-<h1 id="telnet-windows-only">Telnet (Windows Only)</h1>
+<h2 id="instruction-linux">- Instruction @ Linux</h2>
+<p>No additional installation is required.</p>
+<h1 id="rvx-eb-driver-optional">RVX-EB Driver (Optional)</h1>
+<p>Depending on your FPGA board (<a href="rvx-fpga-manual-en.html">FPGA
+Manual</a>).</p>
 <h2 id="instruction-windows-1">- Instruction @ Windows</h2>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>inst) Connect the RVX-EB cable to your computer.
+inst) Run the zadig program
+&gt; Run ‘zadig-2.5.exe’ from the ${RVX_MINI_HOME}\windows_binary directory.
+&gt; Or, Download it from ‘https://zadig.akeo.ie’ and run it.
+inst) In the zadig program,
+&gt; Click [Options] in the menu bar.
+&gt; Click [List All Devices] by enable it.
+&gt; Select [Quad RS232-HS (Interface 0)].
+&gt; Select [WinUSB (XXXXXX)].
+&gt; Click [Install Driver] or [Replace Driver].</code></pre></div>
+<h2 id="instruction-linux-1">- Instruction @ Linux</h2>
+<p>No additional installation is required.</p>
+<h1 id="telnet-mandatory">Telnet (Mandatory)</h1>
+<h2 id="instruction-windows-2">- Instruction @ Windows</h2>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>inst) Open [Control Panel]
 &gt; e.g., type ‘control’ into the Windows Search bar.
 inst) Click [Programs]
 inst) Click [Turn Windows features on or off]
 inst) Enable [Telnet Client]
 inst) Confirm</code></pre></div>
+<h2 id="instruction-linux-2">- Instruction @ Linux</h2>
+<p>No additional installation is required.</p>
 <h1 id="navigate">Navigate</h1>
 <ul>
 <li><p><a href="index.html">Home</a></p></li>

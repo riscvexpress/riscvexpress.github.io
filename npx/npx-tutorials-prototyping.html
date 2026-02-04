@@ -227,6 +227,7 @@ Application</h1>
 cmd) make mnist_app</code></pre></div>
 <h1 id="running-an-npx-application-via-rtl-simulation">Running an NPX
 Application via RTL Simulation</h1>
+<p>Not recommended because it takes a long time.</p>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) source #(tutorial dir)/rvx_setup.sh
 cmd) cd #(platform dir)
 cmd) make sim_rtl
@@ -236,7 +237,7 @@ cmd) make test_npx_app.all</code></pre></div>
 Processor on the Genesys2 Board</h1>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) source #(tutorial dir)/rvx_setup.sh
 cmd) cd #(platform dir)
-cmd) make genesys2
+cmd) make genesys2 // replace with your board name
 cmd) cd imp_genesys2_YYYY-MM-DD // referred to as #(fpga dir)
 cmd) make imp</code></pre></div>
 <h1 id="running-an-npx-application-on-the-genesys2-board">Running an NPX

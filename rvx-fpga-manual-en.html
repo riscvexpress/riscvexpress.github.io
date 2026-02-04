@@ -7,413 +7,413 @@
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
 <meta content="Kyuseung Han, Sukho Lee, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
 <title>RVX FPGA Setup Manual</title>
-<style>
-
-    html {
-
-      color: #1a1a1a;
-
-      background-color: #fdfdfd;
-
-    }
-
-    body {
-
-      margin: 0 auto;
-
-      max-width: 36em;
-
-      padding-left: 50px;
-
-      padding-right: 50px;
-
-      padding-top: 50px;
-
-      padding-bottom: 50px;
-
-      hyphens: auto;
-
-      overflow-wrap: break-word;
-
-      text-rendering: optimizeLegibility;
-
-      font-kerning: normal;
-
-    }
-
-    @media (max-width: 600px) {
-
-      body {
-
-        font-size: 0.9em;
-
-        padding: 12px;
-
-      }
-
-      h1 {
-
-        font-size: 1.8em;
-
-      }
-
-    }
-
-    @media print {
-
-      html {
-
-        background-color: white;
-
-      }
-
-      body {
-
-        background-color: transparent;
-
-        color: black;
-
-        font-size: 12pt;
-
-      }
-
-      p, h2, h3 {
-
-        orphans: 3;
-
-        widows: 3;
-
-      }
-
-      h2, h3, h4 {
-
-        page-break-after: avoid;
-
-      }
-
-    }
-
-    p {
-
-      margin: 1em 0;
-
-    }
-
-    a {
-
-      color: #1a1a1a;
-
-    }
-
-    a:visited {
-
-      color: #1a1a1a;
-
-    }
-
-    img {
-
-      max-width: 100%;
-
-    }
-
-    svg {
-
-      height: auto;
-
-      max-width: 100%;
-
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-
-      margin-top: 1.4em;
-
-    }
-
-    h5, h6 {
-
-      font-size: 1em;
-
-      font-style: italic;
-
-    }
-
-    h6 {
-
-      font-weight: normal;
-
-    }
-
-    ol, ul {
-
-      padding-left: 1.7em;
-
-      margin-top: 1em;
-
-    }
-
-    li > ol, li > ul {
-
-      margin-top: 0;
-
-    }
-
-    blockquote {
-
-      margin: 1em 0 1em 1.7em;
-
-      padding-left: 1em;
-
-      border-left: 2px solid #e6e6e6;
-
-      color: #606060;
-
-    }
-
-    code {
-
-      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
-
-      font-size: 85%;
-
-      margin: 0;
-
-      hyphens: manual;
-
-    }
-
-    pre {
-
-      margin: 1em 0;
-
-      overflow: auto;
-
-    }
-
-    pre code {
-
-      padding: 0;
-
-      overflow: visible;
-
-      overflow-wrap: normal;
-
-    }
-
-    .sourceCode {
-
-     background-color: transparent;
-
-     overflow: visible;
-
-    }
-
-    hr {
-
-      border: none;
-
-      border-top: 1px solid #1a1a1a;
-
-      height: 1px;
-
-      margin: 1em 0;
-
-    }
-
-    table {
-
-      margin: 1em 0;
-
-      border-collapse: collapse;
-
-      width: 100%;
-
-      overflow-x: auto;
-
-      display: block;
-
-      font-variant-numeric: lining-nums tabular-nums;
-
-    }
-
-    table caption {
-
-      margin-bottom: 0.75em;
-
-    }
-
-    tbody {
-
-      margin-top: 0.5em;
-
-      border-top: 1px solid #1a1a1a;
-
-      border-bottom: 1px solid #1a1a1a;
-
-    }
-
-    th {
-
-      border-top: 1px solid #1a1a1a;
-
-      padding: 0.25em 0.5em 0.25em 0.5em;
-
-    }
-
-    td {
-
-      padding: 0.125em 0.5em 0.25em 0.5em;
-
-    }
-
-    header {
-
-      margin-bottom: 4em;
-
-      text-align: center;
-
-    }
-
-    #TOC li {
-
-      list-style: none;
-
-    }
-
-    #TOC ul {
-
-      padding-left: 1.3em;
-
-    }
-
-    #TOC > ul {
-
-      padding-left: 0;
-
-    }
-
-    #TOC a:not(:hover) {
-
-      text-decoration: none;
-
-    }
-
-    code{white-space: pre-wrap;}
-
-    span.smallcaps{font-variant: small-caps;}
-
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-
-    div.column{flex: auto; overflow-x: auto;}
-
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-
-    /* The extra [class] is a hack that increases specificity enough to
-
-       override a similar rule in reveal.js */
-
-    ul.task-list[class]{list-style: none;}
-
-    ul.task-list li input[type="checkbox"] {
-
-      font-size: inherit;
-
-      width: 0.8em;
-
-      margin: 0 0.8em 0.2em -1.6em;
-
-      vertical-align: middle;
-
-    }
-
+<style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
   </style>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
 <body>
 <header id="title-block-header">
 <h1 class="title">RVX FPGA Setup Manual</h1>
-<p class="author">Kyuseung Han, Sukho Lee, Jae-Jin Lee<br/>
-
+<p class="author">Kyuseung Han, Sukho Lee, Jae-Jin Lee<br/>
 ETRI, Daejeon, South Korea</p>
 <p class="date">v2025-12-06 or later</p>
 </header>
 <h1 id="sec:overview">Overview</h1>
 <ul>
-<li><p>This manual provides information about the supported FPGA boards
-
-and explains how to connect them to your computer for use with
-
+<li><p>This manual provides information about the supported FPGA boards
+and explains how to connect them to your computer for use with
 RVX.</p></li>
+<li><p>FPGA prototypes generated by RVX require additional hardware to
+connect to your computer, which varies by board.</p></li>
+<li><p>The additional hardware is either <a href="https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/">Olimex
+ARM-USB-TINY-H</a> (OLIMEX-JTAG) or RVX Expansion
+Bridge (RVX-EB).</p></li>
 </ul>
-<h1 id="supported-commercial-fpga-boards">Supported Commercial FPGA
-
+<h1 id="summary-of-supported-fpga-boards">Summary of Supported FPGA
 boards</h1>
+<h2 id="via-olimex-jtag">Via OLIMEX-JTAG</h2>
 <ul>
-<li><p><a href="https://digilent.com/shop/arty-a7-100t-artix-7-fpga-development-board/">Digilent
-
-Arty A7-100T</a>, referred to as <span style="background-color: lightgray">arty-100t</span> in the RVX.</p>
+<li><p><a href="https://digilent.com/shop/arty-a7-100t-artix-7-fpga-development-board/">Digilent
+Arty A7-100T</a>, referred to as <span style="background-color: lightgray">arty-100t</span> in the RVX</p>
 <ul>
-<li><p><a href="https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/">Olimex
-
-ARM-USB-TINY-H</a> module is required.</p></li>
 <li><p>Vivado freely supports this board.</p></li>
 <li><p>Vivado 2022.1 or later is required.</p></li>
 </ul></li>
-<li><p><a href="https://digilent.com/reference/programmable-logic/genesys-2/">Digilent
-
-Genesys2</a>, referred to as <span style="background-color: lightgray">genesys2</span> in the RVX.</p>
+<li><p><a href="https://digilent.com/reference/programmable-logic/genesys-2/">Digilent
+Genesys2</a>, referred to as <span style="background-color: lightgray">genesys2</span> in the RVX</p>
 <ul>
-<li><p><a href="https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/">Olimex
-
-ARM-USB-TINY-H</a> module is required.</p></li>
 <li><p>A valid license for Vivado is required.</p></li>
-<li><p>A one-year temporary Vivado license is included with the board
-
+<li><p>A one-year temporary Vivado license is included with the board
 purchase.</p></li>
 <li><p>Vivado 2022.1 or later is required.</p></li>
 </ul></li>
 </ul>
-<h1 id="connection-for-arty-100t">Connection for <span style="background-color: lightgray">arty-100t</span></h1>
+<h2 id="via-rvx-eb">Via RVX-EB</h2>
+<ul>
+<li><p><a href="https://digilent.com/reference/programmable-logic/genesys-2/">Digilent
+Genesys2</a>, referred to as <span style="background-color: lightgray">genesys2-eb</span> in the RVX</p>
+<ul>
+<li><p>A valid license for Vivado is required.</p></li>
+<li><p>A one-year temporary Vivado license is included with the board
+purchase.</p></li>
+<li><p>Vivado 2022.1 or later is required.</p></li>
+</ul></li>
+<li><p>Any AMD FPGA board equipped with an FMC connector</p>
+<ul>
+<li><p>An FPGA registration process is required (<span style="background-color: lightgray">imp_class_info</span>).</p></li>
+<li><p>The Vivado license depends on the FPGA chip you are
+using.</p></li>
+</ul></li>
+</ul>
+<h1 id="arty-a7-100t-olimex-jtag">Arty A7-100T + OLIMEX-JTAG</h1>
+<h2 id="information">Information</h2>
+<ul>
+<li><p>This board is referred to as <span style="background-color: lightgray">arty-100t</span> in the RVX</p></li>
+<li><p><a class="uri" href="https://digilent.com/shop/arty-a7-100t-artix-7-fpga-development-board/">https://digilent.com/shop/arty-a7-100t-artix-7-fpga-development-board/</a></p></li>
+<li><p><a class="uri" href="https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/">https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/</a></p></li>
+<li><p>Vivado freely supports this board.</p></li>
+<li><p>Vivado 2022.1 or later is required.</p></li>
+<li><p><a href="rvx-installation-manual-en-step3.html">Installation for
+Connecting FPGA Boards</a></p></li>
+</ul>
+<h2 id="connection-to-your-computer">Connection to your computer</h2>
 <figure>
 <img src="figures/arty-100t.png"/>
 </figure>
 <ul>
-<li><p>Micro-B USB port should be connected to your computer for FPGA
-
+<li><p>Micro-B USB port should be connected to your computer for FPGA
 programming and UART communication.</p></li>
-<li><p>PMOD port should be connected to your computer for RVX JTAG
-
-communication via the Olimex module (See PMOD-to-Olimex
-
+<li><p>PMOD port should be connected to your computer for RVX JTAG
+communication via the Olimex module (See PMOD-to-Olimex
 section).</p></li>
-<li><p>Make sure all the sliding switches are set to the down
-
+<li><p>Make sure all the sliding switches are set to the down
 position.</p></li>
 </ul>
-<h1 id="connection-for-genesys2">Connection for <span style="background-color: lightgray">genesys2</span></h1>
+<h1 id="genesys2-olimex-jtag">Genesys2 + OLIMEX-JTAG</h1>
+<h2 id="information-1">Information</h2>
+<ul>
+<li><p>This board is referred to as <span style="background-color: lightgray">genesys2</span> in the RVX</p></li>
+<li><p><a class="uri" href="https://digilent.com/reference/programmable-logic/genesys-2/">https://digilent.com/reference/programmable-logic/genesys-2/</a></p></li>
+<li><p><a class="uri" href="https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/">https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/</a></p></li>
+<li><p>A valid license for Vivado is required.</p></li>
+<li><p>A one-year temporary Vivado license is included with the board
+purchase.</p></li>
+<li><p>Vivado 2022.1 or later is required.</p></li>
+<li><p><a href="rvx-installation-manual-en-step3.html">Installation for
+Connecting FPGA Boards</a></p></li>
+</ul>
+<h2 id="connection-to-your-computer-1">Connection to your computer</h2>
 <figure>
 <img src="figures/genesys2.png"/>
 </figure>
 <ul>
-<li><p>Micro-B USB port should be connected to your computer for FPGA
-
+<li><p>Micro-B USB port should be connected to your computer for FPGA
 programming.</p></li>
-<li><p>Another Micro-B USB port should be connected to your computer for
-
+<li><p>Another Micro-B USB port should be connected to your computer for
 UART communication.</p></li>
-<li><p>PMOD port should be connected to your computer for RVX JTAG
-
-communication via the Olimex module (See PMOD-to-Olimex
-
+<li><p>PMOD port should be connected to your computer for RVX JTAG
+communication via the Olimex module (See PMOD-to-Olimex
 section).</p></li>
-<li><p>Make sure all the sliding switches are set to the down
-
+<li><p>Make sure all the sliding switches are set to the down
 position.</p></li>
 </ul>
-<h1 id="sec:pmod-to-olimex">PMOD-to-Olimex Signal Mapping</h1>
-<p>Connect the five labeled signals using wires according to the mapping
-
+<h1 id="genesys2-rvx-eb">Genesys2 + RVX-EB</h1>
+<h2 id="information-2">Information</h2>
+<ul>
+<li><p>This expanded board is referred to as <span style="background-color: lightgray">genesys2-eb</span> in the
+RVX</p></li>
+<li><p><a href="https://digilent.com/reference/programmable-logic/genesys-2/">https://digilent.com/reference/programmable-logic/genesys-2/</a></p></li>
+<li><p>A valid license for Vivado is required.</p></li>
+<li><p>A one-year temporary Vivado license is included with the board
+purchase.</p></li>
+<li><p>Vivado 2022.1 or later is required.</p></li>
+<li><p><a href="rvx-installation-manual-en-step3.html">Installation for
+Connecting FPGA Boards</a></p></li>
+</ul>
+<h2 id="connection-to-your-computer-2">Connection to your computer</h2>
+<figure>
+<img src="figures/genesys2-eb.png"/>
+</figure>
+<ul>
+<li><p>Micro-B USB port should be connected to your computer for FPGA
+programming.</p></li>
+<li><p>USB-C port should be connected to your computer for RVX
+functionality.</p></li>
+<li><p>Make sure all the sliding switches are set to the down
+position.</p></li>
+</ul>
+<h1 id="miscellaneous">Miscellaneous</h1>
+<h2 id="rvx-eb">RVX-EB</h2>
+<h3 id="manufacturing-order">Manufacturing Order</h3>
+<ul>
+<li><p>It is not an off-the-shelf product and is available by custom
+order only.</p></li>
+</ul>
+<h3 id="fmc-signal-mapping-for-a-pimmap-of-fpga">FMC Signal Mapping for
+a Pimmap of FPGA</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Signal</th>
+<th style="text-align: center;">FMC Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">pjtag_rtdo</td>
+<td style="text-align: center;">LA_30P</td>
+</tr>
+<tr>
+<td style="text-align: center;">pjtag_rtrstnn</td>
+<td style="text-align: center;">LA_24N</td>
+</tr>
+<tr>
+<td style="text-align: center;">pjtag_rtck</td>
+<td style="text-align: center;">LA_30N</td>
+</tr>
+<tr>
+<td style="text-align: center;">pjtag_rtdi</td>
+<td style="text-align: center;">LA_28P</td>
+</tr>
+<tr>
+<td style="text-align: center;">pjtag_rtms</td>
+<td style="text-align: center;">LA_28N</td>
+</tr>
+<tr>
+<td style="text-align: center;">printf_tx</td>
+<td style="text-align: center;">LA_32N</td>
+</tr>
+<tr>
+<td style="text-align: center;">printf_rx</td>
+<td style="text-align: center;">LA_32P</td>
+</tr>
+<tr>
+<td style="text-align: center;">PMOD1_1</td>
+<td style="text-align: center;">LA11_N</td>
+</tr>
+<tr>
+<td style="text-align: center;">PMOD1_2</td>
+<td style="text-align: center;">LA11_P</td>
+</tr>
+<tr>
+<td style="text-align: center;">PMOD1_3</td>
+<td style="text-align: center;">LA07_N</td>
+</tr>
+<tr>
+<td style="text-align: center;">PMOD1_4</td>
+<td style="text-align: center;">LA07_P</td>
+</tr>
+<tr>
+<td style="text-align: center;">PMOD1_7</td>
+<td style="text-align: center;">LA04_N</td>
+</tr>
+<tr>
+<td style="text-align: center;">PMOD1_8</td>
+<td style="text-align: center;">LA04_P</td>
+</tr>
+<tr>
+<td style="text-align: center;">PMOD1_9</td>
+<td style="text-align: center;">LA02_N</td>
+</tr>
+<tr>
+<td style="text-align: center;">PMOD1_10</td>
+<td style="text-align: center;">LA02_P</td>
+</tr>
+<tr>
+<td style="text-align: center;">PMOD2_1</td>
+<td style="text-align: center;">LA25_N</td>
+</tr>
+<tr>
+<td style="text-align: center;">PMOD2_2</td>
+<td style="text-align: center;">LA25_P</td>
+</tr>
+<tr>
+<td style="text-align: center;">PMOD2_3</td>
+<td style="text-align: center;">LA22_N</td>
+</tr>
+<tr>
+<td style="text-align: center;">PMOD2_4</td>
+<td style="text-align: center;">LA22_P</td>
+</tr>
+<tr>
+<td style="text-align: center;">PMOD2_7</td>
+<td style="text-align: center;">LA20_N</td>
+</tr>
+<tr>
+<td style="text-align: center;">PMOD2_8</td>
+<td style="text-align: center;">LA20_P</td>
+</tr>
+<tr>
+<td style="text-align: center;">PMOD2_9</td>
+<td style="text-align: center;">LA16_N</td>
+</tr>
+<tr>
+<td style="text-align: center;">PMOD2_10</td>
+<td style="text-align: center;">LA16_P</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sec:pmod-to-olimex">PMOD-to-Olimex Signal Mapping</h2>
+<p>Connect the five labeled signals using wires according to the mapping
 below.</p>
 <figure>
 <img src="figures/pmod2olimex.png"/>
@@ -425,4 +425,3 @@ below.</p>
 </ul>
 </body>
 </html>
-
