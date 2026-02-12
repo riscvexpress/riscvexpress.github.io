@@ -245,16 +245,18 @@ the RVX installation.</span> (<a href="rvx-installation-manual-en.html">Manual</
 Original Repository into Yours</h1>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(cloned directory of original repo)
 cmd) make fork TARGET=#(cloned directory of your repo)</code></pre></div>
+<h1 id="copying-platforms">Copying Platforms</h1>
+<p>The <span style="background-color: lightgray">fork</span> process
+does not copy the platforms from the original repository.<br/>
+Please copy them manually if needed.</p>
 <h1 id="before-working-with-your-repository">Before Working with Your
 Repository</h1>
-<p>Before Working with Your Repository For RVX-free users, make sure to
-add the <span style="background-color: lightgray">sync</span> folder to
-the repository.</p>
+<p>Before working with your repository,<br/>
+make sure to run <span style="background-color: lightgray">activate</span> or <span style="background-color: lightgray">sync</span>.</p>
 <h1 id="updating-your-repository">Updating Your Repository</h1>
 <p>When the original repository is updated,<br/>
-you can update yours using the same process as during
-initialization.<br/>
-After the duplication, make sure to run <span style="background-color: lightgray">activate</span>.</p>
+you can update yours using the same <span style="background-color: lightgray">fork</span> process.<br/>
+After forking, make sure to run <span style="background-color: lightgray">activate</span> or <span style="background-color: lightgray">sync</span>.</p>
 <h1 id="repairing-your-repository">Repairing Your Repository</h1>
 <p>If an update causes an issue due to a change in the submodule
 address,<br/>
