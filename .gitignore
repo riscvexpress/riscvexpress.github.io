@@ -12,6 +12,7 @@ rvx_*.log
 .login_info
 rvx_python_config.mh
 python3.bat
+pandoc-crossref.exe
 
 rvx-*-manual*/
 rvx-web*/

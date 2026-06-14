@@ -236,7 +236,8 @@ inst) Check whether the application is working properly.</code></pre></div>
 Application Binary to Flash Memory</h1>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(fpga dir)
 cmd) make flash_server
-cmd) make hello.flash
+cmd) make printf
+cmd) make hello.flash BUILD_MODE=release
 inst) Set the boot mode switch to ON.
 inst) Press the reset button on the FPGA board.
 inst) Check whether the application is working properly.</code></pre></div>
