@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8"/>
 <meta content="pandoc" name="generator"/>
@@ -8,6 +8,9 @@
 <meta content="Kyuseung Han, Sukho Lee, Jae-Jin Lee ETRI, Daejeon, South Korea" name="author"/>
 <title>RVX CLI Manual for Linux/Windows - RTL Simulation -</title>
 <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     html {
       color: #1a1a1a;
       background-color: #fdfdfd;
@@ -168,7 +171,6 @@
       vertical-align: middle;
     }
   </style>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
 <body>
 <header id="title-block-header">
@@ -283,21 +285,8 @@ RTL Code</span></p></li>
 </ul>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
 cmd) make #(app name).all // make clean #(app name).resim</code></pre></div>
-<h3 id="simulating-with-rtl-waveform-recording">Simulating with RTL
-Waveform Recording</h3>
-<ul>
-<li><p>Included Process:</p>
-<ul>
-<li><p><span style="background-color: lightgray">Building an
-Application</span></p></li>
-<li><p><span style="background-color: lightgray">Compiling the Platform
-RTL Code</span></p></li>
-</ul></li>
-</ul>
-<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
-cmd) make #(app name).debug</code></pre></div>
-<h3 id="simulating-with-rebuild-and-recording">Simulating with Rebuild
-and Recording</h3>
+<h3 id="simulating-with-rtl-waveform-recording-with-rebuild">Simulating
+with RTL Waveform Recording (with Rebuild)</h3>
 <ul>
 <li><p>Included Process:</p>
 <ul>
@@ -310,7 +299,20 @@ RTL Code</span></p></li>
 </ul></li>
 </ul>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
-cmd) make #(app name).redebug</code></pre></div>
+cmd) make #(app name).debug</code></pre></div>
+<h3 id="simulating-with-recording-but-without-rebuild">Simulating with
+Recording but without Rebuild</h3>
+<ul>
+<li><p>Included Process:</p>
+<ul>
+<li><p><span style="background-color: lightgray">Building an
+Application</span></p></li>
+<li><p><span style="background-color: lightgray">Compiling the Platform
+RTL Code</span></p></li>
+</ul></li>
+</ul>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) cd #(sim dir)
+cmd) make #(app name).debug_hw</code></pre></div>
 <h3 id="simulating-with-rtl-waveform-recording-from-boot">Simulating
 with RTL Waveform Recording from Boot</h3>
 <ul>

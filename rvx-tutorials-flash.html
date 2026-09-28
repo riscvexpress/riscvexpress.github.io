@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8"/>
 <meta content="pandoc" name="generator"/>
@@ -8,6 +8,9 @@
 <meta content="Kyuseung Han ETRI, Daejeon, South Korea" name="author"/>
 <title>RVX Tutorial: Using Flash Memory for Standalone FPGA Prototypes</title>
 <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     html {
       color: #1a1a1a;
       background-color: #fdfdfd;
@@ -168,7 +171,6 @@
       vertical-align: middle;
     }
   </style>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
 <body>
 <header id="title-block-header">
@@ -211,7 +213,7 @@ directory)/rvx_platform_example/test_flash</span></p></li>
 Interface into SoCs</h1>
 <ul>
 <li><p>The code below inserts the flash interface into your SoCs.</p>
-<figure>
+<figure data-latex-placement="h!">
 <img src="figures/spi-flash.png"/>
 </figure></li>
 <li><p>An example is provided in <span style="background-color: lightgray">#(example
@@ -246,6 +248,16 @@ Prototypes</h1>
 <div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>inst) Set the boot mode switch to ON.
 inst) Turn the power of the FPGA board off and on.
 inst) Check whether the application is working properly.</code></pre></div>
+<h1 id="exporting-entire-flash-image">Exporting Entire Flash Image</h1>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>Right after verifying the standalone,
+cmd) make dump_flash_image</code></pre></div>
+<p>.mcs file and ‘program_flash_image_wo_rvx.tcl’ will be
+generated.<br/>
+Using these two files, you can program both the FPGA bitstream and the
+application binary without our tool.<br/>
+Simply run the following Vivado command.<br/>
+</p>
+<div style="background-color: #1e1e1e; color: #d4d4d4; font-family: 'Courier New', Courier, monospace; padding: 0.5em 0.75em; border-radius: 6px; margin: 1em 0; font-size: 1em; line-height: 1.4;"><pre style="margin: 0; white-space: pre-wrap;"><code>cmd) vivado -mode batch ./program_flash_image_wo_rvx.tcl</code></pre></div>
 <h1 id="applying-this-to-other-platforms">Applying This to Other
 Platforms</h1>
 <ul>
