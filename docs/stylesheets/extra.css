@@ -1,0 +1,74 @@
+.rvx-version {
+  margin-top: -0.8rem;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.75rem;
+}
+
+.rvx-funding {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.75rem;
+}
+
+/* notes under commands (> ...) */
+.md-typeset blockquote {
+  color: var(--md-default-fg-color--light);
+  border-left-color: var(--md-accent-fg-color--transparent);
+}
+
+/* ---------- left sidebar: make the levels distinguishable ---------- */
+
+/* top-level section titles (Installation, CLI Manual, Extensions, ...) */
+.md-nav--primary > .md-nav__list > .md-nav__item--section {
+  margin-top: 1rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+}
+.md-nav--primary > .md-nav__list > .md-nav__item--section > .md-nav__link {
+  color: var(--md-primary-fg-color);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 0.68rem;
+}
+[data-md-color-scheme="slate"] .md-nav--primary > .md-nav__list > .md-nav__item--section > .md-nav__link {
+  color: var(--md-accent-fg-color);
+}
+
+/* top-level single pages (Notice, Repository Setup, FPGA Setup):
+   same level as the section titles, but clickable; Home stays plain */
+.md-nav--primary > .md-nav__list > .md-nav__item:not(.md-nav__item--section):not(:first-child) {
+  margin-top: 1rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+}
+.md-nav--primary > .md-nav__list > .md-nav__item:not(.md-nav__item--section):not(:first-child) > .md-nav__link {
+  color: var(--md-primary-fg-color);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 0.68rem;
+}
+[data-md-color-scheme="slate"] .md-nav--primary > .md-nav__list > .md-nav__item:not(.md-nav__item--section):not(:first-child) > .md-nav__link {
+  color: var(--md-accent-fg-color);
+}
+.md-nav--primary > .md-nav__list > .md-nav__item:first-child > .md-nav__link {
+  font-weight: 600;
+}
+
+/* second level and below: indent with a guide line */
+.md-nav--primary .md-nav__item--section .md-nav .md-nav {
+  margin-left: 0.3rem;
+  padding-left: 0.5rem;
+  border-left: 2px solid var(--md-default-fg-color--lightest);
+}
+
+/* collapsible groups inside a section (NPX, Tutorials) */
+.md-nav--primary .md-nav__item--nested:not(.md-nav__item--section) > .md-nav__link {
+  font-weight: 600;
+  color: var(--md-default-fg-color--light);
+}
+
+/* current page */
+.md-nav--primary .md-nav__link--active {
+  font-weight: 700;
+}
