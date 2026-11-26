@@ -47,3 +47,18 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - ARX:
+      - arx/index.md
+      - Repository Setup: arx/arx-repository-manual-en.md
+      - CLI Manual:
+          - Overview: arx/arx-cli-manual-en.md
+          - Platform: arx/arx-cli-manual-en-platform.md
+          - Application: arx/arx-cli-manual-en-app.md
+          - RTL Simulation: arx/arx-cli-manual-en-simulation.md
+          - FPGA Prototyping: arx/arx-cli-manual-en-fpga.md
+      - Software Development:
+          - Overview: arx/arx-sw-manual-en.md
+          - Caching Region Assignment: arx/arx-sw-manual-en-caching.md
+          - Data Consistency: arx/arx-sw-manual-en-consistency.md
+          - Standard Library Porting: arx/arx-sw-manual-en-stdlib.md
+          - Miscellaneous: arx/arx-sw-manual-en-misc.md

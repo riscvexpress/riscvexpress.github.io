@@ -14,4 +14,15 @@ hide:
 
 To install ARX, follow the `README.md` included in each repository.
 
+## Manuals
+
+- [Repository Setup Manual](arx-repository-manual-en.md)
+- [CLI Manual](arx-cli-manual-en.md)
+- [Software Development Manual](arx-sw-manual-en.md)
+
+## Repositories
+
+- [arx-modules](https://github.com/riscvexpress/arx-modules)
+- [arx-fpga-prototype](https://github.com/riscvexpress/arx-fpga-prototype)
+
 For RVX itself, see [RISC-V eXpress](../index.md).
